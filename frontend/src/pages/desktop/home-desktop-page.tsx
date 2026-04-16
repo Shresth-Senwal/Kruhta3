@@ -5,17 +5,13 @@
  */
 
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import { buildDesktopBrandLinkMarkup } from "../../components/layout/site-brand";
 
 const html = String.raw`
 <div class="bg-background-light font-display text-slate-900">
   <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
-          <span class="material-symbols-outlined">eco</span>
-        </div>
-        <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
-      </div>
+      ${buildDesktopBrandLinkMarkup("/")}
       <nav class="hidden lg:flex items-center gap-8">
         <a class="text-sm font-medium text-primary" href="/">Home</a>
         <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>

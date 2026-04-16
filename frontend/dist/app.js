@@ -19289,14 +19289,14 @@ var mobileRoutes = [
 // src/components/ui/static-markup-page.tsx
 var import_react = __toESM(require_react(), 1);
 
-// src/assets/logo-emblem.webp
-var logo_emblem_default = "./assets/logo-emblem-99022grf.webp";
+// src/assets/logo-text.webp
+var logo_text_default = "./assets/logo-text-amk2adsk.webp";
 
 // src/assets/logo-full.webp
 var logo_full_default = "./assets/logo-full-v4bsga9q.webp";
 
-// src/assets/logo-text.webp
-var logo_text_default = "./assets/logo-text-amk2adsk.webp";
+// src/assets/logo-emblem.webp
+var logo_emblem_default = "./assets/logo-emblem-99022grf.webp";
 
 // src/components/layout/site-brand.ts
 var BRAND_NAME = "Krutha Foundation";
@@ -19306,8 +19306,8 @@ function renderImage(src, alt, className) {
 }
 function buildPrimaryBrandMarkup(containerClassName, emblemClassName, textClassName) {
   return `<div class="${containerClassName}">
-    ${renderImage(logo_text_default, `${BRAND_NAME} wordmark`, textClassName)}
-    ${renderImage(logo_emblem_default, `${BRAND_NAME} emblem`, emblemClassName)}
+    ${renderImage(logo_text_default, `${BRAND_NAME} emblem`, emblemClassName)}
+    ${renderImage(logo_emblem_default, `${BRAND_NAME} wordmark`, textClassName)}
   </div>`;
 }
 function buildFooterBrandMarkup(isDarkFooter) {
@@ -19319,13 +19319,13 @@ function replaceFooterBrandingBlock(footerMarkup) {
   return footerMarkup.replace(/<div class="([^"]*flex items-center gap-3[^"]*)">(?:<div class="[^"]*">[\s\S]*?<\/div>|<span class="material-symbols-outlined[^"]*">[^<]+<\/span>)<(?:h1|h2|span)[^>]*>Krutha Foundation<\/(?:h1|h2|span)><\/div>/i, (_match, className) => `<div class="${className}">${buildFooterBrandMarkup(isDarkFooter)}</div>`);
 }
 function buildPressBrandAssetsCardMarkup() {
-  return `<a class="bg-white p-6 rounded-2xl flex items-center gap-5 hover:shadow-lg transition-all border border-primary/5" download="krutha-foundation-logo-full.webp" href="${logo_full_default}"><div class="grid grid-cols-3 gap-3"><span class="flex h-14 w-14 items-center justify-center">${renderImage(logo_emblem_default, `${BRAND_NAME} emblem`, "h-11 w-11 object-contain")}</span><span class="flex h-14 w-18 items-center justify-center">${renderImage(logo_text_default, `${BRAND_NAME} wordmark`, "h-4 w-auto object-contain")}</span><span class="flex h-14 w-22 items-center justify-center">${renderImage(logo_full_default, `${BRAND_NAME} full logo`, "h-7 w-auto object-contain")}</span></div><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (WebP)</p></div></a>`;
+  return `<a class="bg-white p-6 rounded-2xl flex items-center gap-5 hover:shadow-lg transition-all border border-primary/5" download="krutha-foundation-logo-full.webp" href="${logo_full_default}"><div class="grid grid-cols-3 gap-3"><span class="flex h-14 w-14 items-center justify-center">${renderImage(logo_text_default, `${BRAND_NAME} emblem`, "h-11 w-11 object-contain")}</span><span class="flex h-14 w-18 items-center justify-center">${renderImage(logo_emblem_default, `${BRAND_NAME} wordmark`, "h-4 w-auto object-contain")}</span><span class="flex h-14 w-22 items-center justify-center">${renderImage(logo_full_default, `${BRAND_NAME} full logo`, "h-7 w-auto object-contain")}</span></div><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (WebP)</p></div></a>`;
 }
 function buildDesktopBrandLinkMarkup(href) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-3", "h-10 w-auto", "h-10 w-auto")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-3", "h-12 w-auto", "h-8 w-auto")}</a>`;
 }
 function buildMobileBrandLinkMarkup(href) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-8 w-auto", "h-8 w-auto")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-9 w-auto", "h-7 w-auto")}</a>`;
 }
 function buildOverlayBrandMarkup() {
   return `<div class="min-w-0 flex-1 px-1 py-1"><p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/60">Navigate</p><div class="mt-2 min-w-0">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-12 w-auto", "h-12 w-auto")}<p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary/55">Transforming communities</p></div></div>`;
@@ -19638,7 +19638,7 @@ var srinivasuSrc = "/team/srinivasu-b.webp";
 var html = String.raw`
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
   <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 md:px-20 lg:px-40 py-4 bg-background-light/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="flex items-center gap-4 text-primary"><div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white"><span class="material-symbols-outlined text-2xl">foundation</span></div><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight">Krutha Foundation</h2></div>
+    ${buildDesktopBrandLinkMarkup("/")}
     <div class="flex flex-1 justify-end gap-8 items-center">
       <nav class="hidden md:flex items-center gap-8">
         <a class="text-slate-600 hover:text-primary text-sm font-medium transition-colors" href="/">Home</a>
@@ -20003,12 +20003,7 @@ var html6 = String.raw`
 <div class="bg-background-light font-display text-slate-900">
   <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
-          <span class="material-symbols-outlined">eco</span>
-        </div>
-        <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
-      </div>
+      ${buildDesktopBrandLinkMarkup("/")}
       <nav class="hidden lg:flex items-center gap-8">
         <a class="text-sm font-medium text-primary" href="/">Home</a>
         <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>
@@ -20439,7 +20434,7 @@ var projectsGalleryHtml = projectMediaCategories.map((category) => renderCategor
 var html7 = String.raw`
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
   <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 py-4 lg:px-20 bg-background-light">
-    <div class="flex items-center gap-4 text-primary"><div class="size-8 flex items-center justify-center bg-primary text-white rounded-lg"><span class="material-symbols-outlined">diversity_3</span></div><h2 class="text-slate-900 text-xl font-bold leading-tight tracking-tight">Krutha Foundation</h2></div>
+    ${buildDesktopBrandLinkMarkup("/")}
     <div class="flex flex-1 justify-end gap-8"><nav class="hidden md:flex items-center gap-9"><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/">Home</a><a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="/our-work">Our Work</a><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate</a></nav><div class="flex items-center gap-4"><a class="flex min-w-[100px] items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-opacity-90 transition-all" href="/contact">Contact Us</a></div></div>
   </header>
   <main class="flex flex-1 flex-col py-10 px-6 lg:px-20"><div class="max-w-[1200px] mx-auto w-full"><div class="flex flex-col gap-4 mb-8"><h1 class="text-slate-900 text-5xl font-black leading-tight tracking-tight">Our Work</h1><p class="text-slate-600 text-lg font-normal max-w-3xl">Select a category from the toolbar, then choose a project. Open the project card for details and use Show Gallery to view all project images.</p></div><div class="sticky top-3 z-20 mb-10 rounded-2xl border border-primary/10 bg-white/90 px-4 py-4 shadow-sm backdrop-blur"><div class="flex flex-wrap gap-2">${categoryToolbarHtml}</div></div><div class="space-y-14">${projectsGalleryHtml}</div><div class="mt-20"><div class="flex flex-col items-center justify-center gap-8 px-6 py-16 rounded-3xl bg-primary text-white text-center"><div class="flex flex-col gap-4 max-w-2xl"><h2 class="text-3xl md:text-4xl font-black leading-tight">Support Our Mission</h2><p class="bg-white/10 p-1 rounded-lg inline-block self-center px-4 mb-2 text-white font-medium">Join 500+ Active Volunteers</p><p class="text-white/80 text-lg">Your support helps us scale these initiatives. Join us in making a tangible difference in the lives of thousands.</p></div><div class="flex flex-wrap justify-center gap-4"><a class="flex min-w-[160px] items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-transform hover:scale-105" href="/contact">Volunteer</a><a class="flex min-w-[160px] items-center justify-center rounded-xl h-14 px-8 bg-transparent border-2 border-white text-white text-base font-bold transition-all hover:bg-white/10" href="/contact">Donate Now</a></div></div></div></div></main>

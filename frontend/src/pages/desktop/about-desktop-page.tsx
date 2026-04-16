@@ -5,6 +5,7 @@
  */
 
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import { buildDesktopBrandLinkMarkup } from "../../components/layout/site-brand";
 const suryaSrc = "/team/surya-bandaru.webp";
 const kgRaoSrc = "/team/kg-rao.webp";
 const srinivasuSrc = "/team/srinivasu-b.webp";
@@ -14,7 +15,7 @@ import aptaLogo from "../../assets/APTA.webp";
 const html = String.raw`
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
   <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 md:px-20 lg:px-40 py-4 bg-background-light/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="flex items-center gap-4 text-primary"><div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white"><span class="material-symbols-outlined text-2xl">foundation</span></div><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight">Krutha Foundation</h2></div>
+    ${buildDesktopBrandLinkMarkup("/")}
     <div class="flex flex-1 justify-end gap-8 items-center">
       <nav class="hidden md:flex items-center gap-8">
         <a class="text-slate-600 hover:text-primary text-sm font-medium transition-colors" href="/">Home</a>

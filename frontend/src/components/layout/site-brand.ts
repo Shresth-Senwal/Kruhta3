@@ -4,9 +4,9 @@
  * @module frontend/src/components/layout
  */
 
-import logoEmblem from "../../assets/logo-emblem.webp";
+import logoEmblem from "../../assets/logo-text.webp";
 import logoFull from "../../assets/logo-full.webp";
-import logoText from "../../assets/logo-text.webp";
+import logoText from "../../assets/logo-emblem.webp";
 
 const BRAND_NAME = "Krutha Foundation";
 
@@ -17,8 +17,8 @@ function renderImage(src: string, alt: string, className: string) {
 
 function buildPrimaryBrandMarkup(containerClassName: string, emblemClassName: string, textClassName: string) {
   return `<div class="${containerClassName}">
-    ${renderImage(logoText, `${BRAND_NAME} wordmark`, textClassName)}
     ${renderImage(logoEmblem, `${BRAND_NAME} emblem`, emblemClassName)}
+    ${renderImage(logoText, `${BRAND_NAME} wordmark`, textClassName)}
   </div>`;
 }
 
@@ -44,11 +44,11 @@ function buildPressBrandAssetsCardMarkup() {
 }
 
 export function buildDesktopBrandLinkMarkup(href: string) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-3", "h-10 w-auto", "h-10 w-auto")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-3", "h-12 w-auto", "h-8 w-auto")}</a>`;
 }
 
 export function buildMobileBrandLinkMarkup(href: string) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-8 w-auto", "h-8 w-auto")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-9 w-auto", "h-7 w-auto")}</a>`;
 }
 
 export function buildOverlayBrandMarkup() {
