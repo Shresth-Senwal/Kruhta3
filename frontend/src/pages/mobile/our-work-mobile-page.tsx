@@ -106,6 +106,13 @@ function renderProjectCard(categoryTitle: string, project: (typeof projectMediaC
           ${renderGalleryImages(galleryImages, project.title)}
         </div>
       </details>
+      ${project.programPath ? `
+        <div class="pt-3 border-t border-primary/5 flex justify-end">
+          <a href="${project.programPath.startsWith("/m") ? project.programPath : "/m" + project.programPath}" class="inline-flex items-center gap-1.5 text-primary text-xs font-bold transition-all">
+            Full Program Details <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
+        </div>
+      ` : ""}
     </div>
   </details>`;
 }

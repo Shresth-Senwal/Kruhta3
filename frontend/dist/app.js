@@ -19263,7 +19263,12 @@ var desktopRoutes = [
   { key: "blog", path: "/blog", label: "Blog" },
   { key: "contact", path: "/contact", label: "Contact Us" },
   { key: "press", path: "/press", label: "Press" },
-  { key: "donation-confirmation", path: "/donation-confirmation", label: "Donation Confirmation" }
+  { key: "donation-confirmation", path: "/donation-confirmation", label: "Donation Confirmation" },
+  { key: "programs-leads", path: "/programs/leads", label: "L.E.A.D.S Program" },
+  { key: "programs-bhagiratha", path: "/programs/bhagiratha", label: "Project Bhagiratha" },
+  { key: "programs-vasundhara", path: "/programs/vasundhara", label: "Project Vasundhara" },
+  { key: "programs-samyamam", path: "/programs/samyamam", label: "Project Samyamam" },
+  { key: "impact-report", path: "/impact-report", label: "Impact Report" }
 ];
 var mobileRoutes = [
   { key: "home", path: "/m", label: "Home" },
@@ -19273,51 +19278,60 @@ var mobileRoutes = [
   { key: "blog", path: "/m/blog", label: "Blog" },
   { key: "contact", path: "/m/contact", label: "Contact Us" },
   { key: "press", path: "/m/press", label: "Press" },
-  { key: "donation-confirmation", path: "/m/donation-confirmation", label: "Donation Confirmation" }
+  { key: "donation-confirmation", path: "/m/donation-confirmation", label: "Donation Confirmation" },
+  { key: "programs-leads", path: "/m/programs/leads", label: "L.E.A.D.S Program" },
+  { key: "programs-bhagiratha", path: "/m/programs/bhagiratha", label: "Project Bhagiratha" },
+  { key: "programs-vasundhara", path: "/m/programs/vasundhara", label: "Project Vasundhara" },
+  { key: "programs-samyamam", path: "/m/programs/samyamam", label: "Project Samyamam" },
+  { key: "impact-report", path: "/m/impact-report", label: "Impact Report" }
 ];
 
 // src/components/ui/static-markup-page.tsx
 var import_react = __toESM(require_react(), 1);
 
-// src/assets/logo-emblem.png
-var logo_emblem_default = "./assets/logo-emblem-99022grf.png";
+// src/assets/logo-emblem.webp
+var logo_emblem_default = "./assets/logo-emblem-99022grf.webp";
 
-// src/assets/logo-full.png
-var logo_full_default = "./assets/logo-full-v4bsga9q.png";
+// src/assets/logo-full.webp
+var logo_full_default = "./assets/logo-full-v4bsga9q.webp";
 
-// src/assets/logo-text.png
-var logo_text_default = "./assets/logo-text-amk2adsk.png";
+// src/assets/logo-text.webp
+var logo_text_default = "./assets/logo-text-amk2adsk.webp";
 
 // src/components/layout/site-brand.ts
 var BRAND_NAME = "Krutha Foundation";
 function renderImage(src, alt, className) {
-  return `<img alt="${alt}" class="${className}" src="${src}" />`;
+  const absoluteSrc = src.startsWith("http") || src.startsWith("/") || src.startsWith("data:") ? src : `/${src}`;
+  return `<img alt="${alt}" class="${className}" src="${absoluteSrc}" />`;
 }
-function buildPrimaryBrandMarkup(className) {
-  return renderImage(logo_full_default, `${BRAND_NAME} full logo`, className);
+function buildPrimaryBrandMarkup(containerClassName, emblemClassName, textClassName) {
+  return `<div class="${containerClassName}">
+    ${renderImage(logo_text_default, `${BRAND_NAME} wordmark`, textClassName)}
+    ${renderImage(logo_emblem_default, `${BRAND_NAME} emblem`, emblemClassName)}
+  </div>`;
 }
 function buildFooterBrandMarkup(isDarkFooter) {
   const footerLogoClassName = isDarkFooter ? "h-16 w-auto max-w-[18rem] object-contain" : "h-16 w-auto max-w-[18rem] object-contain";
   return renderImage(logo_full_default, `${BRAND_NAME} full logo`, footerLogoClassName);
 }
 function replaceFooterBrandingBlock(footerMarkup) {
-  const isDarkFooter = /bg-primary|bg-\[#1a332a\]|bg-slate-900|text-white/.test(footerMarkup);
+  const isDarkFooter = /bg-(?:primary|forest|slate-900|slate-950|background-dark)|text-white/.test(footerMarkup);
   return footerMarkup.replace(/<div class="([^"]*flex items-center gap-3[^"]*)">(?:<div class="[^"]*">[\s\S]*?<\/div>|<span class="material-symbols-outlined[^"]*">[^<]+<\/span>)<(?:h1|h2|span)[^>]*>Krutha Foundation<\/(?:h1|h2|span)><\/div>/i, (_match, className) => `<div class="${className}">${buildFooterBrandMarkup(isDarkFooter)}</div>`);
 }
 function buildPressBrandAssetsCardMarkup() {
-  return `<a class="bg-white p-6 rounded-2xl flex items-center gap-5 hover:shadow-lg transition-all border border-primary/5" download="krutha-foundation-logo-full.png" href="${logo_full_default}"><div class="grid grid-cols-3 gap-3"><span class="flex h-14 w-14 items-center justify-center">${renderImage(logo_emblem_default, `${BRAND_NAME} emblem`, "h-11 w-11 object-contain")}</span><span class="flex h-14 w-[4.5rem] items-center justify-center">${renderImage(logo_text_default, `${BRAND_NAME} wordmark`, "h-4 w-auto object-contain")}</span><span class="flex h-14 w-[5.5rem] items-center justify-center">${renderImage(logo_full_default, `${BRAND_NAME} full logo`, "h-7 w-auto object-contain")}</span></div><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (PNG)</p></div></a>`;
+  return `<a class="bg-white p-6 rounded-2xl flex items-center gap-5 hover:shadow-lg transition-all border border-primary/5" download="krutha-foundation-logo-full.webp" href="${logo_full_default}"><div class="grid grid-cols-3 gap-3"><span class="flex h-14 w-14 items-center justify-center">${renderImage(logo_emblem_default, `${BRAND_NAME} emblem`, "h-11 w-11 object-contain")}</span><span class="flex h-14 w-18 items-center justify-center">${renderImage(logo_text_default, `${BRAND_NAME} wordmark`, "h-4 w-auto object-contain")}</span><span class="flex h-14 w-22 items-center justify-center">${renderImage(logo_full_default, `${BRAND_NAME} full logo`, "h-7 w-auto object-contain")}</span></div><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (WebP)</p></div></a>`;
 }
 function buildDesktopBrandLinkMarkup(href) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("h-18 w-auto max-w-[22rem] object-contain")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex shrink-0 items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-3", "h-10 w-auto", "h-10 w-auto")}</a>`;
 }
 function buildMobileBrandLinkMarkup(href) {
-  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("h-14 w-auto max-w-[13.5rem] object-contain")}</a>`;
+  return `<a aria-label="${BRAND_NAME} home" class="flex min-w-0 shrink items-center" href="${href}">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-8 w-auto", "h-8 w-auto")}</a>`;
 }
 function buildOverlayBrandMarkup() {
-  return `<div class="min-w-0 flex-1 px-1 py-1"><p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/60">Navigate</p><div class="mt-2 min-w-0">${buildPrimaryBrandMarkup("h-16 w-auto max-w-[15rem] object-contain")}<p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary/55">Transforming communities</p></div></div>`;
+  return `<div class="min-w-0 flex-1 px-1 py-1"><p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/60">Navigate</p><div class="mt-2 min-w-0">${buildPrimaryBrandMarkup("flex items-center gap-2", "h-12 w-auto", "h-12 w-auto")}<p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary/55">Transforming communities</p></div></div>`;
 }
 function enhanceStaticBranding(html) {
-  return html.replace(/<footer\b[\s\S]*?<\/footer>/gi, (footerMarkup) => replaceFooterBrandingBlock(footerMarkup)).replace(/<button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary\/5"><span class="material-symbols-outlined text-3xl text-\[#6b8e7b\]">imagesmode<\/span><div class="text-left"><p class="font-bold text-primary">Brand Assets<\/p><p class="text-xs text-primary\/50">Logo Suite \(PNG, SVG\)<\/p><\/div><\/button>/g, buildPressBrandAssetsCardMarkup());
+  return html.replace(/<footer\b[\s\S]*?<\/footer>/gi, (footerMarkup) => replaceFooterBrandingBlock(footerMarkup)).replace(/<button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary\/5"><span class="material-symbols-outlined text-3xl text-\[#8acac5\]">imagesmode<\/span><div class="text-left"><p class="font-bold text-primary">Brand Assets<\/p><p class="text-xs text-primary\/50">Logo Suite \(PNG, SVG\)<\/p><\/div><\/button>/g, buildPressBrandAssetsCardMarkup());
 }
 
 // src/components/layout/site-navigation.ts
@@ -19610,20 +19624,17 @@ function StaticMarkupPage({ html }) {
   }, undefined, false, undefined, this);
 }
 
-// src/assets/surya-bandaru.png
-var surya_bandaru_default = "./assets/surya-bandaru-6wc3b2vt.png";
+// src/assets/PCT.webp
+var PCT_default = "./assets/PCT-r2vhwgdd.webp";
 
-// src/assets/kg-rao.png
-var kg_rao_default = "./assets/kg-rao-a896kts7.png";
-
-// src/assets/srinivasu-b.png
-var srinivasu_b_default = "./assets/srinivasu-b-00dtz62f.png";
+// src/assets/APTA.webp
+var APTA_default = "./assets/APTA-pd1vcg19.webp";
 
 // src/pages/desktop/about-desktop-page.tsx
 var jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
-var suryaSrc = surya_bandaru_default;
-var kgRaoSrc = kg_rao_default;
-var srinivasuSrc = srinivasu_b_default;
+var suryaSrc = "/team/surya-bandaru.webp";
+var kgRaoSrc = "/team/kg-rao.webp";
+var srinivasuSrc = "/team/srinivasu-b.webp";
 var html = String.raw`
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
   <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 md:px-20 lg:px-40 py-4 bg-background-light/80 backdrop-blur-md sticky top-0 z-50">
@@ -19648,24 +19659,253 @@ var html = String.raw`
       </div>
     </section>
     <section class="px-6 md:px-20 lg:px-40 py-20 max-w-7xl mx-auto">
-      <div class="grid md:grid-cols-12 gap-12 items-center">
-        <div class="md:col-span-7"><h2 class="text-primary uppercase tracking-widest text-sm font-bold mb-4">Our Program Philosophy</h2><h3 class="text-slate-900 text-4xl md:text-5xl font-bold leading-tight mb-8">Mission &amp; Vision</h3><div class="text-slate-600 leading-relaxed text-lg"><p class="mb-6">At Krutha Foundation, our programs are centered on people and the environment, recognizing the interdependence between human behavior and the health of Earth, Water, and Air. Our work is transformational, addressing root causes through responsibility, discipline, and conscious choice.</p><p class="mb-6">Founded in April 2022, we connect people across the globe to their native village, Vadapalem, and channel collective effort to build a self-sustainable thriving community where life blossoms in all dimensions.</p><p>We aim big and align our efforts with 9 United Nations Sustainable Development Goals, with focus on children, youth, women, farmers, traders, and elders.</p></div></div>
-        <div class="md:col-span-5 bg-primary/5 p-10 rounded-xl border-l-4 border-primary italic"><span class="material-symbols-outlined text-primary text-4xl mb-4">format_quote</span><blockquote class="text-2xl md:text-3xl font-display font-medium text-slate-800 leading-snug">&quot;Serve our Motherland and transform villages into self-sustainable thriving communities.&quot;</blockquote><p class="mt-6 text-primary font-bold">&mdash; Krutha Foundation Mission</p></div>
+      <div class="grid md:grid-cols-12 gap-12 items-start">
+        <div class="md:col-span-7">
+          <h2 class="text-primary uppercase tracking-widest text-sm font-bold mb-4">Our Core Philosophy</h2>
+          <h3 class="text-slate-900 text-4xl md:text-5xl font-bold leading-tight mb-8">Nurturing Interdependence between People &amp; Environment</h3>
+          <div class="text-slate-600 leading-relaxed text-lg space-y-6 text-justify">
+            <p>At Krutha Foundation, our programs are centered on people and the environment—recognizing the deep interdependence between human behaviour and the health of <strong>Earth, Water, and Air</strong>. Each initiative is designed to be transformational rather than transactional, addressing root causes instead of symptoms.</p>
+            <p>By nurturing responsibility, discipline, and conscious choice among <strong>children, youth, women, farmers, traders, and elders</strong>, our programs seek to reshape everyday habits and collective attitudes. The impact we envision goes beyond immediate outcomes, aiming to create a lasting shift in how villages live, consume, protect resources, and care for one another, thereby securing a healthier, dignified, and sustainable future for generations to come.</p>
+            <div class="p-6 bg-primary/5 rounded-xl border border-primary/10 flex items-center gap-6 mt-8">
+              <div class="size-16 shrink-0 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-3xl">public</span>
+              </div>
+              <div>
+                <p class="text-slate-900 font-bold mb-1 font-display">Global Impact Commitment</p>
+                <p class="text-sm">We aim big, and work on <strong>9 Sustainable Development Goals (SDGs)</strong> set by the United Nations (UN).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-5 md:sticky md:top-32 bg-primary/5 p-10 rounded-xl border-l-4 border-primary italic mt-12 md:mt-0">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4">format_quote</span>
+          <blockquote class="text-2xl md:text-3xl font-display font-medium text-slate-800 leading-snug">&quot;Serve our Motherland and transform villages into self-sustainable thriving communities where life blossoms in all dimensions.&quot;</blockquote>
+          <p class="mt-6 text-primary font-bold">&mdash; Krutha Foundation Vision</p>
+        </div>
       </div>
     </section>
-    <section class="px-6 md:px-20 lg:px-40 py-20 bg-white">
-      <div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Leadership Team</h2><div class="h-1 w-20 bg-primary mx-auto rounded-full"></div></div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="flex flex-col items-center text-center group"><div class="relative size-64 mb-6 overflow-hidden rounded-xl bg-slate-200 shadow-lg"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${suryaSrc}" alt="Portrait of Surya Bandaru" width="256" height="256" /></div><h4 class="text-xl font-bold text-slate-900">Surya Bandaru</h4><p class="text-primary font-medium text-sm">Chairman</p></div>
-        <div class="flex flex-col items-center text-center group"><div class="relative size-64 mb-6 overflow-hidden rounded-xl bg-slate-200 shadow-md"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${kgRaoSrc}" alt="Portrait of K G Rao" width="256" height="256" /></div><h4 class="text-xl font-bold text-slate-900">K G Rao</h4><p class="text-primary font-medium text-sm">Joint Secretary</p></div>
-        <div class="flex flex-col items-center text-center group"><div class="relative size-64 mb-6 overflow-hidden rounded-xl bg-slate-200 shadow-md"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${srinivasuSrc}" alt="Portrait of Srinivasu B" width="256" height="256" /></div><h4 class="text-xl font-bold text-slate-900">Srinivasu B</h4><p class="text-primary font-medium text-sm">Treasurer</p></div>
+
+    <!-- Leadership Team Section -->
+    <section class="px-6 md:px-20 lg:px-40 py-24 bg-[#fdfdfc]">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-20">
+          <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs">Foundation Leadership</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6">Our Team</h2>
+          <div style="height:2px;width:64px;background:#2d5e5b;margin:0 auto;border-radius:9999px;"></div>
+        </div>
+
+        <div style="border-top:1px solid #f1f5f9;">
+
+          <!-- Surya Bandaru -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <img src="${suryaSrc}" alt="Surya Bandaru" style="width:160px;height:160px;border-radius:16px;object-fit:cover;object-position:44% center;box-shadow:0 4px 16px rgba(0,0,0,0.12);" />
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Surya Bandaru</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Chairman</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">Surya Bandaru is the visionary behind Krutha Foundation, driven by the mission to manifest a modern "Krutha Yuga" in rural India. An alumnus of NIT Warangal, Surya brings over 27 years of illustrious corporate experience from global giants including Motorola, GE, and Nokia.</p>
+                <p style="margin:0 0 12px;">Having managed global teams and travelled extensively across multiple countries, Surya has gained a profound understanding of diverse cultures and world-class systemic efficiencies. This passion led him to volunteer with the Art of Living, Landmark Worldwide and Nizhal (Chennai), where he honed his approach to social transformation.</p>
+                <p style="margin:0;">In April 2022, Surya took up the challenge to build sustainable village ecosystems with like-minded friends and a global network of the diaspora, blending corporate discipline with a deep-seated commitment to environmental and educational reforms.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Srirama Chandra Murthy -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <div style="width:160px;height:160px;border-radius:16px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="font-size:64px;color:#cbd5e1;">person</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Srirama Chandra Murthy</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Vice Chairman</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">A distinguished veteran in education and sports administration with over three decades of leadership. A retired Physical Director for Government High Schools, he is widely recognized for his transformative work in reviving sports culture across the district—a career built on the belief that physical discipline is the cornerstone of academic and personal excellence.</p>
+                <div style="background:#f0f9f8;border-left:3px solid #2d5e5b;border-radius:8px;padding:14px 16px;margin:12px 0;font-size:0.875rem;">
+                  <p style="font-weight:600;color:#1e293b;margin:0 0 8px;">Key Leadership Positions:</p>
+                  <p style="margin:0 0 4px;">• District Secretary, School Games Federation (SGF) of India — 3 years</p>
+                  <p style="margin:0 0 4px;">• President, District Physical Education Association — 5 years</p>
+                  <p style="margin:0;">• State Organizing Secretary, State Physical Education Association (2012–2014)</p>
+                </div>
+                <p style="margin:12px 0 0;">Currently serving as Secretary for the India Olympic Association (IOA), Konaseema District—organizing high-impact sports events for 2,000+ students across 100 high schools in 22 Mandals. As Vice Chairman, he is the visionary behind our sports-centric development strategy in the L.E.A.D.S. program.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anand Bandaru -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <div style="width:160px;height:160px;border-radius:16px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="font-size:64px;color:#cbd5e1;">person</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Anand Bandaru</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">General Secretary</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">A founding member of Krutha Foundation, committed to enabling sustainable and inclusive development in his native village through education, community empowerment, and environmental restoration. An alumnus of BITS Pilani with over 25 years of distinguished corporate experience at IBM and Kyndryl.</p>
+                <p style="margin:0 0 12px;">Throughout his career, he has led large, diverse teams delivering complex, large-scale technology and transformation programs. At Krutha Foundation, Anand focuses on scholarships, strengthening government schools, empowering women and youth, and rebuilding local ecological systems.</p>
+                <p style="margin:0;">Deeply connected to his roots, Anand believes that true progress begins when communities are equipped with knowledge, confidence, and sustainable resources—blending corporate discipline with compassion, collaboration, and a strong sense of social responsibility.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- K G RAO -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <img src="${kgRaoSrc}" alt="K G Rao" style="width:160px;height:160px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.12);" />
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">K G Rao</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Joint Secretary</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">A retired government professional and lifelong advocate for social justice. Having retired as an Assistant Manager from Alwyn Systems, Hyderabad, he brings decades of administrative expertise to the foundation's grassroots initiatives. Driven by the philosophy that one's birthplace is as sacred as a mother, he has dedicated his post-retirement life to giving back.</p>
+                <p style="margin:0 0 12px;">He is widely recognized for his selfless service—assisting during medical emergencies, navigating bureaucratic complexities for fellow villagers, and his current pursuit of an LLB to further advocate for community welfare. Leads the foundation's dedicated five-member execution team overseeing both the Education and Environment pillars.</p>
+                <p style="margin:0;font-style:italic;border-left:2px solid #cbd5e1;padding-left:14px;color:#64748b;">"Serving my village is not a choice, but a duty toward the land that raised me. Every step we take in education or ecology is a step toward honoring our roots."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Srinivasu B -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <img src="${srinivasuSrc}" alt="Srinivasu B" style="width:160px;height:160px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.12);" />
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Srinivasu B</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Treasurer</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">Brings a unique blend of international exposure and entrepreneurial experience. A Mathematics and Computer Science graduate, he began his professional journey in Singapore before returning to India in 2009 to found Rohan Infrastructure—executing high-stakes projects for Reliance Communications, Reliance Retail, and a flagship Decathlon showroom in Hyderabad.</p>
+                <p style="margin:0;">His transition from large-scale infrastructure to community-scale impact is driven by a deep sense of heritage. For the past two years, he has led the construction of a local temple in his native village. As Treasurer, Srinivasu applies rigorous financial discipline to ensure every donated rupee is utilized with maximum efficiency and transparency.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pedapudi Bapi Raju -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;border-bottom:1px solid #f1f5f9;">
+            <div style="flex-shrink:0;">
+              <div style="width:160px;height:160px;border-radius:16px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="font-size:64px;color:#cbd5e1;">person</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Pedapudi Bapi Raju</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Trustee</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">"Farmer to the Core" and tireless architect of social change in Konaseema for over three decades. Since 1990 with the Rotaract Club, he has led blood donation drives, life-changing eye surgery camps, and national Pulse-Polio campaigns.</p>
+                <p style="margin:0 0 12px;">In 2000, he established the Pedapudi Bapi Raju Veeramma Society—empowering women through vocational training, supporting veterinary health, and fostering youth excellence in sports. Named "Best Youth Leader" and received "Best Youth Organization" award at the district level (2006-07).</p>
+                <p style="margin:0;">As a Trustee of Krutha Foundation, Bapi Raju Garu brings the wisdom of a practitioner—advocating for organic agriculture, combating single-use plastic, and ensuring disadvantaged communities access government welfare, rooted in the "Krutha" ideal of selfless service.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subba Rao Karibandi -->
+          <div style="padding:48px 0;display:flex;gap:32px;align-items:flex-start;">
+            <div style="flex-shrink:0;">
+              <div style="width:160px;height:160px;border-radius:16px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="font-size:64px;color:#cbd5e1;">person</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <h3 style="font-size:1.5rem;font-weight:700;color:#0f172a;margin:0 0 4px;">Subba Rao Karibandi</h3>
+              <p style="font-size:0.65rem;font-weight:700;color:#2d5e5b;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 16px;">Trustee</p>
+              <div style="color:#475569;line-height:1.75;font-size:0.9375rem;">
+                <p style="margin:0 0 12px;">The foundation's primary bridge between vision and ground-level execution. A humanitarian by heart and the "Torch Bearer" of the L.E.A.D.S. Program—serving as the primary liaison between our Partner Organization (PCT), school authorities, students, and parents.</p>
+                <p style="margin:0 0 12px;">His maturity and soft-spoken nature allow him to guide parents through the complexities of their children's educational journeys with empathy. He works tirelessly to identify meritorious but underprivileged students, coordinating with PCT and APTA to bridge the financial gap for higher education.</p>
+                <p style="margin:0;">Deeply spiritual and community-oriented, he also leads extensive volunteer temple restoration efforts in his native village—embodying Krutha Foundation's commitment to Integrity and Grassroots Empowerment, ensuring that no deserving student is left behind.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="px-6 md:px-20 lg:px-40 py-24 bg-white border-t border-slate-50">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Strategic Partners</h2>
+          <div class="h-1 w-20 bg-primary mx-auto rounded-full mb-6"></div>
+          <p class="max-w-3xl mx-auto text-slate-600 text-lg">
+            At Krutha Foundation, we believe in the power of collaboration. By uniting with world-class organizations, we combine local passion with global expertise to create a sustainable ecosystem for our students.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+          <!-- PCT Card -->
+          <div class="flex flex-col rounded-3xl bg-white border border-primary/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div class="p-8 pb-4 flex items-center gap-6">
+              <div class="shrink-0 size-24 flex items-center justify-center bg-slate-50 rounded-2xl p-3 border border-slate-100 shadow-inner">
+                <img src="${PCT_default}" alt="PCT Logo" class="max-h-full max-w-full object-contain" />
+              </div>
+              <div class="flex-1">
+                <div class="flex items-start justify-between">
+                  <h4 class="text-2xl font-bold text-primary leading-tight">Padala Charitable Trust (PCT)</h4>
+                  <a href="https://pct-india.org" target="_blank" rel="noopener noreferrer" class="p-2 bg-primary/5 rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                  </a>
+                </div>
+                <p class="text-teal-600/70 text-sm font-bold uppercase tracking-wider mt-1">Primary Execution Partner</p>
+              </div>
+            </div>
+            <div class="px-8 pb-8 space-y-6">
+              <p class="text-slate-600 text-[15px] leading-relaxed">
+                Padala Charitable Trust brings over two decades of experience in rural education reform. Their year-long curriculum at ZPHS Vadapalem provides students with foundational <strong>Life Skills, Adolescent Education, and Leadership training</strong> that bridges the gap in traditional schooling.
+              </p>
+              <div class="p-5 rounded-2xl bg-primary/5 border-l-2 border-primary italic">
+                <p class="text-slate-700 text-[14px] leading-relaxed">
+                  "Beyond the classroom, PCT is a pillar of our scholarship initiative, ensuring financial constraints never stand in the way of academic excellence for meritorious students."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- APTA Card -->
+          <div class="flex flex-col rounded-3xl bg-white border border-primary/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+            <div class="p-8 pb-4 flex items-center gap-6">
+              <div class="shrink-0 size-24 flex items-center justify-center bg-slate-50 rounded-2xl p-3 border border-slate-100 shadow-inner">
+                <img src="${APTA_default}" alt="APTA Logo" class="max-h-full max-w-full object-contain" />
+              </div>
+              <div class="flex-1">
+                <div class="flex items-start justify-between">
+                  <h4 class="text-2xl font-bold text-primary leading-tight">APTA (USA)</h4>
+                  <a href="https://ap-ta.org" target="_blank" rel="noopener noreferrer" class="p-2 bg-primary/5 rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                  </a>
+                </div>
+                <p class="text-teal-600/70 text-sm font-bold uppercase tracking-wider mt-1">Scholarship Support Partner</p>
+              </div>
+            </div>
+            <div class="px-8 pb-8 space-y-6">
+              <p class="text-slate-600 text-[15px] leading-relaxed">
+                Representing the strength of the Telugu diaspora in the United States, APTA has been a vital supporter for the last two years. Their focus on empowering students to pursue <strong>high-level professional degrees</strong> transforms lives and entire families.
+              </p>
+              <div class="p-5 rounded-2xl bg-primary/5 border-l-2 border-primary italic">
+                <p class="text-slate-700 text-[14px] leading-relaxed">
+                  "Through APTA's contributions, we bridge the funding gap for students entering engineering and other professional streams, manifesting real social mobility."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20 p-8 rounded-2xl bg-primary text-white text-center shadow-lg shadow-primary/20">
+          <p class="text-xl font-medium">
+            Together, these partnerships allow Krutha Foundation to maintain a <span class="font-bold underline decoration-sage decoration-4 underline-offset-4">100% transparency rate</span> and ensure that every rupee donated goes directly toward student transformation.
+          </p>
+        </div>
       </div>
     </section>
     <section class="px-6 md:px-20 lg:px-40 py-20 bg-primary/5">
-      <div class="max-w-6xl mx-auto"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Financial Transparency</h2><p class="text-slate-600">100% transparent utilization with strategic NGO partnerships.</p></div><div class="grid lg:grid-cols-2 gap-16 items-center"><div class="flex flex-col items-center justify-center"><div class="relative size-72 flex items-center justify-center"><svg class="w-full h-full transform -rotate-90"><circle class="text-slate-200" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-width="24"></circle><circle class="text-[#648277]" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-dasharray="753.98" stroke-dashoffset="503" stroke-width="24"></circle><circle class="text-primary" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-dasharray="753.98" stroke-dashoffset="695" stroke-width="24"></circle></svg><div class="absolute text-center"><p class="text-3xl font-bold text-slate-900">Rs.21,26,753</p><p class="text-xs uppercase tracking-widest text-slate-500">Total Raised (2022-2025)</p></div></div><div class="mt-8 flex gap-6 text-sm"><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-[#648277]"></div><span>PCT (Rs.8.40L)</span></div><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-primary"></div><span>APTA (Rs.1.66L)</span></div><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-slate-200"></div><span>Global Donors</span></div></div></div><div class="overflow-hidden rounded-xl border border-primary/10 bg-white shadow-sm"><table class="w-full text-left"><thead class="bg-primary text-white"><tr><th class="px-6 py-4 font-semibold text-sm">Contributor Source</th><th class="px-6 py-4 font-semibold text-sm text-right">Amount (INR)</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><td class="px-6 py-4 text-slate-700">Padala Charitable Trust (PCT)</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.8,40,000</td></tr><tr><td class="px-6 py-4 text-slate-700">American Progressive Telugu Association (APTA)</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.1,66,000</td></tr><tr><td class="px-6 py-4 text-slate-700">Individual Global Diaspora</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.11,20,753</td></tr><tr class="bg-primary/5"><td class="px-6 py-4 font-bold text-primary">Total Funds Mobilized</td><td class="px-6 py-4 text-right font-bold text-primary">Rs.21,26,753</td></tr></tbody></table></div></div></div>
+      <div class="max-w-6xl mx-auto"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Financial Transparency</h2><p class="text-slate-600">100% transparent utilization with strategic NGO partnerships.</p></div><div class="grid lg:grid-cols-2 gap-16 items-center"><div class="flex flex-col items-center justify-center"><div class="relative size-72 flex items-center justify-center"><svg class="w-full h-full transform -rotate-90"><circle class="text-slate-200" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-width="24"></circle><circle class="text-[#8acac5]" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-dasharray="753.98" stroke-dashoffset="503" stroke-width="24"></circle><circle class="text-primary" cx="144" cy="144" fill="transparent" r="120" stroke="currentColor" stroke-dasharray="753.98" stroke-dashoffset="695" stroke-width="24"></circle></svg><div class="absolute text-center"><p class="text-3xl font-bold text-slate-900">Rs.21,26,753</p><p class="text-xs uppercase tracking-widest text-slate-500">Total Raised (2022-2025)</p></div></div><div class="mt-8 flex gap-6 text-sm"><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-[#8acac5]"></div><span>PCT (Rs.8.40L)</span></div><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-primary"></div><span>APTA (Rs.1.66L)</span></div><div class="flex items-center gap-2"><div class="size-3 rounded-full bg-slate-200"></div><span>Global Donors</span></div></div></div><div class="overflow-hidden rounded-xl border border-primary/10 bg-white shadow-sm"><table class="w-full text-left"><thead class="bg-primary text-white"><tr><th class="px-6 py-4 font-semibold text-sm">Contributor Source</th><th class="px-6 py-4 font-semibold text-sm text-right">Amount (INR)</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><td class="px-6 py-4 text-slate-700">Padala Charitable Trust (PCT)</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.8,40,000</td></tr><tr><td class="px-6 py-4 text-slate-700">American Progressive Telugu Association (APTA)</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.1,66,000</td></tr><tr><td class="px-6 py-4 text-slate-700">Individual Global Diaspora</td><td class="px-6 py-4 text-right font-medium text-slate-900">Rs.11,20,753</td></tr><tr class="bg-primary/5"><td class="px-6 py-4 font-bold text-primary">Total Funds Mobilized</td><td class="px-6 py-4 text-right font-bold text-primary">Rs.21,26,753</td></tr></tbody></table></div></div></div>
     </section>
   </main>
-  <footer class="bg-[#1a332a] text-white/80 px-6 md:px-20 lg:px-40 py-16"><div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-12"><div class="col-span-1 md:col-span-1"><div class="flex items-center gap-3 text-white mb-6"><span class="material-symbols-outlined text-2xl">foundation</span><span class="text-lg font-bold">Krutha Foundation</span></div><p class="text-sm leading-relaxed">Empowering communities through transparent philanthropy and sustainable development.</p></div><div><h5 class="text-white font-bold mb-6">Quick Links</h5><ul class="space-y-4 text-sm"><li><a class="hover:text-white transition-colors" href="/about">Our History</a></li><li><a class="hover:text-white transition-colors" href="/our-work">Active Projects</a></li><li><a class="hover:text-white transition-colors" href="/press">Trustee Reports</a></li><li><a class="hover:text-white transition-colors" href="/contact">Ways to Give</a></li></ul></div><div><h5 class="text-white font-bold mb-6">Transparency</h5><ul class="space-y-4 text-sm"><li><a class="hover:text-white transition-colors" href="/press">Financial Reports</a></li><li><a class="hover:text-white transition-colors" href="/about">Governance</a></li><li><a class="hover:text-white transition-colors" href="/blog">Impact Stories</a></li><li><a class="hover:text-white transition-colors" href="/contact">Compliance</a></li></ul></div><div><h5 class="text-white font-bold mb-6">Contact Us</h5><ul class="space-y-4 text-sm"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-sm pt-1 text-primary/40">location_on</span><span>Hyderabad, Telangana, India</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-primary/40">mail</span><span>hello@krutha.org</span></li></ul></div></div><div class="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-white/40"><p>(c) 2024 Krutha Foundation. All rights reserved.</p><div class="flex gap-8 mt-4 md:mt-0"><a class="hover:text-white" href="/contact">Privacy Policy</a><a class="hover:text-white" href="/contact">Terms of Service</a></div></div></footer>
+  <footer class="bg-[#2d5e5b] text-white/80 px-6 md:px-20 lg:px-40 py-16"><div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-12"><div class="col-span-1 md:col-span-1"><div class="flex items-center gap-3 text-white mb-6"><span class="material-symbols-outlined text-2xl">foundation</span><span class="text-lg font-bold">Krutha Foundation</span></div><p class="text-sm leading-relaxed">Empowering communities through transparent philanthropy and sustainable development.</p></div><div><h5 class="text-white font-bold mb-6">Quick Links</h5><ul class="space-y-4 text-sm"><li><a class="hover:text-white transition-colors" href="/about">Our History</a></li><li><a class="hover:text-white transition-colors" href="/our-work">Active Projects</a></li><li><a class="hover:text-white transition-colors" href="/press">Trustee Reports</a></li><li><a class="hover:text-white transition-colors" href="/contact">Ways to Give</a></li></ul></div><div><h5 class="text-white font-bold mb-6">Transparency</h5><ul class="space-y-4 text-sm"><li><a class="hover:text-white transition-colors" href="/press">Financial Reports</a></li><li><a class="hover:text-white transition-colors" href="/about">Governance</a></li><li><a class="hover:text-white transition-colors" href="/blog">Impact Stories</a></li><li><a class="hover:text-white transition-colors" href="/contact">Compliance</a></li></ul></div><div><h5 class="text-white font-bold mb-6">Contact Us</h5><ul class="space-y-4 text-sm"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-sm pt-1 text-primary/40">location_on</span><span>Hyderabad, Telangana, India</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-primary/40">mail</span><span>hello@krutha.org</span></li></ul></div></div><div class="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-white/40"><p>(c) 2024 Krutha Foundation. All rights reserved.</p><div class="flex gap-8 mt-4 md:mt-0"><a class="hover:text-white" href="/contact">Privacy Policy</a><a class="hover:text-white" href="/contact">Terms of Service</a></div></div></footer>
+
 </div>`;
 function AboutDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(StaticMarkupPage, {
@@ -19809,7 +20049,7 @@ var html6 = String.raw`
           <h2 class="font-editorial text-3xl lg:text-4xl mb-4">3-Year Impact Metrics</h2>
           <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-primary/5 text-center group hover:border-primary transition-colors">
             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary"><span class="material-symbols-outlined">payments</span></div>
             <h3 class="text-3xl font-bold text-slate-900 mb-2">Rs. 21,26,753</h3>
@@ -19830,6 +20070,11 @@ var html6 = String.raw`
             <h3 class="text-3xl font-bold text-slate-900 mb-2">300+</h3>
             <p class="text-slate-500 font-medium">Households Reached</p>
           </div>
+        </div>
+        <div class="text-center">
+          <a class="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-xl font-extrabold hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/5" href="/impact-report">
+            View Detailed 3-Year Impact Report <span class="material-symbols-outlined">summarize</span>
+          </a>
         </div>
       </div>
     </section>
@@ -19857,6 +20102,7 @@ var html6 = String.raw`
               <li class="flex items-center gap-3 text-slate-600"><span class="material-symbols-outlined text-primary text-sm">check_circle</span>500+ students supported with life skills and direction</li>
               <li class="flex items-center gap-3 text-slate-600"><span class="material-symbols-outlined text-primary text-sm">check_circle</span>Rs. 10,06,000 scholarships mobilized through partner alliances</li>
             </ul>
+            <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all mt-4" href="/programs/leads">View Program Details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
           </div>
         </div>
         <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center pt-24">
@@ -19868,6 +20114,7 @@ var html6 = String.raw`
               <div class="bg-primary/5 p-4 rounded-xl flex-1"><p class="text-primary font-bold">4 Pits</p><p class="text-xs text-slate-500">Harvesting Structures</p></div>
               <div class="bg-primary/5 p-4 rounded-xl flex-1"><p class="text-primary font-bold">10-Year Goal</p><p class="text-xs text-slate-500">+10 ft Water Table Rise</p></div>
             </div>
+            <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all mt-4" href="/programs/bhagiratha">View Program Details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
           </div>
           <div class="order-1 lg:order-2 min-w-0">
             <div class="aspect-video rounded-3xl overflow-hidden shadow-xl"><img alt="Water conservation project" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBb-tKaKm525G-NCxAzRuZsXvkjDAqeWZwa6AQgyeZqVT1WCLxWfXS1SHA7TnEv9xJPnlHZPXWmBdWia97g2lckH4MlkWRmUw3mwkPCES7AeSajfGu7w02Ma3CH31SD4wJlu5vdMV_IuND3iCg-G0r9wblYYBGtbyskrs86FMpIyI5RD0yWaO1VRCl8f6Z2eQ2ES44nc866LMxip79B4GbJpBD9pB4zIDkUwYimSA0s8dLnXEx3KsSQ7jVfogAKU5KhxXeOHhJoie6" /></div>
@@ -19882,6 +20129,10 @@ var html6 = String.raw`
             <div class="flex items-center gap-4 p-4 bg-primary text-white rounded-2xl max-w-sm">
               <span class="material-symbols-outlined text-4xl">shopping_bag</span>
               <div><p class="text-xl font-bold">2,000+</p><p class="text-xs opacity-80 uppercase font-medium">Reusable Cotton Bags Distributed</p></div>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-4">
+              <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all" href="/programs/vasundhara">Project Vasundhara <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <a class="inline-flex items-center gap-2 border border-primary text-primary px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-primary/5 transition-all" href="/programs/samyamam">Project Samyamam <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
             </div>
           </div>
         </div>
@@ -19947,6 +20198,27 @@ var projectMediaCategories = [
     title: "Education",
     projects: [
       {
+        title: "L.E.A.D.S Program",
+        programPath: "/programs/leads",
+        description: "Guiding the critical years from Class 8 to 10 by providing life skills, adolescent education, career guidance, and scholarships to ensure a career, not a crisis.",
+        images: [
+          "https://drive.google.com/file/d/1G1TzaK5ZdiCYhEkCnLqF3vK0lu9j6LiZ/preview",
+          "https://drive.google.com/file/d/1W8OrwmUPdnbjKuIXTu7ISUb8JKBVmia_/preview",
+          "https://drive.google.com/file/d/1038f2DxIaViVPdiKdD_4swaZfPSn0Um-/preview",
+          "https://drive.google.com/file/d/1_Thi2exl9-ZFizkbp1E7f3C6nDwbV_kf/preview",
+          "https://drive.google.com/file/d/1959TTT07y5Ybf5YbEe2rsvNUusGO-QUb/preview",
+          "https://drive.google.com/file/d/1H6nDoLTsfn4tkxI9MjUBkI5Hvn8UWw-Q/preview",
+          "https://drive.google.com/file/d/1BTy4EkOSVJY1lQ0aKu9SRdYW5xAV7i1W/preview",
+          "https://drive.google.com/file/d/1u3xfMVSXZ48DgJ6iq1PGXBzT3QW5xHhN/preview",
+          "https://drive.google.com/file/d/1RibUvXtqwT-dA0IssiRXoUOXqVAAJ45B/preview",
+          "https://drive.google.com/file/d/1rFuQG5GB9hsPs__AO8bSh5sX8b_-MkGB/preview",
+          "https://drive.google.com/file/d/10_8G0n-Egw_gOgl1VY6KW0iWczvvFtIp/preview",
+          "https://drive.google.com/file/d/1G6mf9LszCOBLeWhGRLcwKZUG6djIjWFN/preview",
+          "https://drive.google.com/file/d/1BGxpPfzBwX1MiIOdovGUh4r7FCeyR_gg/preview",
+          "https://drive.google.com/file/d/1PHJEjmHcp7od7WPqSRRfqZUCjud5TCuY/preview"
+        ]
+      },
+      {
         title: "School Adoption",
         description: "Upgrading rural school infrastructure and learning spaces to improve access to quality education.",
         images: [
@@ -19967,35 +20239,16 @@ var projectMediaCategories = [
           "https://drive.google.com/file/d/191lSTP6yTvplHXjH3DalinjIas1gm4VE/preview",
           "https://drive.google.com/file/d/1wt-qMtWVCjItwm3oe4-Py19g23GnMLcb/preview"
         ]
-      },
-      {
-        title: "School Of Excellence",
-        description: "Long-term education quality improvements through campus upgrades, engagement, and student support programs.",
-        images: [
-          "https://drive.google.com/file/d/1G1TzaK5ZdiCYhEkCnLqF3vK0lu9j6LiZ/preview",
-          "https://drive.google.com/file/d/1W8OrwmUPdnbjKuIXTu7ISUb8JKBVmia_/preview",
-          "https://drive.google.com/file/d/1038f2DxIaViVPdiKdD_4swaZfPSn0Um-/preview",
-          "https://drive.google.com/file/d/1_Thi2exl9-ZFizkbp1E7f3C6nDwbV_kf/preview",
-          "https://drive.google.com/file/d/1959TTT07y5Ybf5YbEe2rsvNUusGO-QUb/preview",
-          "https://drive.google.com/file/d/1H6nDoLTsfn4tkxI9MjUBkI5Hvn8UWw-Q/preview",
-          "https://drive.google.com/file/d/1BTy4EkOSVJY1lQ0aKu9SRdYW5xAV7i1W/preview",
-          "https://drive.google.com/file/d/1u3xfMVSXZ48DgJ6iq1PGXBzT3QW5xHhN/preview",
-          "https://drive.google.com/file/d/1RibUvXtqwT-dA0IssiRXoUOXqVAAJ45B/preview",
-          "https://drive.google.com/file/d/1rFuQG5GB9hsPs__AO8bSh5sX8b_-MkGB/preview",
-          "https://drive.google.com/file/d/10_8G0n-Egw_gOgl1VY6KW0iWczvvFtIp/preview",
-          "https://drive.google.com/file/d/1G6mf9LszCOBLeWhGRLcwKZUG6djIjWFN/preview",
-          "https://drive.google.com/file/d/1BGxpPfzBwX1MiIOdovGUh4r7FCeyR_gg/preview",
-          "https://drive.google.com/file/d/1PHJEjmHcp7od7WPqSRRfqZUCjud5TCuY/preview"
-        ]
       }
     ]
   },
   {
-    title: "Plastic Reduction",
+    title: "Environment",
     projects: [
       {
-        title: "Plastic Reduction",
-        description: "Reducing single-use plastics through awareness drives and practical alternatives in local communities.",
+        title: "Project SAMYAMAM",
+        programPath: "/programs/samyamam",
+        description: "Zero plastic initiative through enforcement, cotton bag revolution, and the 'Borrow & Return' model to restore balance and dignity to our village.",
         images: [
           "https://drive.google.com/file/d/1AGWA-myggdhqmAOOuRxHHegSHnUOlAyP/preview",
           "https://drive.google.com/file/d/1Ox1FeJl4BSm9khgM2pW7BL1tUAGOPW-O/preview",
@@ -20004,15 +20257,11 @@ var projectMediaCategories = [
           "https://drive.google.com/file/d/19Cb-bOlXiAN9QtdWOFYpSnX9dEZyoLOw/preview",
           "https://drive.google.com/file/d/1_IekHLMNVy0Mx-omnEGPrbdnuhEYc5AW/preview"
         ]
-      }
-    ]
-  },
-  {
-    title: "Waste Management",
-    projects: [
+      },
       {
-        title: "Waste Management",
-        description: "Promoting source segregation, cleaner public spaces, and community-led waste handling systems.",
+        title: "Project Vasundhara",
+        programPath: "/programs/vasundhara",
+        description: "Honouring the wealth of our earth through a twin-bin system for 300 households and community-led waste management to create a waste-free Konaseema.",
         images: [
           "https://drive.google.com/file/d/1ckeDE2Bq343LASY3A186Aq-W83iUvAUd/preview",
           "https://drive.google.com/file/d/19BCWZtvjXQeAkmfsEcpmoux1VE3NMnUT/preview",
@@ -20026,11 +20275,21 @@ var projectMediaCategories = [
           "https://drive.google.com/file/d/18X-grWE9qMZxjiozJNVb8trkzMo7FpSC/preview",
           "https://drive.google.com/file/d/1W5Aqu67wJHL1LKm1en2OWr51OGka9VDj/preview"
         ]
+      },
+      {
+        title: "Project Bhagiratha",
+        programPath: "/programs/bhagiratha",
+        description: "Bringing the heavens to the earth by constructing rainwater harvesting pits to recharge groundwater and secure a water-resilient future for generations.",
+        images: [
+          "https://drive.google.com/file/d/1jC8KIxJ9Cpg82y0r-3uvZdAckqdKjiby/preview",
+          "https://drive.google.com/file/d/1mljsl_A6-gyINV_OCiTFgj8ts66tjJuC/preview",
+          "https://drive.google.com/file/d/122haIZ1vsQ7JjDH53aZSU-YNup8Jr9FC/preview"
+        ]
       }
     ]
   },
   {
-    title: "Water Resources Management",
+    title: "Water & Sanitation",
     projects: [
       {
         title: "Canal Cleaning",
@@ -20041,29 +20300,17 @@ var projectMediaCategories = [
         ]
       },
       {
-        title: "RHP Units - Market",
-        description: "Deploying RHP units in market zones to improve cleanliness and responsible waste-water handling.",
+        title: "RHP Units - Public Areas",
+        description: "Deploying RHP units in markets, schools and temples to improve cleanliness and responsible water handling.",
         images: [
           "https://drive.google.com/file/d/122haIZ1vsQ7JjDH53aZSU-YNup8Jr9FC/preview",
           "https://drive.google.com/file/d/1MIfRVfIMklHxJGY2fe9P7qwH-HKHoQ42/preview",
           "https://drive.google.com/file/d/1vb7f1q7JtuFzwtFHBr3BtftbjPvWfyZz/preview",
           "https://drive.google.com/file/d/194-XxIJJS6HrjolcmJwabnzbbP8pyO9B/preview",
-          "https://drive.google.com/file/d/1cfflc-zAC4zACi5DV8hBO-AbdmKvdiTi/preview"
-        ]
-      },
-      {
-        title: "RHP Units - School",
-        description: "Installing RHP units in schools to support safer sanitation and sustainable hygiene practices.",
-        images: [
+          "https://drive.google.com/file/d/1cfflc-zAC4zACi5DV8hBO-AbdmKvdiTi/preview",
           "https://drive.google.com/file/d/1yHbfwWafpTiZG3hiiYgCATZZg5hq3SD9/preview",
           "https://drive.google.com/file/d/1ZB6bAkgH-CigVrrYcmqIMbuLJ1qvMLJM/preview",
-          "https://drive.google.com/file/d/15D9kR8CboWOXzLnG89uT8dB9oz9c_Rqh/preview"
-        ]
-      },
-      {
-        title: "RHP Units - Temple",
-        description: "Extending RHP unit support to temple premises for cleaner, high-footfall public environments.",
-        images: [
+          "https://drive.google.com/file/d/15D9kR8CboWOXzLnG89uT8dB9oz9c_Rqh/preview",
           "https://drive.google.com/file/d/1eY4ImZcAXWKTbYEg2nH6ZqJhwFjKOJoe/preview",
           "https://drive.google.com/file/d/1PqgK0hIhHD8Vyq5qGxaWleaCvBeNh5Rc/preview",
           "https://drive.google.com/file/d/1lvkvSWe6c0rGKguZ8HRi-jh1Y-Hgya5v/preview",
@@ -20158,6 +20405,13 @@ function renderProjectCard(categoryTitle, project) {
           ${renderGalleryImages(galleryImages, project.title)}
         </div>
       </details>
+      ${project.programPath ? `
+        <div class="pt-4 border-t border-primary/5 flex justify-end">
+          <a href="${project.programPath}" class="inline-flex items-center gap-2 text-primary font-bold hover:underline transition-all">
+            View Full Program Details & Impact Metrics <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      ` : ""}
     </div>
   </details>`;
 }
@@ -20197,13 +20451,272 @@ function OurWorkDesktopPage() {
   }, undefined, false, undefined, this);
 }
 
+// src/assets/press/MeetingDisctricCollectorToTakePlasticReductionInitiatives.webp
+var MeetingDisctricCollectorToTakePlasticReductionInitiatives_default = "./assets/MeetingDisctricCollectorToTakePlasticReductionInitiatives-f51naagy.webp";
+
+// src/assets/press/Newspaper2021.webp
+var Newspaper2021_default = "./assets/Newspaper2021-7mtcst48.webp";
+
+// src/assets/press/article.webp
+var article_default = "./assets/article-qh4bq4wp.webp";
+
+// src/assets/press/camera.webp
+var camera_default = "./assets/camera-f4tmygbq.webp";
+
+// src/assets/press/news2023.webp
+var news2023_default = "./assets/news2023-p2hayzca.webp";
+
+// src/assets/press/sportsUniforms.webp
+var sportsUniforms_default = "./assets/sportsUniforms-ecc889ef.webp";
+
 // src/pages/desktop/press-desktop-page.tsx
 var jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
 var html8 = String.raw`
-<div class="bg-[#f4f5f0] text-slate-900">
-  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10"><div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"><div class="flex items-center gap-12"><div class="flex items-center gap-3"><div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white"><span class="material-symbols-outlined text-xl">architecture</span></div><h2 class="text-primary text-xl font-bold tracking-tight">Krutha Foundation</h2></div><nav class="hidden md:flex items-center gap-8"><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/our-work">Impact</a><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/our-work">Projects</a><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/about">About</a><a class="text-primary font-bold" href="/press">Press</a></nav></div><div class="flex items-center gap-6"><button class="hidden lg:flex items-center gap-2 text-primary/70 hover:text-primary"><span class="material-symbols-outlined">search</span></button><a class="bg-primary text-white px-8 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" href="/contact">Donate</a></div></div></header>
-  <main><section class="relative px-6 pt-16 pb-24 max-w-7xl mx-auto text-center"><div class="inline-flex items-center gap-2 bg-[#6b8e7b]/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6"><span class="material-symbols-outlined text-lg">news</span> Media Center</div><h1 class="font-serif text-5xl md:text-7xl text-primary mb-8 max-w-4xl mx-auto leading-tight">Media &amp; Press Room</h1><p class="text-lg md:text-xl text-primary/60 max-w-2xl mx-auto leading-relaxed">Official updates documenting Krutha Foundation's work in education, ecology, and village transformation.</p></section><section class="px-6 pb-24 max-w-7xl mx-auto"><div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-primary/5 flex flex-col lg:flex-row"><div class="lg:w-1/2 aspect-video lg:aspect-auto relative min-h-[400px]"><img alt="Krutha Foundation impact report" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeuITO6tVWAH7mUnEwE5EFMoQIE0eZU_AsLVywK6FQHXVB1qIxs3Nd6tpHlFeWOYZ23CZEoraQnvVspFNKfnyncTaslj7VtKSzAoH9hNkKakEVEBZk2Qr8NkTL-GDmMqW8bciBkbCh4j2emoLky85Ngw1FwjQon8hHsxmcqmyXLoqhR6oTcGbpW5VowU3wOVxqxrrfZDX5g7dZmezMdSK6BipNqJ9zI8_fHWm4fhb556HEvwBn-s2glYjV3K-JMcMMDr8yM4DD7wJv" /></div><div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center"><div class="flex items-center gap-3 text-[#6b8e7b] font-semibold text-sm mb-4 uppercase tracking-widest"><span>Latest Announcement</span><span class="w-8 h-px bg-[#6b8e7b]/30"></span><span>2025</span></div><h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 leading-tight">Krutha Foundation 3-Year Impact Report (2022-2025)</h2><p class="text-primary/70 text-lg mb-8 leading-relaxed">Rs.21,26,753 raised globally, 498 students trained, 4 rainwater harvesting pits established, and scalable sanitation and zero-plastic initiatives launched in Vadapalem.</p><div class="flex flex-wrap gap-4"><a class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all flex items-center gap-2" href="/blog">Read Full Release <span class="material-symbols-outlined text-lg">arrow_forward</span></a><a class="border border-primary/20 text-primary px-8 py-3 rounded-xl font-bold hover:bg-primary/5 transition-all" href="/contact">Media Assets</a></div></div></div></section><section class="px-6 py-24 bg-primary/5"><div class="max-w-7xl mx-auto"><div class="flex justify-between items-end mb-12"><div><h2 class="font-serif text-3xl text-primary mb-4">Official Press Releases</h2><p class="text-primary/60">Chronological archive of our journey and impact</p></div><button class="hidden md:flex items-center gap-2 text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">View Archive <span class="material-symbols-outlined">chevron_right</span></button></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Scholarships</span><span>AY 2025-26</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">L.E.A.D.S Scholarships Reach Rs.4,72,000 Annual Disbursement</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/contact">Download PDF <span class="material-symbols-outlined text-lg">download</span></a></div><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Water</span><span>2024</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">Project Bhagiratha: 4 Rainwater Harvesting Pits Completed</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/blog">Read More <span class="material-symbols-outlined text-lg">open_in_new</span></a></div><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Sanitation</span><span>2024</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">Project Vasundhara Pilot: 600 Segregation Bins Distributed</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/contact">Download PDF <span class="material-symbols-outlined text-lg">download</span></a></div></div></div></section><section class="px-6 py-24 max-w-7xl mx-auto"><h2 class="font-serif text-3xl text-center text-primary mb-16">Krutha in the News</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center opacity-60 grayscale hover:grayscale-0 transition-all"><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLAF2E3gfqmnsquVGGvPUcHTOCMM8kL32Gm11DP9JfFY-wkJ3E8lm5QmNyI2S2Pm0aNKGQwx3xhMaTBbK9IxpG31wCRPp4c7TprTxcO1Za4FCwkLWCvzgbemz8M1louFXwgnW1RU-wBfGUqjjzDqo419rmgeJwdeAKfPdJvIXRVRPl0ntDG-3ZIKn7OFFElgu8gvpU4cB2HKU1F_0lCadHRnX-BmOzwMzZ8PhXGC1g3ir74jycKZBwBySRe1X_0fIUlAzo013W120e" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArc_WtYWgVtNOzEwEbjDNjr-xvOFus5pOCgA_vVuDdYkWvU5HTr6v4dTvgZMwuuxP2gGQXI7Uh_P2E6SYJCSYZaLnSl18cJTNkEBveIRe6DPGeu6SNM1HJduryu59FvTWvRohcvqSkm5RjluG_fnlOfCcJVdI9XfdeHBOyLKApxQd1atS43Awfh6tBBNCrov-Xp7RsgfiHqHPxJiB9Xk4dBbcngkrLAdblbWSQsm4-_eE-2sN4zO8d6ynhSv72UKMWJSvivwZHtT0z" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB55wIyZ9SDUtb5QRQGlxpwQ0I4umwa_nlOeUplJlnYPRi1NLm14yc4BSMTvnQv7RcbUlao_bajIzlEsFpenUHCJmqqoZ3XPVneIWy0ytYk9aZPBWmAWWSkXBH23pCmfeq3NFJf9IaeRBDGpMN9e8U6w-QVxOj3zqZKAk9Oi2AXwxY7p1jYAyhdZajRzbb29u4-tuu87I3ZPTbSbwu7NY3z54ClLxD4UYcBJgQHG7MvOXbzffPQRnhTrOhLN5eOxsVD8h01N0w9-IIK" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs3DbUmcywl_CDGs4rjp9LGcj2J0t_yJCCmt3FN43CpIFY-Igvf9YHQugB28MHaA1Sy28HSKk9tfJf31PJlhfxPnNXnbafTD3nFwNEto1FLlTOj55SAmppnqbcvOTKOVSRNT6iokCXiArSqC2s08Rnist5xgwodt4CTdz49u9ulC48FtHNZ09A4Fkz44zJMuxgZ1FydUizxQS4qC7YwFNy4Q8ZWVH2HxyuEpCRmHahs3J6sjCm_HriEnXJ5tYB3eHcZYCtbYA2ndjh" /></div></div></section><section class="px-6 py-24 max-w-7xl mx-auto"><div class="bg-[#6b8e7b]/10 rounded-3xl p-10 md:p-16 relative overflow-hidden"><div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-[#6b8e7b]/10 rounded-full blur-3xl"></div><div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12"><div class="max-w-md"><h2 class="font-serif text-4xl text-primary mb-6">Digital Media Kit</h2><p class="text-primary/70 mb-8">Press resources, logos, fact sheet, and project visuals for media usage.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto"><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">imagesmode</span><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (PNG, SVG)</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">description</span><div class="text-left"><p class="font-bold text-primary">Fact Sheet</p><p class="text-xs text-primary/50">Foundation PDF</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">photo_library</span><div class="text-left"><p class="font-bold text-primary">Project Gallery</p><p class="text-xs text-primary/50">High-Res Imagery (Zip)</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">video_library</span><div class="text-left"><p class="font-bold text-primary">B-Roll Footage</p><p class="text-xs text-primary/50">Video Clips</p></div></button></div></div></div></section><section class="px-6 py-24 text-center border-t border-primary/10"><h2 class="font-serif text-3xl text-primary mb-4">For Media Inquiries</h2><p class="text-primary/60 mb-8 max-w-xl mx-auto">Need specific assets, interviews, or additional information for your story? Our press office is here to help.</p><a class="text-2xl md:text-3xl font-serif text-primary hover:underline underline-offset-8" href="mailto:press@kruthafoundation.org">press@kruthafoundation.org</a><div class="mt-12 flex justify-center gap-6"><a class="size-12 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="/contact"><span class="material-symbols-outlined">alternate_email</span></a><a class="size-12 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="/press"><span class="material-symbols-outlined">share</span></a></div></section></main>
-  <footer class="bg-white border-t border-primary/10 py-16 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"><div class="flex items-center gap-3"><div class="size-6 bg-primary/20 rounded-md flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">architecture</span></div><h2 class="text-primary text-lg font-bold">Krutha Foundation</h2></div><p class="text-primary/50 text-sm">(c) 2024 Krutha Foundation. All rights reserved. Registered Nonprofit.</p><div class="flex gap-8 text-sm font-semibold text-primary/70"><a class="hover:text-primary" href="/contact">Privacy Policy</a><a class="hover:text-primary" href="/contact">Terms of Service</a></div></div></footer>
+<div class="bg-[#fcfdfa] text-slate-900 font-display">
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-12">
+        <div class="flex items-center gap-3">
+          <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined text-xl">newspaper</span>
+          </div>
+          <h2 class="text-primary text-xl font-bold tracking-tight">Krutha Foundation</h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/">Home</a>
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/about">About</a>
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/our-work">Projects</a>
+          <a class="text-primary font-bold" href="/press">Press Room</a>
+        </nav>
+      </div>
+      <a class="bg-primary text-white px-8 py-2.5 rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" href="/contact">Donate</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-24 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8">
+        <span class="material-symbols-outlined text-lg">public</span> Global Media & Press Center
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold text-primary mb-8 max-w-4xl mx-auto leading-[1.1]">
+        In The Press
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike. This collection of news coverage chronicles our journey since 2022—highlighting our impact in education, our innovative ecological initiatives, and our efforts to build a modern Krutha Yuga.
+      </p>
+    </section>
+
+    <!-- News Highlights Gallery -->
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- News Item 1 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${MeetingDisctricCollectorToTakePlasticReductionInitiatives_default}" alt="District Collector Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Governance</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2024</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Meeting District Collector for Plastic Reduction Initiatives</h3>
+          </div>
+        </div>
+
+        <!-- News Item 2 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${news2023_default}" alt="2023 News Coverage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Regional News</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>Oct 2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Mainstream Media Coverage of Village Transformation</h3>
+          </div>
+        </div>
+
+        <!-- News Item 3 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${article_default}" alt="Main Article" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Deep Dive</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Special Feature: Bridging the Diaspora and Native Roots</h3>
+          </div>
+        </div>
+
+        <!-- News Item 4 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${sportsUniforms_default}" alt="Sports Uniforms" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Community</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2024</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Empowering Youth through Sports & Infrastructure</h3>
+          </div>
+        </div>
+
+        <!-- News Item 5 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${Newspaper2021_default}" alt="2021 Newspaper" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Archive</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2021-22</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Foundation Pillars: Early Media Records</h3>
+          </div>
+        </div>
+
+        <!-- News Item 6 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${camera_default}" alt="Camera Impact" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Multimedia</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Visual Storytelling: Capturing the Krutha Movement</h3>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Transparency Message -->
+    <section class="max-w-7xl mx-auto px-6 mb-24">
+      <div class="bg-primary p-12 rounded-[2rem] text-center text-white relative overflow-hidden shadow-2xl shadow-primary/20">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent)]"></div>
+        <p class="text-xl md:text-2xl font-medium max-w-4xl mx-auto leading-relaxed relative z-10">
+          "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
+        </p>
+      </div>
+    </section>
+
+    <!-- Media Kit Section -->
+    <section class="bg-slate-50 border-y border-slate-100 py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+          <div class="max-w-xl">
+            <h2 class="text-4xl font-bold text-primary mb-6">Digital Media Kit</h2>
+            <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+              We provide comprehensive resources for journalists and researchers, including brand assets, verified fact sheets, and high-resolution project visuals.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="mailto:press@krutha.org" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:shadow-xl hover:-translate-y-1 transition-all">
+                Request Interview <span class="material-symbols-outlined">mail</span>
+              </a>
+              <a href="/contact" class="bg-white border border-primary/10 text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
+                Download Full Kit
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-6 w-full lg:w-auto">
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">description</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Fact Sheet</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">image</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Impact Photos</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">play_circle</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">B-Roll</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">logo_dev</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Logos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press Releases Archive -->
+    <section class="max-w-7xl mx-auto px-6 py-24">
+      <div class="flex items-end justify-between mb-12">
+        <h2 class="text-3xl font-bold text-primary">Official Archive</h2>
+        <a href="/contact" class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">View All Releases</a>
+      </div>
+      <div class="space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+          <div class="flex gap-8 items-center">
+            <span class="text-slate-400 font-mono text-sm">2025.04</span>
+            <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">3-Year Impact Report (2022-2025) Release</h4>
+          </div>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+          <div class="flex gap-8 items-center">
+            <span class="text-slate-400 font-mono text-sm">2024.11</span>
+            <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">Project Bhagiratha Groundwater Recharge Completion</h4>
+          </div>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white/80 py-20 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+      <div class="flex items-center gap-4 text-white">
+        <div class="size-10 bg-white rounded-xl flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined">newspaper</span>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold font-display tracking-tight text-white">Krutha Foundation</h2>
+          <p class="text-xs text-white/50 tracking-widest uppercase">Press Room Archive</p>
+        </div>
+      </div>
+      <p class="text-sm">(c) 2022-2025 Krutha Foundation. Empowering Vadapalem.</p>
+      <div class="flex gap-8 text-sm">
+        <a class="hover:text-white transition-colors" href="/contact">Media Compliance</a>
+        <a class="hover:text-white transition-colors" href="/contact">Privacy</a>
+      </div>
+    </div>
+  </footer>
 </div>`;
 function PressDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime9.jsxDEV(StaticMarkupPage, {
@@ -20211,56 +20724,1074 @@ function PressDesktopPage() {
   }, undefined, false, undefined, this);
 }
 
-// src/pages/mobile/about-mobile-page.tsx
+// src/pages/desktop/programs/leads-program-desktop-page.tsx
 var jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
-var suryaSrc2 = surya_bandaru_default;
-var kgRaoSrc2 = kg_rao_default;
-var srinivasuSrc2 = srinivasu_b_default;
 var html9 = String.raw`
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
-  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10"><a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m"><span class="material-symbols-outlined">arrow_back</span></a><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">About Us</h2><div class="flex w-10 items-center justify-end"><button class="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 text-primary"><span class="material-symbols-outlined">share</span></button></div></header>
-  <main class="flex-1"><section class="px-4 py-6"><div class="w-full aspect-video bg-center bg-no-repeat bg-cover rounded-xl shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDen9trA7fqI7UcOPyBPRkXqi0QKxzlSlpOYg4ofSTmIv4IJSbobORoZ36o2dn1_-RTmJv_SoQsf6JFh62W4Y6bFUmeFfYeB8D9v91xkGZFsl_r4pWH6JDJobD_7aXUhlTWb6UIXF9uWD4BV0-jHsefV2lO_fjDcwXQVnXRFoIhHMGCxdHIL2R8pp_7CS5IZbULX88DRI4u1uZeynldkVkkifFj_hIzQ7BFxNUgrge7xfmH_RuYyDVNFUAMRqIj5eivAShoEBNfeofW")'></div><div class="mt-8 text-center"><h1 class="text-slate-900 text-3xl font-bold leading-tight mb-4">Empowering Communities</h1><p class="text-slate-600 text-base font-normal leading-relaxed max-w-md mx-auto">People and environment are deeply interdependent. Our programs are transformational and built to create lasting village-level behavioral change.</p></div></section><section class="px-4 py-8 space-y-6"><div class="bg-primary/5 p-6 rounded-xl border border-primary/10"><div class="flex items-center gap-3 mb-3 text-primary"><span class="material-symbols-outlined">target</span><h3 class="text-xl font-bold">Our Mission</h3></div><p class="text-slate-700 leading-relaxed">To connect people across the globe to their native village on one platform and enable them to serve their motherland by transforming Vadapalem into a self-sustainable thriving community.</p></div><div class="bg-primary/5 p-6 rounded-xl border border-primary/10"><div class="flex items-center gap-3 mb-3 text-primary"><span class="material-symbols-outlined">visibility</span><h3 class="text-xl font-bold">Our Vision</h3></div><p class="text-slate-700 leading-relaxed">A model village where children are guided, youth are directed, women are empowered, elders are supported, farmers thrive through natural methods, and surroundings remain plastic and garbage free.</p></div></section><section class="px-4 py-10 bg-white"><div class="mb-8"><h3 class="text-2xl font-bold text-slate-900 mb-2">Leadership Team</h3><div class="h-1 w-12 bg-primary rounded-full"></div></div><div class="grid grid-cols-1 gap-8"><div class="flex flex-col items-center text-center"><div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-primary/20 p-1"><img class="w-full h-full object-cover rounded-full" src="${suryaSrc2}" alt="Portrait of Surya Bandaru" width="256" height="256" /></div><h4 class="text-lg font-bold text-slate-900">Surya Bandaru</h4><p class="text-primary font-medium text-sm">Chairman</p></div><div class="flex flex-col items-center text-center"><div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-primary/20 p-1"><img class="w-full h-full object-cover rounded-full" src="${kgRaoSrc2}" alt="Portrait of K G Rao" width="256" height="256" /></div><h4 class="text-lg font-bold text-slate-900">K G Rao</h4><p class="text-primary font-medium text-sm">Joint Secretary</p></div><div class="flex flex-col items-center text-center"><div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-primary/20 p-1"><img class="w-full h-full object-cover rounded-full" src="${srinivasuSrc2}" alt="Portrait of Srinivasu B" width="256" height="256" /></div><h4 class="text-lg font-bold text-slate-900">Srinivasu B</h4><p class="text-primary font-medium text-sm">Treasurer</p></div></div></section><section class="px-4 py-10"><div class="mb-8"><h3 class="text-2xl font-bold text-slate-900 mb-2">Financial Transparency</h3><p class="text-slate-500 text-sm leading-tight">Strategic scholarship partnerships and donor accountability (2022-2025).</p></div><div class="space-y-6"><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">Global Donors + Programs</span><span class="text-xs font-bold text-primary">Rs.21,26,753</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-primary/10"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:100%"></div></div></div><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-100">PCT Scholarships</span><span class="text-xs font-bold text-slate-600">Rs.8,40,000</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-slate-200"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-500" style="width:40%"></div></div></div><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-100">APTA Scholarships</span><span class="text-xs font-bold text-slate-600">Rs.1,66,000</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-slate-200"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-400" style="width:8%"></div></div></div></div><div class="mt-10 p-6 bg-primary rounded-xl text-white text-center"><h4 class="text-lg font-bold mb-2">Support Our Work</h4><p class="text-primary/10 text-sm mb-6 opacity-90">Every contribution directly advances education and environmental resilience.</p><a class="w-full py-3 bg-white text-primary font-bold rounded-lg shadow-lg hover:bg-slate-50 transition-colors block" href="/m/contact">Donate Now</a></div></section></main>
-  <footer class="sticky bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium uppercase tracking-widest">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/about"><span class="material-symbols-outlined">info</span><p class="text-[10px] font-bold uppercase tracking-widest">About</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/our-work"><span class="material-symbols-outlined">folder_shared</span><p class="text-[10px] font-medium uppercase tracking-widest">Projects</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined">volunteer_activism</span><p class="text-[10px] font-medium uppercase tracking-widest">Donate</p></a></footer>
-</div>`;
-function AboutMobilePage() {
+<div class="bg-background-light font-display text-slate-900">
+  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined">diversity_3</span>
+          </div>
+          <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>
+        <a class="text-sm font-bold text-primary" href="/our-work">Our Work</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/press">Transparency</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate Now</a>
+      </nav>
+      <a class="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90 transition-all shadow-md shadow-primary/20" href="/contact">Get Involved</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative bg-slate-900 text-white py-24 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGW3QlcFFZtD6PeZMpD94F6niT7ssG87oherYUv3At43lRSmvoWw5dmbvQBlXQuEveweuaGPHhabh2HXZfSWA4kMOlTlMCr35k5mJ8t0cJqxsisSnc_aDuMroc_P_EwqvLW2dWrRQweT5HMW3EvYDPvEeVJ27I5svdoDkm747oOpE_WRl2e9AN7ls-mPtbq4t8M74xwTnDIQsHXjBtdJfvxbYzzdtQtoeHkwOFLcNV3aREORIe9bX2b5D-B72brwP_x_TsWNpd0wv7" alt="L.E.A.D.S background" />
+      </div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-lg">verified</span> Flagship Education Program
+        </div>
+        <h1 class="text-5xl lg:text-7xl font-editorial leading-tight mb-6">L.E.A.D.S Program</h1>
+        <p class="text-2xl font-light text-slate-300 max-w-3xl mx-auto leading-relaxed italic">"Guiding the Critical Years, Building Leaders"</p>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 leading-tight">The "Vulnerable Window": Why 8th to 10th Grade Matters</h2>
+          <div class="prose prose-slate lg:prose-lg text-slate-600 space-y-4">
+            <p>The journey from Class 8 to Class 10 is the most defining period in a student's life. In our villages, this is the "vulnerable window" where teenagers often drift toward addiction and aimless distractions.</p>
+            <p>The root cause lies in a fractured education ecosystem. At Krutha Foundation, we ensure that these three years lead to a <strong>career, not a crisis</strong>.</p>
+            <p>As proud alumni of ZPHS Vadapalem, we adopted our alma mater in April 2022. Collaborating with the Padala Charitable Trust (PCT), we provide students with the mindset and mentorship required to succeed in the modern world.</p>
+          </div>
+        </div>
+        <div class="bg-primary/5 p-12 rounded-3xl border border-primary/10">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="size-16 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg">
+              <span class="material-symbols-outlined text-4xl">emoji_objects</span>
+            </div>
+            <h3 class="text-2xl font-bold">Our Philosophy</h3>
+          </div>
+          <p class="text-xl text-slate-700 leading-relaxed italic">&quot;We are not just educating students; we are saving a generation. This program is an investment in our most precious resource: Human Potential.&quot;</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-slate-900 mb-4">The L.E.A.D.S. Pillars</h2>
+          <p class="text-slate-500">Five strategic areas of intervention for holistic transformation</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 hover:border-primary transition-colors group">
+            <div class="text-4xl font-black text-primary/20 group-hover:text-primary mb-4 transition-colors">L</div>
+            <h4 class="font-bold text-lg mb-3">Life Skills</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">Teaching emotional intelligence, communication, and decision-making for a complex world.</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 hover:border-primary transition-colors group">
+            <div class="text-4xl font-black text-primary/20 group-hover:text-primary mb-4 transition-colors">E</div>
+            <h4 class="font-bold text-lg mb-3">Education</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">Providing adolescent health education to handle physical and emotional changes with maturity.</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 hover:border-primary transition-colors group">
+            <div class="text-4xl font-black text-primary/20 group-hover:text-primary mb-4 transition-colors">A</div>
+            <h4 class="font-bold text-lg mb-3">Awareness</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">Empowering the girl child through safety awareness and the confidence to claim her future.</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 hover:border-primary transition-colors group">
+            <div class="text-4xl font-black text-primary/20 group-hover:text-primary mb-4 transition-colors">D</div>
+            <h4 class="font-bold text-lg mb-3">Direction</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">Exposing students to modern career paths and corporate opportunities to replace aimless drifting.</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 hover:border-primary transition-colors group">
+            <div class="text-4xl font-black text-primary/20 group-hover:text-primary mb-4 transition-colors">S</div>
+            <h4 class="font-bold text-lg mb-3">Support Systems</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">Ensuring financial hardship never blocks brilliance through safety-net scholarships.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-primary/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16">
+          <div>
+            <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">analytics</span> Scale of Impact
+            </h2>
+            <div class="space-y-6">
+              <div class="bg-white p-8 rounded-2xl shadow-sm flex items-center gap-6">
+                <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-4xl">groups</span>
+                </div>
+                <div>
+                  <h4 class="text-3xl font-bold text-slate-900">500+</h4>
+                  <p class="text-slate-600">Lives Transformed (Classes 8-10)</p>
+                </div>
+              </div>
+              <div class="bg-white p-8 rounded-2xl shadow-sm flex items-center gap-6">
+                <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-4xl">workspace_premium</span>
+                </div>
+                <div>
+                  <h4 class="text-3xl font-bold text-slate-900">14</h4>
+                  <p class="text-slate-600">Scholars in Higher Professional Education</p>
+                </div>
+              </div>
+              <div class="p-8 border border-primary/20 rounded-2xl bg-primary/5">
+                <p class="text-primary font-bold mb-2 uppercase tracking-widest text-xs">"Professional First" Philosophy</p>
+                <p class="text-2xl font-bold text-slate-800"><span class="text-primary">77%</span> of funds dedicated to Higher Professional Education.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">trending_up</span> Financial Trajectory (Scholarships)
+            </h2>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-24 text-sm font-bold text-slate-500">2023-24</div>
+                <div class="flex-1 h-12 bg-white rounded-full overflow-hidden border border-slate-200 relative">
+                  <div class="absolute inset-y-0 left-0 bg-sage/20" style="width: 38%"></div>
+                  <div class="absolute inset-y-0 left-4 flex items-center text-forest font-bold">₹1,80,000</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-24 text-sm font-bold text-slate-500">2024-25</div>
+                <div class="flex-1 h-12 bg-white rounded-full overflow-hidden border border-slate-200 relative">
+                  <div class="absolute inset-y-0 left-0 bg-sage/40" style="width: 75%"></div>
+                  <div class="absolute inset-y-0 left-4 flex items-center text-forest font-bold">₹3,54,000</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-24 text-sm font-bold text-slate-900">2025-26</div>
+                <div class="flex-1 h-12 bg-white rounded-full overflow-hidden border border-primary/20 relative">
+                  <div class="absolute inset-y-0 left-0 bg-primary" style="width: 100%"></div>
+                  <div class="absolute inset-y-0 left-4 flex items-center text-white font-bold">₹4,72,000</div>
+                </div>
+              </div>
+              <div class="mt-8 p-6 bg-slate-900 text-white rounded-2xl text-center">
+                <p class="text-sm opacity-60 uppercase tracking-widest mb-1">Total Impact Mobilized</p>
+                <p class="text-3xl font-bold">₹10,06,000</p>
+                <p class="text-primary text-sm mt-2 font-bold">260% Growth Since Inception</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8 italic">Restoring Discipline &amp; Academic Glory</h2>
+        <p class="text-lg text-slate-600 leading-relaxed mb-12">By targeting the 8th to 10th-grade bracket, we catch students before they fall into harmful habits. We are restoring ZPHS Vadapalem to its peak, ensuring our boys remain focused and our girls remain empowered.</p>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="p-8 rounded-2xl bg-white shadow-xl border border-primary/10">
+            <h4 class="text-xl font-bold text-primary mb-4">PCT Alliance</h4>
+            <p class="text-2xl font-black text-slate-900 mb-2">₹8.40 Lakhs</p>
+            <p class="text-sm text-slate-500">Foundational &amp; Intermediate Degrees (B.Tech, BCA)</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-white shadow-xl border border-primary/10">
+            <h4 class="text-xl font-bold text-primary mb-4">APTA Alliance</h4>
+            <p class="text-2xl font-black text-slate-900 mb-2">₹1.66 Lakhs</p>
+            <p class="text-sm text-slate-500">High-Level Professional Degrees Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-primary/5">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-slate-900">Join the Mission to Save a Generation</h2>
+        <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">Help us turn these three critical years into a lifetime of excellence. Your support fuels human potential.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a class="bg-primary hover:bg-opacity-90 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-primary/20" href="/contact">Support a Student</a>
+          <a class="border border-primary/20 hover:bg-primary/5 text-primary px-10 py-4 rounded-xl font-bold text-lg transition-all" href="/our-work">View More Projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-forest text-white/70 py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 text-white mb-8">
+        <div class="w-8 h-8 bg-white/20 rounded flex items-center justify-center backdrop-blur-sm"><span class="material-symbols-outlined text-sm">eco</span></div>
+        <span class="font-bold text-lg text-white">Krutha Foundation</span>
+      </div>
+      <p class="text-sm max-w-xl mx-auto leading-relaxed mb-8 text-white/60">Empowering the architects of tomorrow. Dedicated to rural student transformation and professional excellence.</p>
+      <div class="flex justify-center gap-8 text-xs font-bold uppercase tracking-widest">
+        <a class="hover:text-white transition-colors" href="/about">About</a>
+        <a class="hover:text-white transition-colors" href="/our-work">Work</a>
+        <a class="hover:text-white transition-colors" href="/press">Press</a>
+        <a class="hover:text-white transition-colors" href="/contact">Contact</a>
+      </div>
+      <p class="mt-8 text-[10px] opacity-40">&copy; 2024 Krutha Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+`;
+function LeadsProgramDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime10.jsxDEV(StaticMarkupPage, {
     html: html9
   }, undefined, false, undefined, this);
 }
 
-// src/pages/mobile/blog-mobile-page.tsx
+// src/pages/desktop/programs/project-bhagiratha-desktop-page.tsx
 var jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
 var html10 = String.raw`
-<div class="bg-background-light font-display text-slate-900 min-h-screen flex flex-col"><header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10"><div class="flex items-center p-4 justify-between max-w-md mx-auto w-full"><div class="text-primary flex size-10 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-2xl">menu</span></div><h1 class="text-primary text-lg font-bold leading-tight tracking-tight flex-1 text-center">Krutha Foundation</h1><div class="flex w-10 items-center justify-end"><button class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">search</span></button></div></div></header><nav class="bg-background-light border-b border-primary/10 sticky top-[72px] z-40"><div class="flex px-4 overflow-x-auto no-scrollbar gap-6 max-w-md mx-auto"><a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-bold">All Stories</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Community</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Sustainability</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Heritage</p></a></div></nav><main class="flex-1 max-w-md mx-auto w-full pb-24"><div class="px-4 pt-6 pb-2"><h2 class="text-2xl font-bold tracking-tight text-slate-900">Latest Stories</h2><p class="text-slate-500 text-sm mt-1">Updates from our field projects and communities.</p></div><div class="p-4 space-y-6"><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqPPUd3ZTr1685j1gC0KE4FH9nK1_nJ1BytzGZhW58kwNdnsbk-aWiE2QB-nBG4QAmZ4HC0l6Za9weVSYwEhHjPnLpExJqZEcrjvVG0xXuvgWzwO4FDEpIImomYmm6j2lB5WxJaQUrc17wqIz7I2soSMWnBvB78dLU3WIgkot0hSNAtgLkT0rJ06D_v6EJimvdMdG_LF1Adedqwo3o5Cf_bSDh4xzutLMc5Iye_yQ1WHxVYbj8kcEoCkJ7Ar8uD-iXJJlWwC59kgQg")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Heritage</span><span class="text-slate-400 text-xs">• May 12, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Preserving Ancient Traditions in Modern Times</h3><p class="text-slate-600 text-sm line-clamp-2">Discover how we are working with local artisans to keep historical crafts alive for future generations through sustainable commerce.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">5 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFyWsUtBzo95D9UQ3c_575m9m1p5rLZCxsuUBAVHHMIy8aRxP4LbYxYy9TT5jEAH0vVj98U5expT_t57aMasQ4y1wbPZY6bMHU4F83pva43koz4utJGURhl4WklI58gN7GbEhs5R_A0-c7-v7HP_YWBy2GZXjG9bB7oSqvhT8rXUUCcL4x_bPBD7k0Jqm-Yow9JFTt_pL-QIT2fJqSt6gK90ozUBzQ0G6yKfbgOqqIxGCnT54nQfA4dgHUo60qswQzHIkzUAWmGduC")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Sustainability</span><span class="text-slate-400 text-xs">• May 10, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Green Initiatives: Replanting the Western Ghats</h3><p class="text-slate-600 text-sm line-clamp-2">Our latest reforestation project has successfully planted over 10,000 native saplings this quarter.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">4 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqW4jTS0H7vS-AePZ8jOzqBg-CzloNw3F6v2AExpHymVFWIW37oNXioc9njgIVwF-CRLr_uMn_W9XGPayNN6ts4jbO7JltjF1R_85giFvWdMQNjKJeweyCK8nAIYNTScE3KCOMjl9q9HDdavo7nbmI8ih8U-A2KSdOzUfzxTJLkxF4t94M0H3HtnAmeN9u42-7bpa21MQ_sB9dtKiwXXNvNJt_iy81Okju7dBTRwWCwQvuCxVY2CgdCdpWFSvV04Fc1o5g7xpnNWie")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Community</span><span class="text-slate-400 text-xs">• May 05, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Education for All: New Learning Centers Open</h3><p class="text-slate-600 text-sm line-clamp-2">Expanding our reach to three more rural districts to provide digital literacy programs for youth.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">6 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article></div><div class="px-4 py-4 flex justify-center"><button class="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-primary/20 bg-transparent py-3 text-primary font-bold"><span>View Older Posts</span><span class="material-symbols-outlined text-sm">expand_more</span></button></div></main><footer class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-primary/10 z-50"><div class="flex max-w-md mx-auto items-center justify-around px-4 pb-6 pt-2"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined text-2xl">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/blog"><span class="material-symbols-outlined text-2xl font-fill">book_2</span><p class="text-[10px] font-bold leading-none">Blog</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/our-work"><span class="material-symbols-outlined text-2xl">account_tree</span><p class="text-[10px] font-medium leading-none">Projects</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined text-2xl">favorite</span><p class="text-[10px] font-medium leading-none">Donate</p></a></div></footer></div>`;
-function BlogMobilePage() {
+<div class="bg-background-light font-display text-slate-900">
+  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined">water_drop</span>
+          </div>
+          <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>
+        <a class="text-sm font-bold text-primary" href="/our-work">Our Work</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/press">Transparency</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate Now</a>
+      </nav>
+      <a class="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90 transition-all shadow-md shadow-primary/20" href="/contact">Get Involved</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative bg-slate-900 text-white py-24 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBb-tKaKm525G-NCxAzRuZsXvkjDAqeWZwa6AQgyeZqVT1WCLxWfXS1SHA7TnEv9xJPnlHZPXWmBdWia97g2lckH4MlkWRmUw3mwkPCES7AeSajfGu7w02Ma3CH31SD4wJlu5vdMV_IuND3iCg-G0r9wblYYBGtbyskrs86FMpIyI5RD0yWaO1VRCl8f6Z2eQ2ES44nc866LMxip79B4GbJpBD9pB4zIDkUwYimSA0s8dLnXEx3KsSQ7jVfogAKU5KhxXeOHhJoie6" alt="Bhagiratha water project" />
+      </div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-lg">waves</span> Water Conservation
+        </div>
+        <h1 class="text-5xl lg:text-7xl font-editorial leading-tight mb-6">Project Bhagiratha</h1>
+        <p class="text-2xl font-light text-slate-300 max-w-3xl mx-auto leading-relaxed italic">"Bringing the Heavens to the Earth"</p>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 leading-tight">Heritage in Peril: The Konaseema Water Crisis</h2>
+          <div class="prose prose-slate lg:prose-lg text-slate-600 space-y-4">
+            <p>Konaseema's water is our heritage, but its future is at risk. Over the last 30 years, our groundwater has plummeted by 15 feet. As concrete roads cover our soil, the rain has no way to sink in; it simply flows into the sea, wasted.</p>
+            <p>Inspired by King Bhagiratha’s relentless spirit, Krutha Foundation has launched Project Bhagiratha. Our mission is to create a path for the rain to return to the heart of the earth.</p>
+          </div>
+        </div>
+        <div class="bg-primary/5 p-12 rounded-3xl border border-primary/10">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="size-16 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg">
+              <span class="material-symbols-outlined text-4xl">local_drink</span>
+            </div>
+            <h3 class="text-2xl font-bold">Resoring the Balance</h3>
+          </div>
+          <p class="text-xl text-slate-700 leading-relaxed italic">&quot;Protecting our water is our highest Dharma. By catching every drop, we are honoring the earth that sustains us.&quot;</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-slate-900 mb-4">The Bhagiratha Roadmap</h2>
+          <p class="text-slate-500">A stepped approach to securing our village's water future</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary transition-all group">
+            <div class="text-5xl font-black text-primary/10 group-hover:text-primary mb-6 transition-colors font-editorial">01</div>
+            <h4 class="font-bold text-xl mb-4 text-primary">Current Progress</h4>
+            <p class="text-slate-600 leading-relaxed">Built our first 4 Rainwater Harvesting Pits (RHPs). ₹3 Lakhs invested to start the recharge.</p>
+          </div>
+          <div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary transition-all group">
+            <div class="text-5xl font-black text-primary/10 group-hover:text-primary mb-6 transition-colors font-editorial">02</div>
+            <h4 class="font-bold text-xl mb-4 text-primary">3-Year Goal</h4>
+            <p class="text-slate-600 leading-relaxed">Construct 40 RHPs across the village. These will act as the primary gateways for aquifer recharge.</p>
+          </div>
+          <div class="p-10 rounded-3xl bg-background-light border border-slate-100 hover:border-primary transition-all group">
+            <div class="text-5xl font-black text-primary/10 group-hover:text-primary mb-6 transition-colors font-editorial">03</div>
+            <h4 class="font-bold text-xl mb-4 text-primary">10-Year Vision</h4>
+            <p class="text-slate-600 leading-relaxed">Raise the water table by 10 feet. Securing Konaseema against saltwater intrusion and drought.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-forest text-white overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center relative z-10">
+        <h2 class="text-4xl lg:text-5xl font-editorial mb-8 italic">Join this Bhagiratha Prayatna</h2>
+        <p class="text-xl text-white/80 max-w-2xl mb-12">Help us ensure that Konaseema remains the lush, green paradise it was meant to be—for us and for the generations to come.</p>
+        <div class="flex gap-6">
+          <a class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform" href="/contact">Support a Water Pit</a>
+          <a class="border border-white/30 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors" href="/our-work">Learn More</a>
+        </div>
+      </div>
+      <div class="absolute right-0 bottom-0 translate-y-1/2 translate-x-1/4 opacity-10">
+        <span class="material-symbols-outlined text-[40rem]">water_drop</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-forest text-white/70 py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 text-white mb-8">
+        <div class="w-8 h-8 bg-white/20 rounded flex items-center justify-center backdrop-blur-sm"><span class="material-symbols-outlined text-sm">eco</span></div>
+        <span class="font-bold text-lg text-white">Krutha Foundation</span>
+      </div>
+      <p class="text-sm max-w-xl mx-auto leading-relaxed mb-8 text-white/60">Empowering the architects of tomorrow. Dedicated to rural student transformation and professional excellence.</p>
+      <div class="flex justify-center gap-8 text-xs font-bold uppercase tracking-widest">
+        <a class="hover:text-white transition-colors" href="/about">About</a>
+        <a class="hover:text-white transition-colors" href="/our-work">Work</a>
+        <a class="hover:text-white transition-colors" href="/press">Press</a>
+        <a class="hover:text-white transition-colors" href="/contact">Contact</a>
+      </div>
+      <p class="mt-8 text-[10px] opacity-40">&copy; 2024 Krutha Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+`;
+function ProjectBhagirathaDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime11.jsxDEV(StaticMarkupPage, {
     html: html10
   }, undefined, false, undefined, this);
 }
 
-// src/pages/mobile/contact-mobile-page.tsx
+// src/pages/desktop/programs/project-samyamam-desktop-page.tsx
 var jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1);
 var html11 = String.raw`
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased"><header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md p-4 border-b border-primary/10"><a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m"><span class="material-symbols-outlined text-primary">arrow_back</span></a><h1 class="text-lg font-bold leading-tight tracking-tight flex-1 ml-2">Krutha Foundation</h1><div class="flex size-10 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-primary">share</span></div></header><main class="flex-1 pb-24"><div class="p-4"><div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[180px] shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLIkQF83ozgfvBBdlugCWD2OEcb43JXyWBKPQOjJBllkhzq8FxnGKE7WPg0FbQSgwjB9hGx1U1gnHbvMfeSl_dHq5OAepAv4xB5yc0kUiqyVjUZzlX7ZjgEbvHPGh87NFAoW4qFvvwZk5nZdQFSd5cwUIUHW2-1sTXMveWv8V9qX4zXc1nKO0QrIitiQeDbyO_YLr3_GK-M1kITWqqh38BoVF4NqISk0izlbT9NSBzfk2cNqwngA6uXi9bMQr70zxo_-KoEeN_8O9K")'></div></div><section class="px-4 py-4"><h2 class="text-2xl font-bold tracking-tight text-primary">Support Our Cause</h2><p class="mt-2 text-sm text-slate-600">Your contribution helps us empower communities and drive sustainable change through targeted educational initiatives.</p><div class="mt-6 grid grid-cols-2 gap-3"><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all group"><span class="text-lg font-bold text-primary">$10</span><span class="text-xs text-slate-500">Starter</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary bg-primary/10 transition-all group"><span class="text-lg font-bold text-primary">$25</span><span class="text-xs text-slate-500">Popular</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all"><span class="text-lg font-bold text-primary">$50</span><span class="text-xs text-slate-500">Impact</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all"><span class="text-lg font-bold text-primary">$100</span><span class="text-xs text-slate-500">Founder</span></button></div><div class="mt-4"><a class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform block text-center" href="/m/donation-confirmation">Donate Now</a></div></section><div class="h-4 bg-primary/5"></div><section class="px-4 py-8"><h3 class="text-xl font-bold text-slate-900">Contact Details</h3><div class="mt-4 space-y-4"><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">location_on</span></div><div><p class="font-semibold text-sm">Headquarters</p><p class="text-sm text-slate-500">123 Impact Street, Eco Valley, CA 90210</p></div></div><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">mail</span></div><div><p class="font-semibold text-sm">Email Support</p><p class="text-sm text-slate-500">hello@kruthafoundation.org</p></div></div><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">phone</span></div><div><p class="font-semibold text-sm">Call Us</p><p class="text-sm text-slate-500">+1 (555) 000-1234</p></div></div></div></section><section class="px-4 py-4"><h3 class="text-xl font-bold text-slate-900">Send a Message</h3><form class="mt-4 space-y-4"><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Full Name</label><input class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="John Doe" type="text" /></div><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Email Address</label><input class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="john@example.com" type="email" /></div><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Message</label><textarea class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="How can we help?" rows="4"></textarea></div><button class="w-full bg-primary/10 text-primary font-bold py-4 rounded-xl hover:bg-primary hover:text-white transition-colors" type="button">Send Message</button></form></section></main><nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/10 bg-background-light/95 backdrop-blur-md px-4 pb-6 pt-3"><div class="flex items-center justify-between"><a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="/m/events"><span class="material-symbols-outlined">favorite</span><p class="text-[10px] font-medium leading-none">Impact</p></a><a class="flex flex-1 flex-col items-center gap-1 text-primary" href="/m/contact"><span class="material-symbols-outlined font-fill">volunteer_activism</span><p class="text-[10px] font-bold leading-none">Donate</p></a><a class="flex flex-1 flex-col items-center gap-1 text-slate-900" href="/m/contact"><span class="material-symbols-outlined font-fill">mail</span><p class="text-[10px] font-bold leading-none">Contact</p></a></div></nav></div>`;
-function ContactMobilePage() {
+<div class="bg-background-light font-display text-slate-900">
+  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </div>
+          <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>
+        <a class="text-sm font-bold text-primary" href="/our-work">Our Work</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/press">Transparency</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate Now</a>
+      </nav>
+      <a class="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90 transition-all shadow-md shadow-primary/20" href="/contact">Get Involved</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative bg-slate-900 text-white py-24 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEBaMUpFSfwMjakWg58U0mIxI15iudHFA58iYNPe-hRh1wU-Xytvhp6I_BVysBFwaW1ypiWj_H_SqzYRPhNWwzzU6zcwHzkVoUAg8Tkdcr5b1e5osA1Z4yPgfR-no0S6QigAhiindjyVhT-oNh0M-G7ohZYPNgSyfUSzN7I_3MB9IbnJ2i6EgKgwAbCHRXiVhPTK4jGmvnh3SiBLldSuTUlucZ7w09Vr-8K_gz5ft46SX_1K-RXFkE3s5sQopxkTx-MTJGisttjAx" alt="Samyamam zero plastic" />
+      </div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-lg">do_not_disturb_on</span> Zero Plastic
+        </div>
+        <h1 class="text-5xl lg:text-7xl font-editorial leading-tight mb-6">Project Samyamam</h1>
+        <p class="text-2xl font-light text-slate-300 max-w-3xl mx-auto leading-relaxed italic">"Responsible Living for a Sustainable Village"</p>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 leading-tight">Shared Responsibility, Conscious Living</h2>
+          <div class="prose prose-slate lg:prose-lg text-slate-600 space-y-4">
+            <p><strong>SAMYAMAM</strong> is the belief that true village transformation begins with conscious self-restraint. It recognizes that environmental damage is not caused by lack of resources, but by excess and convenience-driven habits.</p>
+            <p>SAMYAMAM inspires families, traders, and institutions to pause, choose wisely, and act with accountability toward the land and water they depend on.</p>
+          </div>
+        </div>
+        <div class="bg-primary/5 p-12 rounded-3xl border border-primary/10 relative">
+           <h4 class="text-2xl font-bold mb-6 italic">Enforcement with Purpose</h4>
+           <p class="text-slate-700 leading-relaxed mb-8">Partnering with the Panchayat, we’ve issued "Stop Usage" notices to all <strong>80+ commercial establishments</strong>, moving from suggestion to systemic change.</p>
+           <div class="flex items-center gap-3 text-primary font-bold">
+              <span class="material-symbols-outlined">check_circle</span> 80+ Commercial Shops Notified
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-slate-900 mb-4">The Cotton Bag Revolution</h2>
+          <p class="text-slate-500">Injecting sustainability into the local economy</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="bg-background-light p-10 rounded-2xl border border-slate-100 flex flex-col items-center text-center">
+             <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                <span class="material-symbols-outlined text-4xl">inventory_2</span>
+             </div>
+             <h4 class="text-2xl font-bold mb-4">2,000 Bags</h4>
+             <p class="text-slate-600">Reusable cotton bags injected into the village to replace single-use plastic forever.</p>
+          </div>
+          <div class="bg-background-light p-10 rounded-2xl border border-slate-100 flex flex-col items-center text-center">
+             <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                <span class="material-symbols-outlined text-4xl">published_with_changes</span>
+             </div>
+             <h4 class="text-2xl font-bold mb-4">Borrow & Return</h4>
+             <p class="text-slate-600">Pick up at any shop, use, and drop back. A circular system that removes the "forgetting" excuse.</p>
+          </div>
+          <div class="bg-background-light p-10 rounded-2xl border border-slate-100 flex flex-col items-center text-center">
+             <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                <span class="material-symbols-outlined text-4xl">eco</span>
+             </div>
+             <h4 class="text-2xl font-bold mb-4">Tradition Restored</h4>
+             <p class="text-slate-600">Leading local eateries back to natural Banana Leaves—nature's original biodegradable plate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-forest text-white">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl lg:text-5xl font-editorial mb-8 italic">5 Days vs 500 Years</h2>
+        <p class="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-12">Plastic lasts for 500 years; a banana leaf lasts for 5 days. Which one do you want to leave for your grandchildren?</p>
+        <div class="flex justify-center gap-6">
+           <a class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg" href="/contact">Support the Revolution</a>
+           <a class="border border-white/20 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10" href="/our-work">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+         <h2 class="text-3xl font-bold mb-12">Leave a Legacy, Be the Change.</h2>
+         <div class="p-8 border-forest border bg-forest/5 rounded-3xl max-w-3xl mx-auto">
+            <p class="text-xl text-slate-700 font-medium italic italic leading-relaxed">"We aren't just cleaning a village; we are reviving a culture of respect for the Earth. Help us weave a future where our water is pure and our soil is rich."</p>
+         </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-forest text-white/70 py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 text-white mb-8">
+        <div class="w-8 h-8 bg-white/20 rounded flex items-center justify-center backdrop-blur-sm"><span class="material-symbols-outlined text-sm">eco</span></div>
+        <span class="font-bold text-lg text-white">Krutha Foundation</span>
+      </div>
+      <p class="text-sm max-w-xl mx-auto leading-relaxed mb-8 text-white/60">Empowering the architects of tomorrow. Dedicated to rural student transformation and professional excellence.</p>
+      <div class="flex justify-center gap-8 text-xs font-bold uppercase tracking-widest">
+        <a class="hover:text-white transition-colors" href="/about">About</a>
+        <a class="hover:text-white transition-colors" href="/our-work">Work</a>
+        <a class="hover:text-white transition-colors" href="/press">Press</a>
+        <a class="hover:text-white transition-colors" href="/contact">Contact</a>
+      </div>
+      <p class="mt-8 text-[10px] opacity-40">&copy; 2024 Krutha Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+`;
+function ProjectSamyamamDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime12.jsxDEV(StaticMarkupPage, {
     html: html11
   }, undefined, false, undefined, this);
 }
 
-// src/pages/mobile/donation-confirmation-mobile-page.tsx
+// src/pages/desktop/programs/project-vasundhara-desktop-page.tsx
 var jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
 var html12 = String.raw`
-<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light overflow-x-hidden"><div class="flex items-center p-4 pb-2 justify-between"><div class="text-slate-900 flex size-12 shrink-0 items-center justify-start"><a href="/m/contact"><span class="material-symbols-outlined cursor-pointer">close</span></a></div><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Donation Successful</h2></div><div class="flex flex-col items-center justify-center pt-10 pb-4"><div class="bg-primary/10 p-6 rounded-full"><span class="material-symbols-outlined text-primary text-[64px] font-fill">check_circle</span></div></div><div class="px-6"><h1 class="text-slate-900 tracking-tight text-[32px] font-bold leading-tight text-center pb-3 pt-4">Thank You!</h1><p class="text-slate-600 text-base font-normal leading-relaxed text-center max-w-sm mx-auto">Your generous contribution to Krutha Foundation is making a real difference in people's lives today.</p></div><div class="flex flex-col gap-4 p-6"><div class="flex flex-col gap-3 rounded-xl p-8 bg-primary/10 border border-primary/5 items-center text-center"><p class="text-primary text-sm font-bold uppercase tracking-widest">Your Impact</p><p class="text-slate-900 tracking-tight text-3xl font-extrabold leading-tight">12 Meals Provided</p><div class="mt-2 w-full h-1 bg-primary/20 rounded-full overflow-hidden"><div class="bg-primary h-full w-full"></div></div></div></div><div class="flex flex-col px-6 pb-8"><h4 class="text-primary text-sm font-bold leading-normal tracking-[0.05em] uppercase py-4 border-b border-slate-200">Donation Summary</h4><div class="flex flex-col gap-4 py-4"><div class="flex justify-between items-center"><span class="text-slate-500">Amount</span><span class="text-slate-900 font-semibold">$120.00</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Date</span><span class="text-slate-900 font-semibold">Oct 24, 2023</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Transaction ID</span><span class="text-slate-900 font-semibold">#KF-82749</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Payment Method</span><div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">credit_card</span><span class="text-slate-900 font-semibold">.... 4242</span></div></div></div></div><div class="mt-auto p-6 flex flex-col gap-3"><button class="bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2"><span class="material-symbols-outlined">share</span>Share your impact</button><a class="bg-transparent text-slate-600 font-semibold py-3 rounded-xl hover:bg-slate-100 transition-colors text-center" href="/m">Back to Home</a></div><div class="px-6 pb-12"><div class="relative h-48 w-full rounded-xl overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtp5x_FgckK62isxl2tb8KaYRVjXQUDL4PwJAnrWkYmYSpRD1iMy3AeQhG0nBgH3Wpam25SZ48-6DqTlsAl7wdPTvxcTca6rnfkJ_UDRNxBDNMKM6dwQX9I_gTEJ9BBNSCm9Sdo92rI24bTS_EHS6fbZeodMRyPhkWw7NuAGOgGTxTW7tCaI__RnwJYlCUPs5_zHn0C3NMQlldp1LG0Hy6VfQksTnH2rOBFRc7o5BO7aNbAUHbLcvTluFS_wVY2w1JPA2_GFLU2kS5" alt="Group of smiling children receiving healthy meals" /><div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-4"><p class="text-white text-sm italic">&quot;Your support helps us reach communities in need every day.&quot;</p></div></div></div></div>`;
-function DonationConfirmationMobilePage() {
+<div class="bg-background-light font-display text-slate-900">
+  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined">delete_sweep</span>
+          </div>
+          <h2 class="text-xl font-bold tracking-tight text-primary">Krutha Foundation</h2>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a>
+        <a class="text-sm font-bold text-primary" href="/our-work">Our Work</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/press">Transparency</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate Now</a>
+      </nav>
+      <a class="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90 transition-all shadow-md shadow-primary/20" href="/contact">Get Involved</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative bg-slate-900 text-white py-24 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEBaMUpFSfwMjakWg58U0mIxI15iudHFA58iYNPe-hRh1wU-Xytvhp6I_BVysBFwaW1ypiWj_H_SqzYRPhNWwzzU6zcwHzkVoUAg8Tkdcr5b1e5osA1Z4yPgfR-no0S6QigAhiindjyVhT-oNh0M-G7ohZYPNgSyfUSzN7I_3MB9IbnJ2i6EgKgwAbCHRXiVhPTK4jGmvnh3SiBLldSuTUlucZ7w09Vr-8K_gz5ft46SX_1K-RXFkE3s5sQopxkTx-MTJGisttjAx" alt="Vasundhara waste project" />
+      </div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-lg">eco</span> Waste Management
+        </div>
+        <h1 class="text-5xl lg:text-7xl font-editorial leading-tight mb-6">Project Vasundhara</h1>
+        <p class="text-2xl font-light text-slate-300 max-w-3xl mx-auto leading-relaxed italic">"Honouring the Wealth of Our Earth"</p>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 leading-tight">Vasundhara: The Holder of Treasures</h2>
+          <div class="prose prose-slate lg:prose-lg text-slate-600 space-y-4">
+            <p>In our scriptures, the Earth is called <strong>Vasundhara</strong>—the "Holder of Treasures." From the grain that feeds us to the water that sustains us, the soil is our greatest bank. But today, this treasure is being buried under piles of unsegregated waste.</p>
+            <p>Krutha Foundation believes that cleanliness is the highest form of respect we can show to our land. Through Project Vasundhara, we are transforming how our village handles its waste, turning a mounting problem into a sustainable solution.</p>
+          </div>
+        </div>
+        <div class="bg-primary/5 p-12 rounded-3xl border border-primary/10">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="size-16 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg">
+              <span class="material-symbols-outlined text-4xl">recycling</span>
+            </div>
+            <h3 class="text-2xl font-bold">Stop Mixing Waste</h3>
+          </div>
+          <p class="text-xl text-slate-700 leading-relaxed italic">&quot;The biggest enemy of a clean village isn't 'trash'—it is mixing. When organic waste and plastic are thrown together, they create toxic landfills.&quot;</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-4 gap-6 text-center">
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 shadow-sm">
+            <h4 class="text-4xl font-black text-primary mb-2">300</h4>
+            <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Households Reached</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 shadow-sm">
+            <h4 class="text-4xl font-black text-primary mb-2">600</h4>
+            <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Specialized Bins Distributed</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 shadow-sm">
+            <h4 class="text-4xl font-black text-primary mb-2">₹50K</h4>
+            <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Initial Pilot Funding</p>
+          </div>
+          <div class="p-8 rounded-2xl bg-background-light border border-slate-100 shadow-sm">
+            <h4 class="text-4xl font-black text-primary mb-2">100%</h4>
+            <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Panchayat Partnership</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-primary/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16">
+          <div class="space-y-8">
+            <h2 class="text-3xl font-bold">A Waste-Free Blueprint</h2>
+            <div class="space-y-6">
+              <div class="flex gap-6 items-start">
+                <div class="size-12 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">1</div>
+                <div>
+                  <h5 class="font-bold text-lg mb-1">Twin-Bin System</h5>
+                  <p class="text-slate-600">Empowering families to separate 'Wet' (Organic) and 'Dry' (Recyclable) waste at the source.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start">
+                <div class="size-12 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">2</div>
+                <div>
+                  <h5 class="font-bold text-lg mb-1">Vasundhara Rakshaks</h5>
+                  <p class="text-slate-600">Volunteer leaders driving door-to-door awareness and community responsibility.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start">
+                <div class="size-12 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">3</div>
+                <div>
+                  <h5 class="font-bold text-lg mb-1">Closing the Loop</h5>
+                  <p class="text-slate-600">Working hand-in-hand with local authorities to ensure regular, segregated collection.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-forest p-12 rounded-3xl text-white relative flex flex-col justify-center">
+            <h4 class="text-2xl font-bold mb-6 italic">"A Waste-Free Konaseema"</h4>
+            <p class="text-lg text-white/80 leading-relaxed mb-8">Our success in initial wards is just the beginning. OurResolve is strong. We aim to scale Project Vasundhara to every Ward and every household.</p>
+            <a class="bg-primary text-white px-8 py-3 rounded-xl font-bold w-fit shadow-lg shadow-black/20" href="/contact">Support the Expansion</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 text-center max-w-4xl mx-auto px-6">
+       <h2 class="text-4xl font-editorial mb-8 italic">Don't just discard—Distinguish.</h2>
+       <p class="text-xl text-slate-600 mb-12">By supporting Project Vasundhara, you aren't just buying a bin; you are investing in a future where our village remains a "Holder of Treasures" for generations to come.</p>
+       <div class="flex flex-wrap justify-center gap-6">
+          <a class="bg-forest text-white px-10 py-4 rounded-xl font-bold text-lg" href="/contact">Support the Project</a>
+          <a class="border border-forest/20 text-forest px-10 py-4 rounded-xl font-bold text-lg" href="/our-work">View Gallery</a>
+       </div>
+    </section>
+  </main>
+
+  <footer class="bg-forest text-white/70 py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 text-white mb-8">
+        <div class="w-8 h-8 bg-white/20 rounded flex items-center justify-center backdrop-blur-sm"><span class="material-symbols-outlined text-sm">eco</span></div>
+        <span class="font-bold text-lg text-white">Krutha Foundation</span>
+      </div>
+      <p class="text-sm max-w-xl mx-auto leading-relaxed mb-8 text-white/60">Empowering the architects of tomorrow. Dedicated to rural student transformation and professional excellence.</p>
+      <div class="flex justify-center gap-8 text-xs font-bold uppercase tracking-widest">
+        <a class="hover:text-white transition-colors" href="/about">About</a>
+        <a class="hover:text-white transition-colors" href="/our-work">Work</a>
+        <a class="hover:text-white transition-colors" href="/press">Press</a>
+        <a class="hover:text-white transition-colors" href="/contact">Contact</a>
+      </div>
+      <p class="mt-8 text-[10px] opacity-40">&copy; 2024 Krutha Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+`;
+function ProjectVasundharaDesktopPage() {
   return /* @__PURE__ */ jsx_dev_runtime13.jsxDEV(StaticMarkupPage, {
     html: html12
   }, undefined, false, undefined, this);
 }
 
-// src/pages/mobile/events-mobile-page.tsx
+// src/pages/desktop/impact-report-desktop-page.tsx
 var jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1);
+var ImpactReportDesktopPage = () => {
+  const content = `
+    <div class="bg-white min-h-screen">
+      <!-- Hero Section -->
+      <section class="relative overflow-hidden bg-primary py-24 text-white">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute -left-20 -top-20 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+          <div class="absolute -right-20 -bottom-20 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+        </div>
+        <div class="container relative mx-auto px-6 text-center">
+          <span class="mb-4 inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold tracking-wider uppercase">Institutional Stewardship</span>
+          <h1 class="mb-6 text-5xl font-bold lg:text-6xl tracking-tight">3-Year Impact Report</h1>
+          <p class="mx-auto max-w-2xl text-xl text-white/90 font-medium italic">"Transforming Communities, Manifesting the Krutha Yuga Ideals"</p>
+          <p class="mt-4 text-white/70">April 2022 – March 2025</p>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="mx-auto max-w-4xl rounded-3xl bg-slate-50 p-10 shadow-sm border border-slate-100">
+            <h2 class="mb-6 text-3xl font-bold text-primary">Mission & Mobilization</h2>
+            <div class="space-y-6 text-lg leading-relaxed text-slate-700">
+              <p>
+                Our journey began in April 2022 with a mission to bridge the global diaspora and their native roots. In three years, we have raised <span class="font-bold text-primary">₹21,26,753</span> from multiple donors across various cities and towns globally to fuel our mission of transforming a village, <span class="font-semibold text-forest">Vadapalem</span>.
+              </p>
+              <p>
+                This includes <span class="font-bold text-primary">₹10,06,000</span> in donations received from two strategic partner NGOs: <span class="font-semibold">Padala Charitable Trust (PCT)</span>, Kakinada and <span class="font-semibold">American Progressive Telugu Association (APTA)</span>, USA. These funds are dedicated to scholarships for talented students from marginalized backgrounds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Pillars -->
+      <section class="bg-white py-20">
+        <div class="container mx-auto px-6">
+          <div class="mb-16 text-center">
+            <h2 class="text-4xl font-bold text-primary">Pillars of Progress</h2>
+            <div class="mx-auto mt-4 h-1 w-24 bg-sage rounded-full"></div>
+          </div>
+
+          <div class="grid gap-8 lg:grid-cols-3">
+            <!-- LEADS -->
+            <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-md transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-3xl">school</span>
+              </div>
+              <h3 class="mb-2 text-2xl font-bold text-primary">The L.E.A.D.S Program</h3>
+              <p class="mb-4 text-sm font-semibold text-primary/60 tracking-wider">INVESTMENT: ₹16,37,000</p>
+              <ul class="mb-6 space-y-3 text-slate-600">
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>498 students (Classes 8-10) trained in life skills</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>12 higher education scholarships sponsored</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>Career guidance & adolescent education excellence</span>
+                </li>
+              </ul>
+              <div class="pt-4 border-t border-slate-50 italic text-slate-500 text-sm">
+                Partners: PCT Kakinada & APTA USA
+              </div>
+            </div>
+
+            <!-- Jala Rakshana -->
+            <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-md transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-3xl">water_drop</span>
+              </div>
+              <h3 class="mb-2 text-2xl font-bold text-primary">Jala Rakshana</h3>
+              <p class="mb-4 text-sm font-semibold text-primary/60 tracking-wider text-teal-600">INVESTMENT: ₹2,85,000</p>
+              <ul class="mb-6 space-y-3 text-slate-600">
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>4 Rainwater Harvesting Pits (RHPs) built</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>Canal bed summer cleaning: 2-5 feet of plastic removed</span>
+                </li>
+              </ul>
+              <p class="pt-4 text-slate-500 text-sm italic">Focus: Water security & ecosystem restoration</p>
+            </div>
+
+            <!-- Nirmala Gramam -->
+            <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-md transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-3xl">recycling</span>
+              </div>
+              <h3 class="mb-2 text-2xl font-bold text-primary">Nirmala Gramam</h3>
+              <p class="mb-4 text-sm font-semibold text-primary/60 tracking-wider">INVESTMENT: ₹78,000</p>
+              <ul class="mb-6 space-y-3 text-slate-600">
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>300 household pilot for waste segregation</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                  <span>2,000 cloth bags distributed to eliminate single-use plastics</span>
+                </li>
+              </ul>
+              <p class="pt-4 text-slate-500 text-sm italic">Formerly: Solid Waste & Plastic Reduction</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Grid -->
+      <section class="bg-forest py-24 text-white">
+        <div class="container mx-auto px-6">
+          <div class="mb-16 text-center">
+            <h2 class="text-3xl font-bold opacity-90 tracking-wider uppercase">Impact at a Glance</h2>
+          </div>
+          <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="text-center">
+              <div class="text-5xl font-bold mb-2">05</div>
+              <div class="text-white/60 uppercase tracking-widest text-sm">Projects Executed</div>
+            </div>
+            <div class="text-center">
+              <div class="text-5xl font-bold mb-2">18</div>
+              <div class="text-white/60 uppercase tracking-widest text-sm">Cities Represented</div>
+            </div>
+            <div class="text-center">
+              <div class="text-5xl font-bold mb-2">02</div>
+              <div class="text-white/60 uppercase tracking-widest text-sm">Global Partners</div>
+            </div>
+            <div class="text-center">
+              <div class="text-5xl font-bold mb-2">300+</div>
+              <div class="text-white/60 uppercase tracking-widest text-sm">Households Reached</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Path -->
+      <section class="py-24">
+        <div class="container mx-auto px-6">
+          <div class="mx-auto max-w-4xl text-center">
+            <h2 class="mb-8 text-4xl font-bold text-primary">The Path Ahead: 2026 & Beyond</h2>
+            <p class="mb-12 text-lg text-slate-600">With our foundation firmly established, we are now expanding our "Global Bridge" to realize our remaining objectives:</p>
+            
+            <div class="grid gap-6 sm:grid-cols-2 text-left">
+              <div class="rounded-2xl bg-slate-50 p-6 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-primary">agriculture</span>
+                <div>
+                  <h4 class="font-bold text-primary">Krutha Raithu Nestham</h4>
+                  <p class="text-sm text-slate-600">Natural Farming methods for local farmers.</p>
+                </div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-6 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-primary">diversity_3</span>
+                <div>
+                  <h4 class="font-bold text-primary">Shakti Sangamam</h4>
+                  <p class="text-sm text-slate-600">Empowerment and skill programs for women.</p>
+                </div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-6 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+                <div>
+                  <h4 class="font-bold text-primary">Aasara</h4>
+                  <p class="text-sm text-slate-600">Support system for the village elderly.</p>
+                </div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-6 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-primary">storefront</span>
+                <div>
+                  <h4 class="font-bold text-primary">Dharma Vyapaar</h4>
+                  <p class="text-sm text-slate-600">Eco-friendly and ethical business training.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  `;
+  return /* @__PURE__ */ jsx_dev_runtime14.jsxDEV(StaticMarkupPage, {
+    html: content
+  }, undefined, false, undefined, this);
+};
+
+// src/pages/mobile/about-mobile-page.tsx
+var jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
+var suryaSrc2 = "/team/surya-bandaru.webp";
+var kgRaoSrc2 = "/team/kg-rao.webp";
+var srinivasuSrc2 = "/team/srinivasu-b.webp";
 var html13 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10"><a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m"><span class="material-symbols-outlined">arrow_back</span></a><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">About Us</h2><div class="flex w-10 items-center justify-end"><button class="flex items-center justify-center rounded-full size-10 hover:bg-primary/10 text-primary"><span class="material-symbols-outlined">share</span></button></div></header>
+  <main class="flex-1">
+    <section class="px-4 py-6">
+      <div class="w-full aspect-video bg-center bg-no-repeat bg-cover rounded-xl shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAz19yKKIXgvllFIZPFeIaYeh1GtyZi2A5Qx7q-_C-6nnGhYUlBYKYn_hngUteALTcnqO7HSyBMLLB830Gb6vnfyOobR2gmtg7NHBdCknZVorh8xofXDazRUs9GRbdxxNK7Co5EeYq9PG81SyUjJdwCGYub0DDGEdc_oxgXs9md61yjryicXY01dl9OrsY8A3ibIvM_0dNnd2akDIp1v-itUwFndU2QmQxpS36NJyx_wzjN8fuQ0ZDLZM1dnU0kuh6OjBemjWkEwogz")'></div>
+      <div class="mt-8">
+        <h1 class="text-slate-900 text-3xl font-bold leading-tight mb-4 text-center">Our Story</h1>
+        <p class="text-slate-600 text-base font-normal leading-relaxed text-left">Founded in April 2022, Krutha Foundation connects people across the globe to their native village, Vadapalem, to build a self-sustainable thriving community.</p>
+      </div>
+    </section>
+    <section class="px-4 py-8 bg-white">
+      <h3 class="text-xl font-bold text-primary uppercase tracking-widest text-xs mb-4">Program Philosophy</h3>
+      <div class="space-y-4 text-slate-600 leading-relaxed">
+        <p>At Krutha Foundation, our programs are centered on people and the environment—recognizing the deep interdependence between human behaviour and the health of <strong>Earth, Water, and Air</strong>.</p>
+        <p>Each initiative is designed to be transformational rather than transactional, addressing root causes through responsibility, discipline, and conscious choice among <strong>children, youth, women, farmers, traders, and elders</strong>.</p>
+        <p>The impact we envision goes beyond immediate outcomes, securing a healthier, dignified, and sustainable future for generations to come. We work on <strong>9 Sustainable Development Goals (SDGs)</strong> set by the UN.</p>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="px-4 py-12 bg-slate-50 border-y border-slate-100">
+      <div class="mb-10 text-center">
+        <h3 class="text-2xl font-bold text-slate-900 mb-2">Our Strategic Partners</h3>
+        <p class="text-slate-500 text-sm">Collaborating for sustainable impact.</p>
+        <div class="h-1 w-12 bg-primary mx-auto rounded-full mt-4"></div>
+      </div>
+      
+      <div class="space-y-6">
+        <!-- PCT Mobile -->
+        <div class="bg-white p-6 rounded-3xl border border-primary/5 shadow-sm space-y-5">
+          <div class="flex items-center gap-4 border-b border-slate-50 pb-4">
+            <div class="shrink-0 size-20 bg-slate-50 rounded-2xl p-2 flex items-center justify-center border border-slate-100">
+              <img src="${PCT_default}" alt="PCT Logo" class="max-h-full max-w-full object-contain" />
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-primary text-lg leading-tight">Padala Charitable Trust (PCT)</h4>
+              <a href="https://pct-india.org" class="text-[11px] text-primary font-bold uppercase tracking-wider flex items-center gap-1 mt-1">
+                Official Site <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-slate-600 text-[13px] leading-relaxed">
+              Our primary execution partner for the <strong>L.E.A.D.S. Program</strong>, providing Life Skills and Leadership training at ZPHS Vadapalem.
+            </p>
+            <div class="p-4 bg-primary/5 rounded-2xl border-l-2 border-primary italic">
+              <p class="text-slate-700 text-[12px] leading-relaxed">
+                "Ensuring financial constraints never stand in the way of academic excellence for our students."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- APTA Mobile -->
+        <div class="bg-white p-6 rounded-3xl border border-primary/5 shadow-sm space-y-5">
+          <div class="flex items-center gap-4 border-b border-slate-50 pb-4">
+            <div class="shrink-0 size-20 bg-slate-50 rounded-2xl p-2 flex items-center justify-center border border-slate-100">
+              <img src="${APTA_default}" alt="APTA Logo" class="max-h-full max-w-full object-contain" />
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-primary text-lg leading-tight">APTA (USA)</h4>
+              <a href="https://ap-ta.org" class="text-[11px] text-primary font-bold uppercase tracking-wider flex items-center gap-1 mt-1">
+                Official Site <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-slate-600 text-[13px] leading-relaxed">
+              Empowering students to pursue <strong>high-level professional degrees</strong> through vital scholarship contributions.
+            </p>
+            <div class="p-4 bg-primary/5 rounded-2xl border-l-2 border-primary italic">
+              <p class="text-slate-700 text-[12px] leading-relaxed">
+                "Representing the strength and generosity of the Telugu diaspora in the United States."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 p-5 bg-primary rounded-2xl shadow-lg shadow-primary/20">
+        <p class="text-xs text-white font-medium text-center leading-relaxed">
+          Together, we maintain a <span class="font-bold underline decoration-sage underline-offset-2">100% transparency rate</span> for every rupee donated.
+        </p>
+      </div>
+    </section>
+    <section class="px-4 py-8 space-y-6"><div class="bg-primary/5 p-6 rounded-xl border border-primary/10"><div class="flex items-center gap-3 mb-3 text-primary"><span class="material-symbols-outlined">target</span><h3 class="text-xl font-bold">Our Mission</h3></div><p class="text-slate-700 leading-relaxed">To connect people across the globe to their native village on one platform and enable them to serve their motherland by transforming Vadapalem into a self-sustainable thriving community.</p></div><div class="bg-primary/5 p-6 rounded-xl border border-primary/10"><div class="flex items-center gap-3 mb-3 text-primary"><span class="material-symbols-outlined">visibility</span><h3 class="text-xl font-bold">Our Vision</h3></div><p class="text-slate-700 leading-relaxed">A model village where children are guided, youth are directed, women are empowered, elders are supported, farmers thrive through natural methods, and surroundings remain plastic and garbage free.</p></div></section>    <!-- Leadership Team Section -->
+    <section class="px-4 py-16 bg-white">
+      <div class="mb-12 text-center">
+        <h3 class="text-2xl font-bold text-slate-900 mb-2">Our Leadership</h3>
+        <p class="text-slate-500 text-sm">Visionaries and execution experts.</p>
+        <div class="h-1 w-12 bg-primary mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Tier 1: Chairman -->
+      <div class="mb-16">
+        <div class="bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100 shadow-sm overflow-hidden text-center">
+          <div class="size-48 mx-auto rounded-[2rem] overflow-hidden bg-slate-200 shadow-lg border-4 border-white mb-6">
+            <img src="${suryaSrc2}" alt="Surya Bandaru" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="text-2xl font-bold text-slate-900">Surya Bandaru</h4>
+          <p class="text-primary font-bold uppercase tracking-widest text-[10px] mb-6">Chairman & Founder</p>
+          <div class="text-left space-y-4">
+            <p class="text-slate-600 text-[14px] leading-relaxed">
+              Visionary behind Krutha Foundation with 27+ years of corporate experience (Motorola, GE, Nokia) and extensive global exposure.
+            </p>
+            <p class="text-slate-600 text-[14px] leading-relaxed italic border-l-2 border-primary/20 pl-4 py-2 bg-white/50 rounded-r-xl">
+              "Blending corporate discipline with a deep commitment to environmental and educational reforms."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2: Executives -->
+      <div class="grid grid-cols-1 gap-12 mb-16">
+        
+        <!-- Vice Chairman -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="size-20 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-300 shrink-0">
+              <span class="material-symbols-outlined text-4xl">person</span>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-900 leading-tight">Srirama Chandra Murthy</h4>
+              <p class="text-primary font-bold uppercase tracking-widest text-[9px]">Vice Chairman</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-[13px] leading-relaxed">
+            Distinguished veteran in education and sports administration. Secretary for India Olympic Association, Konaseema. Strategic lead for sports-centric development.
+          </p>
+        </div>
+
+        <!-- General Secretary -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="size-20 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-300 shrink-0">
+              <span class="material-symbols-outlined text-4xl">person</span>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-900 leading-tight">Anand Bandaru</h4>
+              <p class="text-primary font-bold uppercase tracking-widest text-[9px]">General Secretary</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-[13px] leading-relaxed">
+            BITS Pilani alumnus with 25+ years at IBM/Kyndryl. Focuses on scholarships, government schools, and rebuilding natural ecosystems.
+          </p>
+        </div>
+
+        <!-- Joint Secretary -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="size-20 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-slate-100">
+              <img src="${kgRaoSrc2}" alt="K G Rao" class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-900 leading-tight">K G Rao</h4>
+              <p class="text-primary font-bold uppercase tracking-widest text-[9px]">Joint Secretary</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-[13px] leading-relaxed">
+            Retired government professional leading ground-level execution. Brings administrative discipline to Education and Environment initiatives.
+          </p>
+        </div>
+
+        <!-- Treasurer -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="size-20 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-slate-100">
+              <img src="${srinivasuSrc2}" alt="Srinivasu B" class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-900 leading-tight">Srinivasu B</h4>
+              <p class="text-primary font-bold uppercase tracking-widest text-[9px]">Treasurer</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-[13px] leading-relaxed">
+            Entrepreneur with global Singapore experience. Applies rigorous project management to ensure maximum donor efficiency.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Tier 3: Trustees -->
+      <div class="bg-slate-50 rounded-[2.5rem] p-8 border border-slate-100">
+        <h4 class="text-xl font-bold text-slate-900 mb-8 text-center">Board of Trustees</h4>
+        <div class="space-y-8">
+          <div class="space-y-2">
+            <h5 class="font-bold text-slate-900">Pedapudi Bapi Raju</h5>
+            <p class="text-slate-600 text-[13px] leading-relaxed italic">
+              Legacy youth leader and social change architect with 30+ years of grassroots intervention in Konaseema.
+            </p>
+          </div>
+          <div class="h-px bg-slate-200"></div>
+          <div class="space-y-2">
+            <h5 class="font-bold text-slate-900">Subba Rao Karibandi</h5>
+            <p class="text-slate-600 text-[13px] leading-relaxed italic">
+              The foundation's "Torch Bearer" for the L.E.A.D.S. Program and primary operational bridge for NGO partners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section><section class="px-4 py-10"><div class="mb-8"><h3 class="text-2xl font-bold text-slate-900 mb-2">Financial Transparency</h3><p class="text-slate-500 text-sm leading-tight">Strategic scholarship partnerships and donor accountability (2022-2025).</p></div><div class="space-y-6"><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">Global Donors + Programs</span><span class="text-xs font-bold text-primary">Rs.21,26,753</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-primary/10"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:100%"></div></div></div><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-100">PCT Scholarships</span><span class="text-xs font-bold text-slate-600">Rs.8,40,000</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-slate-200"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-500" style="width:40%"></div></div></div><div class="relative pt-1"><div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-100">APTA Scholarships</span><span class="text-xs font-bold text-slate-600">Rs.1,66,000</span></div><div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-slate-200"><div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-400" style="width:8%"></div></div></div></div><div class="mt-10 p-6 bg-primary rounded-xl text-white text-center"><h4 class="text-lg font-bold mb-2">Support Our Work</h4><p class="text-primary/10 text-sm mb-6 opacity-90">Every contribution directly advances education and environmental resilience.</p><a class="w-full py-3 bg-white text-primary font-bold rounded-lg shadow-lg hover:bg-slate-50 transition-colors block" href="/m/contact">Donate Now</a></div></section></main>
+  <footer class="sticky bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium uppercase tracking-widest">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/about"><span class="material-symbols-outlined">info</span><p class="text-[10px] font-bold uppercase tracking-widest">About</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/our-work"><span class="material-symbols-outlined">folder_shared</span><p class="text-[10px] font-medium uppercase tracking-widest">Projects</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined">volunteer_activism</span><p class="text-[10px] font-medium uppercase tracking-widest">Donate</p></a></footer>
+</div>`;
+function AboutMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime15.jsxDEV(StaticMarkupPage, {
+    html: html13
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/blog-mobile-page.tsx
+var jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
+var html14 = String.raw`
+<div class="bg-background-light font-display text-slate-900 min-h-screen flex flex-col"><header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10"><div class="flex items-center p-4 justify-between max-w-md mx-auto w-full"><div class="text-primary flex size-10 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-2xl">menu</span></div><h1 class="text-primary text-lg font-bold leading-tight tracking-tight flex-1 text-center">Krutha Foundation</h1><div class="flex w-10 items-center justify-end"><button class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">search</span></button></div></div></header><nav class="bg-background-light border-b border-primary/10 sticky top-[72px] z-40"><div class="flex px-4 overflow-x-auto no-scrollbar gap-6 max-w-md mx-auto"><a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-bold">All Stories</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Community</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Sustainability</p></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 shrink-0" href="/m/blog"><p class="text-sm font-medium">Heritage</p></a></div></nav><main class="flex-1 max-w-md mx-auto w-full pb-24"><div class="px-4 pt-6 pb-2"><h2 class="text-2xl font-bold tracking-tight text-slate-900">Latest Stories</h2><p class="text-slate-500 text-sm mt-1">Updates from our field projects and communities.</p></div><div class="p-4 space-y-6"><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqPPUd3ZTr1685j1gC0KE4FH9nK1_nJ1BytzGZhW58kwNdnsbk-aWiE2QB-nBG4QAmZ4HC0l6Za9weVSYwEhHjPnLpExJqZEcrjvVG0xXuvgWzwO4FDEpIImomYmm6j2lB5WxJaQUrc17wqIz7I2soSMWnBvB78dLU3WIgkot0hSNAtgLkT0rJ06D_v6EJimvdMdG_LF1Adedqwo3o5Cf_bSDh4xzutLMc5Iye_yQ1WHxVYbj8kcEoCkJ7Ar8uD-iXJJlWwC59kgQg")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Heritage</span><span class="text-slate-400 text-xs">• May 12, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Preserving Ancient Traditions in Modern Times</h3><p class="text-slate-600 text-sm line-clamp-2">Discover how we are working with local artisans to keep historical crafts alive for future generations through sustainable commerce.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">5 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFyWsUtBzo95D9UQ3c_575m9m1p5rLZCxsuUBAVHHMIy8aRxP4LbYxYy9TT5jEAH0vVj98U5expT_t57aMasQ4y1wbPZY6bMHU4F83pva43koz4utJGURhl4WklI58gN7GbEhs5R_A0-c7-v7HP_YWBy2GZXjG9bB7oSqvhT8rXUUCcL4x_bPBD7k0Jqm-Yow9JFTt_pL-QIT2fJqSt6gK90ozUBzQ0G6yKfbgOqqIxGCnT54nQfA4dgHUo60qswQzHIkzUAWmGduC")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Sustainability</span><span class="text-slate-400 text-xs">• May 10, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Green Initiatives: Replanting the Western Ghats</h3><p class="text-slate-600 text-sm line-clamp-2">Our latest reforestation project has successfully planted over 10,000 native saplings this quarter.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">4 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article><article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm border border-primary/5"><div class="w-full aspect-video bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqW4jTS0H7vS-AePZ8jOzqBg-CzloNw3F6v2AExpHymVFWIW37oNXioc9njgIVwF-CRLr_uMn_W9XGPayNN6ts4jbO7JltjF1R_85giFvWdMQNjKJeweyCK8nAIYNTScE3KCOMjl9q9HDdavo7nbmI8ih8U-A2KSdOzUfzxTJLkxF4t94M0H3HtnAmeN9u42-7bpa21MQ_sB9dtKiwXXNvNJt_iy81Okju7dBTRwWCwQvuCxVY2CgdCdpWFSvV04Fc1o5g7xpnNWie")'></div><div class="flex flex-col gap-3 p-4"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Community</span><span class="text-slate-400 text-xs">• May 05, 2024</span></div><h3 class="text-xl font-bold leading-tight text-slate-900">Education for All: New Learning Centers Open</h3><p class="text-slate-600 text-sm line-clamp-2">Expanding our reach to three more rural districts to provide digital literacy programs for youth.</p><div class="flex items-center justify-between mt-2"><span class="text-slate-400 text-xs">6 min read</span><a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform" href="/m/press">Read More</a></div></div></article></div><div class="px-4 py-4 flex justify-center"><button class="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-primary/20 bg-transparent py-3 text-primary font-bold"><span>View Older Posts</span><span class="material-symbols-outlined text-sm">expand_more</span></button></div></main><footer class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-primary/10 z-50"><div class="flex max-w-md mx-auto items-center justify-around px-4 pb-6 pt-2"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined text-2xl">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/blog"><span class="material-symbols-outlined text-2xl font-fill">book_2</span><p class="text-[10px] font-bold leading-none">Blog</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/our-work"><span class="material-symbols-outlined text-2xl">account_tree</span><p class="text-[10px] font-medium leading-none">Projects</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined text-2xl">favorite</span><p class="text-[10px] font-medium leading-none">Donate</p></a></div></footer></div>`;
+function BlogMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime16.jsxDEV(StaticMarkupPage, {
+    html: html14
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/contact-mobile-page.tsx
+var jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1);
+var html15 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased"><header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md p-4 border-b border-primary/10"><a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m"><span class="material-symbols-outlined text-primary">arrow_back</span></a><h1 class="text-lg font-bold leading-tight tracking-tight flex-1 ml-2">Krutha Foundation</h1><div class="flex size-10 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-primary">share</span></div></header><main class="flex-1 pb-24"><div class="p-4"><div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[180px] shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLIkQF83ozgfvBBdlugCWD2OEcb43JXyWBKPQOjJBllkhzq8FxnGKE7WPg0FbQSgwjB9hGx1U1gnHbvMfeSl_dHq5OAepAv4xB5yc0kUiqyVjUZzlX7ZjgEbvHPGh87NFAoW4qFvvwZk5nZdQFSd5cwUIUHW2-1sTXMveWv8V9qX4zXc1nKO0QrIitiQeDbyO_YLr3_GK-M1kITWqqh38BoVF4NqISk0izlbT9NSBzfk2cNqwngA6uXi9bMQr70zxo_-KoEeN_8O9K")'></div></div><section class="px-4 py-4"><h2 class="text-2xl font-bold tracking-tight text-primary">Support Our Cause</h2><p class="mt-2 text-sm text-slate-600">Your contribution helps us empower communities and drive sustainable change through targeted educational initiatives.</p><div class="mt-6 grid grid-cols-2 gap-3"><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all group"><span class="text-lg font-bold text-primary">$10</span><span class="text-xs text-slate-500">Starter</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary bg-primary/10 transition-all group"><span class="text-lg font-bold text-primary">$25</span><span class="text-xs text-slate-500">Popular</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all"><span class="text-lg font-bold text-primary">$50</span><span class="text-xs text-slate-500">Impact</span></button><button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary/20 bg-white hover:border-primary transition-all"><span class="text-lg font-bold text-primary">$100</span><span class="text-xs text-slate-500">Founder</span></button></div><div class="mt-4"><a class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform block text-center" href="/m/donation-confirmation">Donate Now</a></div></section><div class="h-4 bg-primary/5"></div><section class="px-4 py-8"><h3 class="text-xl font-bold text-slate-900">Contact Details</h3><div class="mt-4 space-y-4"><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">location_on</span></div><div><p class="font-semibold text-sm">Headquarters</p><p class="text-sm text-slate-500">123 Impact Street, Eco Valley, CA 90210</p></div></div><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">mail</span></div><div><p class="font-semibold text-sm">Email Support</p><p class="text-sm text-slate-500">hello@kruthafoundation.org</p></div></div><div class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-primary/5"><div class="bg-primary/10 p-2 rounded-lg"><span class="material-symbols-outlined text-primary">phone</span></div><div><p class="font-semibold text-sm">Call Us</p><p class="text-sm text-slate-500">+1 (555) 000-1234</p></div></div></div></section><section class="px-4 py-4"><h3 class="text-xl font-bold text-slate-900">Send a Message</h3><form class="mt-4 space-y-4"><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Full Name</label><input class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="John Doe" type="text" /></div><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Email Address</label><input class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="john@example.com" type="email" /></div><div><label class="block text-xs font-medium text-slate-500 mb-1 ml-1 uppercase tracking-wider">Message</label><textarea class="w-full rounded-xl border-slate-200 bg-white focus:ring-primary focus:border-primary" placeholder="How can we help?" rows="4"></textarea></div><button class="w-full bg-primary/10 text-primary font-bold py-4 rounded-xl hover:bg-primary hover:text-white transition-colors" type="button">Send Message</button></form></section></main><nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/10 bg-background-light/95 backdrop-blur-md px-4 pb-6 pt-3"><div class="flex items-center justify-between"><a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center gap-1 text-slate-400" href="/m/events"><span class="material-symbols-outlined">favorite</span><p class="text-[10px] font-medium leading-none">Impact</p></a><a class="flex flex-1 flex-col items-center gap-1 text-primary" href="/m/contact"><span class="material-symbols-outlined font-fill">volunteer_activism</span><p class="text-[10px] font-bold leading-none">Donate</p></a><a class="flex flex-1 flex-col items-center gap-1 text-slate-900" href="/m/contact"><span class="material-symbols-outlined font-fill">mail</span><p class="text-[10px] font-bold leading-none">Contact</p></a></div></nav></div>`;
+function ContactMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime17.jsxDEV(StaticMarkupPage, {
+    html: html15
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/donation-confirmation-mobile-page.tsx
+var jsx_dev_runtime18 = __toESM(require_jsx_dev_runtime(), 1);
+var html16 = String.raw`
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light overflow-x-hidden"><div class="flex items-center p-4 pb-2 justify-between"><div class="text-slate-900 flex size-12 shrink-0 items-center justify-start"><a href="/m/contact"><span class="material-symbols-outlined cursor-pointer">close</span></a></div><h2 class="text-slate-900 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Donation Successful</h2></div><div class="flex flex-col items-center justify-center pt-10 pb-4"><div class="bg-primary/10 p-6 rounded-full"><span class="material-symbols-outlined text-primary text-[64px] font-fill">check_circle</span></div></div><div class="px-6"><h1 class="text-slate-900 tracking-tight text-[32px] font-bold leading-tight text-center pb-3 pt-4">Thank You!</h1><p class="text-slate-600 text-base font-normal leading-relaxed text-center max-w-sm mx-auto">Your generous contribution to Krutha Foundation is making a real difference in people's lives today.</p></div><div class="flex flex-col gap-4 p-6"><div class="flex flex-col gap-3 rounded-xl p-8 bg-primary/10 border border-primary/5 items-center text-center"><p class="text-primary text-sm font-bold uppercase tracking-widest">Your Impact</p><p class="text-slate-900 tracking-tight text-3xl font-extrabold leading-tight">12 Meals Provided</p><div class="mt-2 w-full h-1 bg-primary/20 rounded-full overflow-hidden"><div class="bg-primary h-full w-full"></div></div></div></div><div class="flex flex-col px-6 pb-8"><h4 class="text-primary text-sm font-bold leading-normal tracking-[0.05em] uppercase py-4 border-b border-slate-200">Donation Summary</h4><div class="flex flex-col gap-4 py-4"><div class="flex justify-between items-center"><span class="text-slate-500">Amount</span><span class="text-slate-900 font-semibold">$120.00</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Date</span><span class="text-slate-900 font-semibold">Oct 24, 2023</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Transaction ID</span><span class="text-slate-900 font-semibold">#KF-82749</span></div><div class="flex justify-between items-center"><span class="text-slate-500">Payment Method</span><div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">credit_card</span><span class="text-slate-900 font-semibold">.... 4242</span></div></div></div></div><div class="mt-auto p-6 flex flex-col gap-3"><button class="bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2"><span class="material-symbols-outlined">share</span>Share your impact</button><a class="bg-transparent text-slate-600 font-semibold py-3 rounded-xl hover:bg-slate-100 transition-colors text-center" href="/m">Back to Home</a></div><div class="px-6 pb-12"><div class="relative h-48 w-full rounded-xl overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtp5x_FgckK62isxl2tb8KaYRVjXQUDL4PwJAnrWkYmYSpRD1iMy3AeQhG0nBgH3Wpam25SZ48-6DqTlsAl7wdPTvxcTca6rnfkJ_UDRNxBDNMKM6dwQX9I_gTEJ9BBNSCm9Sdo92rI24bTS_EHS6fbZeodMRyPhkWw7NuAGOgGTxTW7tCaI__RnwJYlCUPs5_zHn0C3NMQlldp1LG0Hy6VfQksTnH2rOBFRc7o5BO7aNbAUHbLcvTluFS_wVY2w1JPA2_GFLU2kS5" alt="Group of smiling children receiving healthy meals" /><div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-4"><p class="text-white text-sm italic">&quot;Your support helps us reach communities in need every day.&quot;</p></div></div></div></div>`;
+function DonationConfirmationMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(StaticMarkupPage, {
+    html: html16
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/events-mobile-page.tsx
+var jsx_dev_runtime19 = __toESM(require_jsx_dev_runtime(), 1);
+var html17 = String.raw`
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900">
   <header class="flex items-center bg-background-light p-4 sticky top-0 z-10 border-b border-primary/10"><div class="flex size-10 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-primary">menu</span></div><h1 class="text-slate-900 text-lg font-bold flex-1 text-center">Krutha Foundation</h1><div class="flex size-10 items-center justify-end"><button class="flex items-center justify-center text-slate-900"><span class="material-symbols-outlined">search</span></button></div></header>
   <nav class="bg-background-light"><div class="flex border-b border-primary/10 px-4 gap-6 overflow-x-auto no-scrollbar"><a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 whitespace-nowrap" href="/m/events"><span class="text-sm font-bold">All</span></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 whitespace-nowrap" href="/m/events"><span class="text-sm font-bold">Music</span></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 whitespace-nowrap" href="/m/events"><span class="text-sm font-bold">Dance</span></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 whitespace-nowrap" href="/m/events"><span class="text-sm font-bold">Theatre</span></a><a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 pb-3 pt-4 whitespace-nowrap" href="/m/events"><span class="text-sm font-bold">Workshop</span></a></div></nav>
@@ -20268,27 +21799,27 @@ var html13 = String.raw`
   <footer class="fixed bottom-0 left-0 right-0 bg-background-light border-t border-primary/10 px-4 pb-6 pt-2 flex justify-between items-center z-20"><a class="flex flex-col items-center gap-1 text-slate-400" href="/m"><span class="material-symbols-outlined">home</span><span class="text-[10px] font-medium">Home</span></a><a class="flex flex-col items-center gap-1 text-primary" href="/m/events"><span class="material-symbols-outlined font-fill">calendar_today</span><span class="text-[10px] font-medium">Events</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/blog"><span class="material-symbols-outlined">image</span><span class="text-[10px] font-medium">Gallery</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/contact"><span class="material-symbols-outlined">volunteer_activism</span><span class="text-[10px] font-medium">Donate</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/about"><span class="material-symbols-outlined">person</span><span class="text-[10px] font-medium">Profile</span></a></footer>
 </div>`;
 function EventsMobilePage() {
-  return /* @__PURE__ */ jsx_dev_runtime14.jsxDEV(StaticMarkupPage, {
-    html: html13
+  return /* @__PURE__ */ jsx_dev_runtime19.jsxDEV(StaticMarkupPage, {
+    html: html17
   }, undefined, false, undefined, this);
 }
 
 // src/pages/mobile/home-mobile-page.tsx
-var jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
-var html14 = String.raw`
+var jsx_dev_runtime20 = __toESM(require_jsx_dev_runtime(), 1);
+var html18 = String.raw`
 <div class="bg-background-light font-display text-slate-900 min-h-screen">
   <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10"><div class="flex items-center justify-between p-4"><div class="flex items-center gap-2"><div class="bg-primary p-1.5 rounded-lg"><span class="material-symbols-outlined text-white text-2xl">eco</span></div><h1 class="text-lg font-bold tracking-tight text-primary">Krutha Foundation</h1></div><button class="p-2 text-primary"><span class="material-symbols-outlined text-3xl">menu</span></button></div></header>
-  <main class="pb-24"><section class="p-4"><div class="relative h-96 w-full rounded-xl overflow-hidden bg-primary/20 flex flex-col justify-end p-6 group"><div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(0deg, rgba(43, 84, 69, 0.8) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8r_UIuLB2vVybjL9GfTbeBIrm4qlQa6VtpwU91rjL1YwTH3a4WxJYUHz2McwKkwVFDs4UiC8REWnaslEVLNJ_PudRGiPm8a7YZ5QOUBAHWeGDwGhtMfFcMKx8vgBIFmsfP6UCbTl3l4DKGU2d7vxep1YAVooTJ92z3JqpBLzBSpEVSK7tTOeByVzTl2R4vJvVUufFFPoVJgC-XwSr7RJrA6UAWvlfp32ISMq5g4vE1WJW9VdlQauT6hyBQEE_2VZJr41A2jNqZZsX');"></div><div class="relative z-10"><span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold text-white mb-3">Since Apr 2022</span><h2 class="text-3xl font-bold text-white leading-tight mb-2">Transforming Communities</h2><p class="text-white/90 text-sm max-w-xs leading-relaxed">People and environment centered programs for a self-sustainable Vadapalem.</p></div></div></section><section class="px-4 py-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-bold text-primary">3-Year Impact</h3><span class="text-xs font-medium text-slate-500">2022 - 2025</span></div><div class="grid grid-cols-1 gap-4"><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">payments</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">Global</span></div><p class="text-slate-500 text-sm font-medium">Funds Mobilized</p><p class="text-3xl font-bold text-primary">Rs.21,26,753</p></div><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">school</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">L.E.A.D.S</span></div><p class="text-slate-500 text-sm font-medium">Students Trained</p><p class="text-3xl font-bold text-primary">498</p></div><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">water_drop</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">Jala Rakshana</span></div><p class="text-slate-500 text-sm font-medium">RHPs Built</p><p class="text-3xl font-bold text-primary">4</p></div></div></section><section class="px-4 py-8 bg-primary/5"><h3 class="text-xl font-bold text-primary mb-6 text-center">Pillars of Progress</h3><div class="space-y-6"><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBs60qktcpOtNgsoK1-s50nbsV9kgnb42bz-OJXvIKy0HAd7FwSmHLm6UlxOGcczM720_Jh6dPvcFki7vsK87Tk-ErUuXyybSfEF_ToI_CQhSb90LrJvCTi9Tw8zbJnCBEgiVVMgds2Sz_TNqgePHrnDp1UfwCDeVESNJDbYXktkFvy_6OjsNVO-JNeq6vglNbsIg9ae3ghJJDRIkGngHdC62iL0lSQzPXHJdehIt85HUmdFDal3r-fk09QBrwC4IQHPD0mNM-lqzIU');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">school</span><h4 class="font-bold text-lg text-primary">L.E.A.D.S</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Guiding Class 8-10 students with life skills, adolescent education, career direction, and scholarships.</p><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center" href="/m/our-work">Explore Program</a></div></div><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyR1Fd_sJmj0700yRNdkff7hmHfTA7Ljf23lR42v8_gaJmmk-3E7iNh16uKQV7u1O-1ynNqQPLsG6uuHAiOjG24GHofH4kvWMcsvKXFU7UAKLAu6eZ3oYFxIJ44FiZkbObmyV0Fymf7yv4CCYJm03Kpmso7lfPE-wqeJjxv3Nz8nx8JqAh5gMrtG4FaKWVABQI5iMqtEafCwS3dNVYE8RYeSDGIw8MwyXE7YbiF3fBM782Dr25gIRDLW--UHKyX5UrbllXDyBZcMzr');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">opacity</span><h4 class="font-bold text-lg text-primary">Bhagiratha</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Bringing rain back into the earth through Rainwater Harvesting Pits and groundwater recharge.</p><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center" href="/m/our-work">See Results</a></div></div><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB28SBHcTMwF8iPk0FL0kuwr9sQ5I7aPGm1Ncc9JHD6OGOCuukuVCef2yNwqw-GIV1EWr_7dgA0CpTe0L7rXcQiW5sW9iGtFjaHJZ6rJKKgdQkPQDrKUm-avHGGKLDFOsDWj_Le6PqLrc2Zu2AqLJrugpOIVm3SQvb0RexdeoYKOw3Qpso_JSLAtjngq3GfPcxnGYuZ4eXYi5_tQeBQZUwabxTs7vRt9uHwF2OIZ-DksYLO-9A0KqxjQXE1PrSUsmT6qcgei1nhaXsg');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">clean_hands</span><h4 class="font-bold text-lg text-primary">Vasundhara &amp; Samyamam</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Twin-bin waste segregation and zero-plastic habits through reusable cotton bag circulation.</p><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center" href="/m/our-work">Learn More</a></div></div></div></section><section class="px-6 py-10"><h3 class="text-xl font-bold text-primary mb-8">Roadmap 2026+</h3><div class="relative border-l-2 border-primary/20 ml-3 pl-8 space-y-10"><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">2026</span><h5 class="text-base font-bold text-slate-900 mb-2">Krutha Raithu Nestham</h5><p class="text-sm text-slate-600 leading-relaxed">Transitioning farmers to natural farming methods and better market outcomes.</p></div></div><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary/40"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">2026</span><h5 class="text-base font-bold text-slate-900 mb-2">Shakti Sangamam</h5><p class="text-sm text-slate-600 leading-relaxed">Formal women empowerment and skill pathways for sustainable livelihoods.</p></div></div><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary/20"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Beyond</span><h5 class="text-base font-bold text-slate-900 mb-2">Aasara &amp; Dharma Vyapaar</h5><p class="text-sm text-slate-600 leading-relaxed">Elder support systems and ethical, eco-friendly small business practices.</p></div></div></div></section><section class="px-4 mb-8"><div class="bg-primary rounded-xl p-8 text-center text-white"><h3 class="text-2xl font-bold mb-4">Be the change</h3><p class="text-white/80 text-sm mb-6">Join our mission to create a self-sustainable and thriving village community.</p><div class="flex flex-col gap-3"><a class="w-full py-3 bg-white text-primary font-bold rounded-lg block" href="/m/contact">Donate Now</a><a class="w-full py-3 bg-transparent border border-white/30 text-white font-bold rounded-lg block" href="/m/contact">Volunteer</a></div></div></section></main>
-  <nav class="fixed bottom-0 left-0 right-0 bg-background-light border-t border-primary/10 px-4 pb-6 pt-2 z-50"><div class="flex justify-between items-center max-w-md mx-auto"><a class="flex flex-col items-center gap-1 text-primary" href="/m"><span class="material-symbols-outlined text-[24px] font-fill">home</span><span class="text-[10px] font-bold">Home</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/events"><span class="material-symbols-outlined text-[24px]">analytics</span><span class="text-[10px] font-medium">Impact</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/our-work"><span class="material-symbols-outlined text-[24px]">potted_plant</span><span class="text-[10px] font-medium">Projects</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/blog"><span class="material-symbols-outlined text-[24px]">more_horiz</span><span class="text-[10px] font-medium">More</span></a></div></nav>
+  <main class="pb-24"><section class="p-4"><div class="relative h-96 w-full rounded-xl overflow-hidden bg-primary/20 flex flex-col justify-end p-6 group"><div class="absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(0deg, rgba(87, 193, 187, 0.8) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8r_UIuLB2vVybjL9GfTbeBIrm4qlQa6VtpwU91rjL1YwTH3a4WxJYUHz2McwKkwVFDs4UiC8REWnaslEVLNJ_PudRGiPm8a7YZ5QOUBAHWeGDwGhtMfFcMKx8vgBIFmsfP6UCbTl3l4DKGU2d7vxep1YAVooTJ92z3JqpBLzBSpEVSK7tTOeByVzTl2R4vJvVUufFFPoVJgC-XwSr7RJrA6UAWvlfp32ISMq5g4vE1WJW9VdlQauT6hyBQEE_2VZJr41A2jNqZZsX');"></div><div class="relative z-10"><span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold text-white mb-3">Since Apr 2022</span><h2 class="text-3xl font-bold text-white leading-tight mb-2">Transforming Communities</h2><p class="text-white/90 text-sm max-w-xs leading-relaxed">People and environment centered programs for a self-sustainable Vadapalem.</p></div></div></section><section class="px-4 py-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-bold text-primary">3-Year Impact</h3><a class="text-xs font-bold text-primary flex items-center gap-1" href="/m/impact-report">Full Report <span class="material-symbols-outlined text-xs">arrow_forward</span></a></div><div class="grid grid-cols-1 gap-4"><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">payments</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">Global</span></div><p class="text-slate-500 text-sm font-medium">Funds Mobilized</p><p class="text-3xl font-bold text-primary">Rs.21,26,753</p></div><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">school</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">L.E.A.D.S</span></div><p class="text-slate-500 text-sm font-medium">Students Trained</p><p class="text-3xl font-bold text-primary">498</p></div><div class="flex flex-col gap-2 rounded-xl p-5 border border-primary/10 bg-white shadow-sm"><div class="flex justify-between items-start"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">water_drop</span><span class="text-emerald-600 text-sm font-bold bg-emerald-50 px-2 py-1 rounded">Jala Rakshana</span></div><p class="text-slate-500 text-sm font-medium">RHPs Built</p><p class="text-3xl font-bold text-primary">4</p></div></div></section><section class="px-4 py-8 bg-primary/5"><h3 class="text-xl font-bold text-primary mb-6 text-center">Pillars of Progress</h3><div class="space-y-6"><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBs60qktcpOtNgsoK1-s50nbsV9kgnb42bz-OJXvIKy0HAd7FwSmHLm6UlxOGcczM720_Jh6dPvcFki7vsK87Tk-ErUuXyybSfEF_ToI_CQhSb90LrJvCTi9Tw8zbJnCBEgiVVMgds2Sz_TNqgePHrnDp1UfwCDeVESNJDbYXktkFvy_6OjsNVO-JNeq6vglNbsIg9ae3ghJJDRIkGngHdC62iL0lSQzPXHJdehIt85HUmdFDal3r-fk09QBrwC4IQHPD0mNM-lqzIU');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">school</span><h4 class="font-bold text-lg text-primary">L.E.A.D.S</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Guiding Class 8-10 students with life skills, adolescent education, career direction, and scholarships.</p><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center shadow-lg shadow-primary/20" href="/m/programs/leads">View Program Details</a></div></div><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyR1Fd_sJmj0700yRNdkff7hmHfTA7Ljf23lR42v8_gaJmmk-3E7iNh16uKQV7u1O-1ynNqQPLsG6uuHAiOjG24GHofH4kvWMcsvKXFU7UAKLAu6eZ3oYFxIJ44FiZkbObmyV0Fymf7yv4CCYJm03Kpmso7lfPE-wqeJjxv3Nz8nx8JqAh5gMrtG4FaKWVABQI5iMqtEafCwS3dNVYE8RYeSDGIw8MwyXE7YbiF3fBM782Dr25gIRDLW--UHKyX5UrbllXDyBZcMzr');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">opacity</span><h4 class="font-bold text-lg text-primary">Bhagiratha</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Bringing rain back into the earth through Rainwater Harvesting Pits and groundwater recharge.</p><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center shadow-lg shadow-primary/20" href="/m/programs/bhagiratha">View Program Details</a></div></div><div class="bg-white rounded-xl overflow-hidden border border-primary/10"><div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB28SBHcTMwF8iPk0FL0kuwr9sQ5I7aPGm1Ncc9JHD6OGOCuukuVCef2yNwqw-GIV1EWr_7dgA0CpTe0L7rXcQiW5sW9iGtFjaHJZ6rJKKgdQkPQDrKUm-avHGGKLDFOsDWj_Le6PqLrc2Zu2AqLJrugpOIVm3SQvb0RexdeoYKOw3Qpso_JSLAtjngq3GfPcxnGYuZ4eXYi5_tQeBQZUwabxTs7vRt9uHwF2OIZ-DksYLO-9A0KqxjQXE1PrSUsmT6qcgei1nhaXsg');"></div><div class="p-5"><div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">clean_hands</span><h4 class="font-bold text-lg text-primary">Vasundhara &amp; Samyamam</h4></div><p class="text-slate-600 text-sm leading-relaxed mb-4">Twin-bin waste segregation and zero-plastic habits through reusable cotton bag circulation.</p><div class="flex flex-col gap-2"><a class="w-full py-2 bg-primary text-white font-semibold rounded-lg text-sm block text-center shadow-lg shadow-primary/20" href="/m/programs/vasundhara">Project Vasundhara</a><a class="w-full py-2 border border-primary text-primary font-semibold rounded-lg text-sm block text-center" href="/m/programs/samyamam">Project Samyamam</a></div></div></div></div></section><section class="px-6 py-10"><h3 class="text-xl font-bold text-primary mb-8">Roadmap 2026+</h3><div class="relative border-l-2 border-primary/20 ml-3 pl-8 space-y-10"><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">2026</span><h5 class="text-base font-bold text-slate-900 mb-2">Krutha Raithu Nestham</h5><p class="text-sm text-slate-600 leading-relaxed">Transitioning farmers to natural farming methods and better market outcomes.</p></div></div><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary/40"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">2026</span><h5 class="text-base font-bold text-slate-900 mb-2">Shakti Sangamam</h5><p class="text-sm text-slate-600 leading-relaxed">Formal women empowerment and skill pathways for sustainable livelihoods.</p></div></div><div class="relative"><div class="absolute -left-[41px] top-0 size-5 rounded-full border-4 border-background-light bg-primary/20"></div><div class="flex flex-col"><span class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Beyond</span><h5 class="text-base font-bold text-slate-900 mb-2">Aasara &amp; Dharma Vyapaar</h5><p class="text-sm text-slate-600 leading-relaxed">Elder support systems and ethical, eco-friendly small business practices.</p></div></div></div></section><section class="px-4 mb-8"><div class="bg-primary rounded-xl p-8 text-center text-white"><h3 class="text-2xl font-bold mb-4">Be the change</h3><p class="text-white/80 text-sm mb-6">Join our mission to create a self-sustainable and thriving village community.</p><div class="flex flex-col gap-3"><a class="w-full py-3 bg-white text-primary font-bold rounded-lg block" href="/m/contact">Donate Now</a><a class="w-full py-3 bg-transparent border border-white/30 text-white font-bold rounded-lg block" href="/m/contact">Volunteer</a></div></div></section></main>
+  <nav class="fixed bottom-0 left-0 right-0 bg-background-light border-t border-primary/10 px-4 pb-6 pt-2 z-50"><div class="flex justify-between items-center max-w-md mx-auto"><a class="flex flex-col items-center gap-1 text-primary" href="/m"><span class="material-symbols-outlined text-[24px] font-fill">home</span><span class="text-[10px] font-bold">Home</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/impact-report"><span class="material-symbols-outlined text-[24px]">analytics</span><span class="text-[10px] font-medium">Impact</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/our-work"><span class="material-symbols-outlined text-[24px]">potted_plant</span><span class="text-[10px] font-medium">Projects</span></a><a class="flex flex-col items-center gap-1 text-slate-400" href="/m/blog"><span class="material-symbols-outlined text-[24px]">more_horiz</span><span class="text-[10px] font-medium">More</span></a></div></nav>
 </div>`;
 function HomeMobilePage() {
-  return /* @__PURE__ */ jsx_dev_runtime15.jsxDEV(StaticMarkupPage, {
-    html: html14
+  return /* @__PURE__ */ jsx_dev_runtime20.jsxDEV(StaticMarkupPage, {
+    html: html18
   }, undefined, false, undefined, this);
 }
 
 // src/pages/mobile/our-work-mobile-page.tsx
-var jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
+var jsx_dev_runtime21 = __toESM(require_jsx_dev_runtime(), 1);
 function slugify2(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -20364,6 +21895,13 @@ function renderProjectCard2(categoryTitle, project) {
           ${renderGalleryImages2(galleryImages, project.title)}
         </div>
       </details>
+      ${project.programPath ? `
+        <div class="pt-3 border-t border-primary/5 flex justify-end">
+          <a href="${project.programPath.startsWith("/m") ? project.programPath : "/m" + project.programPath}" class="inline-flex items-center gap-1.5 text-primary text-xs font-bold transition-all">
+            Full Program Details <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
+        </div>
+      ` : ""}
     </div>
   </details>`;
 }
@@ -20388,30 +21926,774 @@ function renderCategorySection2(category) {
   </section>`;
 }
 var projectsGalleryHtml2 = projectMediaCategories.map((category) => renderCategorySection2(category)).join("");
-var html15 = String.raw`
+var html19 = String.raw`
 <div class="relative flex min-h-screen flex-col overflow-x-hidden bg-background-light font-display text-slate-900">
   <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md p-4 justify-between border-b border-primary/10"><a class="text-primary flex size-10 shrink-0 items-center justify-center" href="/m"><span class="material-symbols-outlined">arrow_back</span></a><h1 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Our Work</h1><div class="flex w-10 items-center justify-end"><button class="flex items-center justify-center text-primary"><span class="material-symbols-outlined">search</span></button></div></header>
   <main class="flex-1 px-4 py-4 pb-28"><div class="flex items-center justify-between mb-4"><h2 class="text-slate-900 text-xl font-bold tracking-tight">Projects Gallery</h2><span class="text-xs font-medium text-slate-500">Select Category</span></div><div class="sticky top-18 z-30 mb-5 rounded-xl border border-primary/10 bg-white/95 p-3 backdrop-blur"><div class="flex flex-wrap gap-1.5">${categoryToolbarHtml2}</div></div><div class="space-y-6">${projectsGalleryHtml2}</div></main>
   <footer class="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/10 bg-background-light px-4 pb-6 pt-2"><div class="flex items-center justify-between gap-2 max-w-md mx-auto"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined text-[24px]">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work"><span class="material-symbols-outlined text-[24px] font-fill">work</span><p class="text-[10px] font-bold leading-none">Our Work</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/events"><span class="material-symbols-outlined text-[24px]">show_chart</span><p class="text-[10px] font-medium leading-none">Impact</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined text-[24px]">favorite</span><p class="text-[10px] font-medium leading-none">Donate</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/about"><span class="material-symbols-outlined text-[24px]">person</span><p class="text-[10px] font-medium leading-none">Profile</p></a></div></footer>
 </div>`;
 function OurWorkMobilePage() {
-  return /* @__PURE__ */ jsx_dev_runtime16.jsxDEV(StaticMarkupPage, {
-    html: html15
+  return /* @__PURE__ */ jsx_dev_runtime21.jsxDEV(StaticMarkupPage, {
+    html: html19
   }, undefined, false, undefined, this);
 }
 
 // src/pages/mobile/press-mobile-page.tsx
-var jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1);
-var html16 = String.raw`
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900"><header class="sticky top-0 z-50 flex items-center bg-background-light/95 backdrop-blur-sm p-4 border-b border-primary/10 justify-between"><a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m"><span class="material-symbols-outlined text-slate-900">arrow_back</span></a><h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Press Room</h2><div class="flex w-10 items-center justify-end"><button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors"><span class="material-symbols-outlined text-slate-900">share</span></button></div></header><main class="flex-1 pb-24"><section class="p-4"><h2 class="text-xl font-bold leading-tight tracking-tight mb-4">Featured Announcement</h2><div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white overflow-hidden border border-primary/5"><div class="w-full bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSpn-UCbZU878iVH1DzGgmuJUD7wWUN1Q7jqmsA4OlU84LSWXJHm-jjQjXEu6ePoN-045J9l6Eqedcf-d69Wgv38jSb3n3D_Wwaows-aXTqV6CGw8qztsGcaY7oAWH2cREij0Dyh-3sy84SNMOJN6Ei_Io-97LPEdlZ9GUTkB7isDnSP-vrIWacJpMDVJMvBgmOVqEU3NEIqnG5hFHbOtMp4ZHzINEZiiWVJVE1ZnXOJuQGCc0gPupEFzHM8ISxcEr-9Av7qNB_fU4")'></div><div class="flex w-full flex-col gap-2 p-5"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Featured</span><p class="text-slate-500 text-xs font-medium">2025</p></div><h3 class="text-lg font-bold leading-tight text-slate-900">Krutha Foundation Releases 3-Year Impact Report (2022-2025)</h3><p class="text-slate-600 text-sm leading-relaxed mb-3">Rs.21,26,753 mobilized globally with measurable impact in education, water conservation, sanitation, and scholarship support.</p><a class="flex w-full items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-semibold transition-transform active:scale-95" href="/m/press">Read Full Release</a></div></div></section><section class="px-4 py-6"><div class="flex items-center justify-between mb-4"><h2 class="text-xl font-bold leading-tight tracking-tight">Recent Releases</h2><button class="text-primary text-sm font-semibold">View All</button></div><div class="space-y-4"><div class="flex gap-4 p-3 bg-white rounded-xl border border-primary/5"><div class="size-20 rounded-lg bg-cover bg-center shrink-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt9J32ZnR7ZnTynETf0KaiyPJBf_WucRAnMWstaaayjWWOLB1tHKpE_LOW7w69-1vt7bIHJKFoa2ta9KCoTRZwUL6mo5pt7Sojtae6L6aYXpx3p2H7sJR2eVBM2aA1r38OcqF9pTJAdRdSWwSFhdNEJjmfS_eW5CWR7w9Xx65tesYcVKrEEMDxH4eOskZhtHJOSlk5MUYvOGoPZCL8WQFAVhUjBN04qNovXvKqBF_uhVUqVFuHYMi5oxBSM1HMYFJDexk7hfFm1Mss')"></div><div class="flex flex-col justify-between py-0.5"><div><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">AY 2025-26</p><h4 class="text-sm font-bold text-slate-900 line-clamp-2">L.E.A.D.S Scholarships Reach Rs.4,72,000 Annual Disbursement</h4></div><a class="flex items-center gap-1 text-primary text-xs font-bold" href="/m/press"><span class="material-symbols-outlined text-sm">download</span>Download PDF</a></div></div><div class="flex gap-4 p-3 bg-white rounded-xl border border-primary/5"><div class="size-20 rounded-lg bg-cover bg-center shrink-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhVPKh_JIkjQzyOhhhEm45ga9i3FiiH4kGjbrKZT6EF0yl39drlcAAte3ykiNjGNvKb0db8xhuyCu3nNvNdybT_VdG1QFQgm-2fEOZ-tOJ5DjJlmoDz2uZhHu0bQHnNv9hsclmsCDLVESKTHeZ8Yb2vIP1eBCaADfthETC4LmnLrlOqZksb4PNoGWqT97mASzzI94WnytADeIPHr7-0jK4L11LEMsTuiKd7ZDvYONzDD4TBQknKz3e9SBCJQ34XOoYTfLeLotTV54w')"></div><div class="flex flex-col justify-between py-0.5"><div><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">2024</p><h4 class="text-sm font-bold text-slate-900 line-clamp-2">Project Bhagiratha and Vasundhara Expand Water and Waste Impact</h4></div><a class="flex items-center gap-1 text-primary text-xs font-bold" href="/m/press"><span class="material-symbols-outlined text-sm">download</span>Download PDF</a></div></div></div></section><section class="px-4 py-6 bg-primary/5"><h2 class="text-xl font-bold leading-tight tracking-tight mb-4">In The News</h2><div class="flex overflow-x-auto gap-4 pb-4 snap-x no-scrollbar"><div class="min-w-[260px] snap-center p-4 bg-white rounded-xl shadow-sm border border-primary/5"><p class="text-primary text-xs font-bold italic mb-2">Regional Media</p><p class="text-sm text-slate-800 font-medium mb-3">&quot;Krutha's L.E.A.D.S intervention is helping redirect teenage years toward education and careers...&quot;</p><div class="flex items-center justify-between text-[11px] text-slate-500"><span>Read Article</span><span class="material-symbols-outlined text-xs">open_in_new</span></div></div><div class="min-w-[260px] snap-center p-4 bg-white rounded-xl shadow-sm border border-primary/5"><p class="text-primary text-xs font-bold italic mb-2">Community Coverage</p><p class="text-sm text-slate-800 font-medium mb-3">&quot;From rainwater harvesting to zero plastic, Vadapalem's eco-movement gains momentum...&quot;</p><div class="flex items-center justify-between text-[11px] text-slate-500"><span>Read Article</span><span class="material-symbols-outlined text-xs">open_in_new</span></div></div></div></section><section class="p-4 pt-8"><div class="bg-primary rounded-2xl p-6 text-white overflow-hidden relative"><div class="absolute -right-8 -bottom-8 size-32 bg-white/10 rounded-full blur-2xl"></div><h2 class="text-xl font-bold mb-2">Media Assets</h2><p class="text-white/80 text-sm mb-6">Press resources and image sets. In-press photos from WhatsApp can be added once uploaded into project assets.</p><div class="grid grid-cols-1 gap-3"><button class="flex items-center justify-between w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined">folder_zip</span><span class="text-sm font-medium">Brand Guidelines &amp; Logos</span></div><span class="material-symbols-outlined">download</span></button><button class="flex items-center justify-between w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined">image</span><span class="text-sm font-medium">Press Photo Gallery</span></div><span class="material-symbols-outlined">download</span></button></div></div></section><section class="p-4 pt-4 pb-12"><div class="text-center p-8 border-2 border-dashed border-primary/20 rounded-2xl"><span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span><h3 class="font-bold text-slate-900">Press Inquiries</h3><p class="text-slate-500 text-sm mb-4">Are you a journalist? We'd love to help you with your story.</p><a class="text-primary font-bold hover:underline" href="mailto:press@kruthafoundation.org">press@kruthafoundation.org</a></div></section></main><nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/10 bg-background-light/95 backdrop-blur-md px-4 pb-6 pt-2"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium leading-normal">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/events"><span class="material-symbols-outlined text-[24px]">public</span><p class="text-[10px] font-medium leading-normal">Impact</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/press"><span class="material-symbols-outlined">newspaper</span><p class="text-[10px] font-bold leading-normal">Press</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined">mail</span><p class="text-[10px] font-medium leading-normal">Contact</p></a></nav></div>`;
+var jsx_dev_runtime22 = __toESM(require_jsx_dev_runtime(), 1);
+var html20 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#fcfdfa] font-display text-slate-900">
+  <header class="sticky top-0 z-50 flex items-center bg-white/95 backdrop-blur-sm p-4 border-b border-primary/10 justify-between">
+    <a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m">
+      <span class="material-symbols-outlined text-slate-900">arrow_back</span>
+    </a>
+    <h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center font-display uppercase tracking-widest text-primary">Press Room</h2>
+    <div class="flex w-10 items-center justify-end">
+      <button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+        <span class="material-symbols-outlined text-slate-900">share</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 pb-24">
+    <!-- Hero Section -->
+    <section class="p-6 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
+        <span class="material-symbols-outlined text-xs">public</span> Media Center
+      </div>
+      <h1 class="text-4xl font-bold text-primary mb-4 leading-tight">In The Press</h1>
+      <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
+        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike.
+      </p>
+    </section>
+
+    <!-- News Highlights Carousel -->
+    <section class="px-4 py-4">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-primary">News Coverage</h3>
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Swipe to Explore</span>
+      </div>
+      
+      <div class="flex overflow-x-auto gap-4 pb-6 snap-x no-scrollbar">
+        <!-- Item 1 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${MeetingDisctricCollectorToTakePlasticReductionInitiatives_default}" alt="Collector Meeting" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Governance • 2024</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">District Collector Meeting for Plastic Reduction</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${news2023_default}" alt="2023 News" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Mainstream • 2023</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Regional Media Highlights Village Evolution</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${article_default}" alt="Article" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Feature • 2023</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Special Feature: Bridging Diaspora & Roots</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${sportsUniforms_default}" alt="Sports" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Impact • 2024</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Empowering Youth through Modern Sports</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Quote -->
+    <section class="px-4 py-8">
+      <div class="bg-primary p-8 rounded-[2rem] text-center text-white shadow-xl shadow-primary/10 relative overflow-hidden">
+        <div class="absolute -right-4 -bottom-4 size-24 bg-white/10 rounded-full blur-2xl"></div>
+        <p class="text-[15px] font-medium leading-relaxed italic relative z-10">
+          "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
+        </p>
+      </div>
+    </section>
+
+    <!-- Media Assets Mobile -->
+    <section class="px-4 py-8">
+      <h3 class="text-lg font-bold text-primary mb-4">Digital Media Kit</h3>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">description</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Fact Sheet</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">image</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Photos</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">play_circle</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">B-Roll</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">logo_dev</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Logos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="px-4 py-8 pb-12">
+      <div class="p-8 border-2 border-dashed border-primary/20 rounded-[2rem] text-center bg-primary/5">
+        <span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span>
+        <h4 class="font-bold text-slate-900 mb-1">Media Inquiries</h4>
+        <p class="text-slate-500 text-[13px] mb-4">Official assets and interviews</p>
+        <a class="text-primary font-bold text-lg" href="mailto:press@krutha.org">press@krutha.org</a>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/10 bg-white/95 backdrop-blur-md px-4 pb-6 pt-2">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined">home</span>
+      <p class="text-[10px] font-medium leading-normal">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/impact-report">
+      <span class="material-symbols-outlined text-[24px]">analytics</span>
+      <p class="text-[10px] font-medium leading-normal">Impact</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/press">
+      <span class="material-symbols-outlined">newspaper</span>
+      <p class="text-[10px] font-bold leading-normal">Press</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined">mail</span>
+      <p class="text-[10px] font-medium leading-normal">Contact</p>
+    </a>
+  </nav>
+</div>`;
 function PressMobilePage() {
-  return /* @__PURE__ */ jsx_dev_runtime17.jsxDEV(StaticMarkupPage, {
-    html: html16
+  return /* @__PURE__ */ jsx_dev_runtime22.jsxDEV(StaticMarkupPage, {
+    html: html20
   }, undefined, false, undefined, this);
 }
 
+// src/pages/mobile/programs/leads-program-mobile-page.tsx
+var jsx_dev_runtime23 = __toESM(require_jsx_dev_runtime(), 1);
+var html21 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10">
+    <a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m/our-work">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">L.E.A.D.S Program</h2>
+    <div class="flex w-10 items-center justify-end"></div>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative bg-slate-900 px-4 py-16 text-white text-center">
+      <div class="absolute inset-0 opacity-30">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGW3QlcFFZtD6PeZMpD94F6niT7ssG87oherYUv3At43lRSmvoWw5dmbvQBlXQuEveweuaGPHhabh2HXZfSWA4kMOlTlMCr35k5mJ8t0cJqxsisSnc_aDuMroc_P_EwqvLW2dWrRQweT5HMW3EvYDPvEeVJ27I5svdoDkm747oOpE_WRl2e9AN7ls-mPtbq4t8M74xwTnDIQsHXjBtdJfvxbYzzdtQtoeHkwOFLcNV3aREORIe9bX2b5D-B72brwP_x_TsWNpd0wv7" alt="Hero background" />
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-4xl font-black mb-4">L.E.A.D.S</h1>
+        <p class="text-sm opacity-80 uppercase tracking-widest font-bold mb-6">Building Tomorrow's Leaders</p>
+        <p class="text-lg italic font-medium max-w-xs mx-auto text-primary">"Guiding the Critical Years, Building Leaders"</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 space-y-8">
+      <div class="space-y-4">
+        <h3 class="text-2xl font-bold text-slate-900">The Mission</h3>
+        <p class="text-slate-600 leading-relaxed">The journey from Class 8 to 10 is defining. In villages, this "vulnerable window" is where students need mentorship most to ensure a <strong>career, not a crisis</strong>.</p>
+        <p class="text-slate-600 leading-relaxed">Adopted in April 2022, our alumni-led initiative at ZPHS Vadapalem restores the academic glory of our alma mater.</p>
+      </div>
+      <div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary">
+        <p class="text-slate-800 italic leading-relaxed">"We are not just educating students; we are saving a generation."</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 bg-white">
+      <div class="mb-10 text-center">
+        <h3 class="text-2xl font-bold">The Pillars</h3>
+        <div class="w-10 h-1 bg-primary mx-auto mt-2 rounded-full"></div>
+      </div>
+      <div class="space-y-4">
+        <div class="flex gap-4 p-4 rounded-xl bg-background-light border border-slate-100">
+          <div class="text-2xl font-black text-primary">L</div>
+          <div><h4 class="font-bold">Life Skills</h4><p class="text-sm text-slate-500">EQ, Communication, Decision-making.</p></div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl bg-background-light border border-slate-100">
+          <div class="text-2xl font-black text-primary">E</div>
+          <div><h4 class="font-bold">Education</h4><p class="text-sm text-slate-500">Adolescent health & maturity.</p></div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl bg-background-light border border-slate-100">
+          <div class="text-2xl font-black text-primary">A</div>
+          <div><h4 class="font-bold">Awareness</h4><p class="text-sm text-slate-500">Girl child empowerment & safety.</p></div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl bg-background-light border border-slate-100">
+          <div class="text-2xl font-black text-primary">D</div>
+          <div><h4 class="font-bold">Direction</h4><p class="text-sm text-slate-500">Career guidance & corporate exposure.</p></div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl bg-background-light border border-slate-100">
+          <div class="text-2xl font-black text-primary">S</div>
+          <div><h4 class="font-bold">Support</h4><p class="text-sm text-slate-500">Scholarships for brilliant students.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 py-12">
+      <h3 class="text-2xl font-bold mb-8 text-center">Impact at Scale</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-6 bg-white rounded-2xl shadow-sm text-center border border-slate-100">
+          <p class="text-2xl font-black text-primary">500+</p>
+          <p class="text-[10px] uppercase font-bold text-slate-500">Students Trained</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl shadow-sm text-center border border-slate-100">
+          <p class="text-2xl font-black text-primary">14</p>
+          <p class="text-[10px] uppercase font-bold text-slate-500">Scholars Supported</p>
+        </div>
+      </div>
+      <div class="mt-4 p-6 bg-primary rounded-2xl text-white text-center">
+        <p class="text-3xl font-black mb-1">77%</p>
+        <p class="text-xs font-bold opacity-80 uppercase">Of funds for Professional Education</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 bg-primary/5">
+      <h3 class="text-2xl font-bold mb-8 text-center">Scholarship Growth</h3>
+      <div class="space-y-6">
+        <div class="p-4 bg-white rounded-xl border border-primary/10 text-center">
+          <p class="text-xs text-slate-500 font-bold mb-1">TOTAL DISBURSED</p>
+          <p class="text-2xl font-black text-slate-900">₹10,06,000</p>
+          <p class="text-xs text-primary font-bold mt-1">+260% Since Inception</p>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="text-[10px] font-bold text-slate-400 w-12">2024-25</span>
+            <div class="flex-1 h-8 bg-white rounded-full border border-slate-100 relative overflow-hidden">
+               <div class="absolute inset-y-0 left-0 bg-primary/40" style="width: 75%"></div>
+               <div class="absolute inset-y-0 left-2 flex items-center text-[10px] font-bold">₹3,54,000</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-[10px] font-bold text-slate-900 w-12">2025-26</span>
+            <div class="flex-1 h-8 bg-white rounded-full border border-primary/20 relative overflow-hidden">
+               <div class="absolute inset-y-0 left-0 bg-primary" style="width: 100%"></div>
+               <div class="absolute inset-y-0 left-2 flex items-center text-[10px] font-bold text-white">₹4,72,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 py-16 bg-slate-900 text-white text-center">
+      <h3 class="text-2xl font-bold mb-6">Invest in Potential</h3>
+      <p class="text-slate-400 text-sm mb-10 leading-relaxed">Help us turn these students' transition into a lifetime of excellence. Every rupee counts.</p>
+      <a class="block w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all" href="/m/contact">Donate to L.E.A.D.S</a>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 p-8 text-center border-t border-white/5 pb-24">
+    <div class="flex items-center justify-center gap-2 text-white mb-6">
+       <span class="material-symbols-outlined text-sm">eco</span>
+       <span class="font-bold text-sm">Krutha Foundation</span>
+    </div>
+    <div class="flex justify-center gap-6 text-[10px] text-slate-500 font-bold">
+       <a href="/m/about">About</a>
+       <a href="/m/our-work">Work</a>
+       <a href="/m/contact">Contact</a>
+    </div>
+  </footer>
+  
+  <footer class="fixed bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl w-full">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined">home</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work">
+      <span class="material-symbols-outlined">folder_shared</span>
+      <p class="text-[10px] font-bold uppercase tracking-widest">Work</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined">volunteer_activism</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Donate</p>
+    </a>
+  </footer>
+</div>
+`;
+function LeadsProgramMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime23.jsxDEV(StaticMarkupPage, {
+    html: html21
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/programs/project-bhagiratha-mobile-page.tsx
+var jsx_dev_runtime24 = __toESM(require_jsx_dev_runtime(), 1);
+var html22 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10">
+    <a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m/our-work">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Project Bhagiratha</h2>
+    <div class="flex w-10 items-center justify-end"></div>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative bg-slate-900 px-4 py-16 text-white text-center">
+      <div class="absolute inset-0 opacity-30">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBb-tKaKm525G-NCxAzRuZsXvkjDAqeWZwa6AQgyeZqVT1WCLxWfXS1SHA7TnEv9xJPnlHZPXWmBdWia97g2lckH4MlkWRmUw3mwkPCES7AeSajfGu7w02Ma3CH31SD4wJlu5vdMV_IuND3iCg-G0r9wblYYBGtbyskrs86FMpIyI5RD0yWaO1VRCl8f6Z2eQ2ES44nc866LMxip79B4GbJpBD9pB4zIDkUwYimSA0s8dLnXEx3KsSQ7jVfogAKU5KhxXeOHhJoie6" alt="Water project background" />
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-3xl font-black mb-4">BHAGIRATHA</h1>
+        <p class="text-xs opacity-80 uppercase tracking-widest font-bold mb-6">Restoring Konaseema's Water</p>
+        <p class="text-lg italic font-medium max-w-xs mx-auto text-primary">"Bringing the Heavens to the Earth"</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 space-y-6">
+       <h3 class="text-2xl font-bold">The Water Mission</h3>
+       <p class="text-slate-600 leading-relaxed text-sm">Over 30 years, our groundwater has plummeted by 15 feet. Rain flows into the sea, wasted.</p>
+       <div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary">
+          <p class="text-slate-800 italic text-sm leading-relaxed">"Catching every drop is our highest Dharma."</p>
+       </div>
+    </section>
+
+    <section class="px-6 py-12 bg-white space-y-8">
+       <h3 class="text-2xl font-bold text-center">Roadmap</h3>
+       <div class="space-y-4">
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-xl font-black text-primary">01</div>
+             <p class="text-sm font-medium"><strong>Built 4 RHPs</strong>: First ₹3 Lakhs invested.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-xl font-black text-primary">02</div>
+             <p class="text-sm font-medium"><strong>3-Year Goal</strong>: Construct 40 RHPs village-wide.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-xl font-black text-primary">03</div>
+             <p class="text-sm font-medium"><strong>10-Year Vision</strong>: +10 ft water table rise.</p>
+          </div>
+       </div>
+    </section>
+
+    <section class="px-6 py-16 bg-forest text-white text-center">
+       <h3 class="text-2xl font-bold mb-6">Secure Our Future</h3>
+       <p class="text-slate-400 text-sm mb-10 leading-relaxed">Help us ensure Konaseema remains a lush, green paradise for generations to come.</p>
+       <a class="block w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all" href="/m/contact">Support Project Bhagiratha</a>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 p-8 text-center border-t border-white/5 pb-24">
+    <div class="flex items-center justify-center gap-2 text-white mb-6">
+       <span class="material-symbols-outlined text-sm">eco</span>
+       <span class="font-bold text-sm">Krutha Foundation</span>
+    </div>
+    <div class="flex justify-center gap-6 text-[10px] text-slate-500 font-bold">
+       <a href="/m/about">About</a>
+       <a href="/m/our-work">Work</a>
+       <a href="/m/contact">Contact</a>
+    </div>
+  </footer>
+  
+  <footer class="fixed bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl w-full">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work">
+      <span class="material-symbols-outlined text-[24px]">folder_shared</span>
+      <p class="text-[10px] font-bold uppercase tracking-widest">Work</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined text-[24px]">volunteer_activism</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Donate</p>
+    </a>
+  </footer>
+</div>
+`;
+function ProjectBhagirathaMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime24.jsxDEV(StaticMarkupPage, {
+    html: html22
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/programs/project-samyamam-mobile-page.tsx
+var jsx_dev_runtime25 = __toESM(require_jsx_dev_runtime(), 1);
+var html23 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10">
+    <a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m/our-work">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Project Samyamam</h2>
+    <div class="flex w-10 items-center justify-end"></div>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative bg-slate-900 px-4 py-16 text-white text-center">
+      <div class="absolute inset-0 opacity-30">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEBaMUpFSfwMjakWg58U0mIxI15iudHFA58iYNPe-hRh1wU-Xytvhp6I_BVysBFwaW1ypiWj_H_SqzYRPhNWwzzU6zcwHzkVoUAg8Tkdcr5b1e5osA1Z4yPgfR-no0S6QigAhiindjyVhT-oNh0M-G7ohZYPNgSyfUSzN7I_3MB9IbnJ2i6EgKgwAbCHRXiVhPTK4jGmvnh3SiBLldSuTUlucZ7w09Vr-8K_gz5ft46SX_1K-RXFkE3s5sQopxkTx-MTJGisttjAx" alt="Samyamam zero plastic" />
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-3xl font-black mb-4 uppercase">SAMYAMAM</h1>
+        <p class="text-[10px] opacity-80 uppercase tracking-widest font-bold mb-6">Zero Plastic Revolution</p>
+        <p class="text-lg italic font-medium max-w-xs mx-auto text-primary">"Responsible Living for a Sustainable Village"</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 space-y-6">
+       <h3 class="text-2xl font-bold">Shared Accountability</h3>
+       <p class="text-slate-600 leading-relaxed text-sm">Environmental damage is caused by convenience habits. Through SAMYAMAM, we inspire accountability toward land and water.</p>
+       <div class="p-4 bg-primary/5 rounded-2xl border border-primary/10 flex items-center gap-4">
+          <div class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-sm">
+             <span class="material-symbols-outlined text-3xl">shopping_bag</span>
+          </div>
+          <p class="text-sm font-bold">2,000 Reusable Cotton Bags Injected.</p>
+       </div>
+    </section>
+
+    <section class="px-6 py-12 bg-white space-y-8 text-center border-y border-slate-100">
+       <h3 class="text-2xl font-bold">Borrow & Return</h3>
+       <p class="text-slate-600 text-sm italic">"Removing the excuse of forgetting a bag."</p>
+       <div class="grid grid-cols-1 gap-2 text-left">
+          <div class="p-3 bg-background-light rounded-lg border border-slate-100 flex items-center gap-3">
+             <span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+             <p class="text-xs font-medium">Pick up at any shop.</p>
+          </div>
+          <div class="p-3 bg-background-light rounded-lg border border-slate-100 flex items-center gap-3">
+             <span class="material-symbols-outlined text-primary">home_repair_service</span>
+             <p class="text-xs font-medium">Use and carry home.</p>
+          </div>
+          <div class="p-3 bg-background-light rounded-lg border border-slate-100 flex items-center gap-3">
+             <span class="material-symbols-outlined text-primary">replay</span>
+             <p class="text-xs font-medium">Return bag to any shop.</p>
+          </div>
+       </div>
+    </section>
+
+    <section class="px-6 py-16 bg-forest text-white text-center">
+       <h3 class="text-2xl font-bold mb-6 italic">5 Days vs 500 Years</h3>
+       <p class="text-slate-400 text-sm mb-10 leading-relaxed">A banana leaf lasts 5 days. Plastic lasts 500 years. Choose your legacy.</p>
+       <a class="block w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all" href="/m/contact">Join Samyamam</a>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 p-8 text-center border-t border-white/5 pb-24">
+    <div class="flex items-center justify-center gap-2 text-white mb-6">
+       <span class="material-symbols-outlined text-sm">eco</span>
+       <span class="font-bold text-sm">Krutha Foundation</span>
+    </div>
+    <div class="flex justify-center gap-6 text-[10px] text-slate-500 font-bold">
+       <a href="/m/about">About</a>
+       <a href="/m/our-work">Work</a>
+       <a href="/m/contact">Contact</a>
+    </div>
+  </footer>
+  
+  <footer class="fixed bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl w-full">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work">
+      <span class="material-symbols-outlined text-[24px]">folder_shared</span>
+      <p class="text-[10px] font-bold uppercase tracking-widest">Work</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined text-[24px]">volunteer_activism</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Donate</p>
+    </a>
+  </footer>
+</div>
+`;
+function ProjectSamyamamMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime25.jsxDEV(StaticMarkupPage, {
+    html: html23
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/programs/project-vasundhara-mobile-page.tsx
+var jsx_dev_runtime26 = __toESM(require_jsx_dev_runtime(), 1);
+var html24 = String.raw`
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900 antialiased">
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md px-4 py-4 justify-between border-b border-primary/10">
+    <a class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer" href="/m/our-work">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h2 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Project Vasundhara</h2>
+    <div class="flex w-10 items-center justify-end"></div>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative bg-slate-900 px-4 py-16 text-white text-center">
+      <div class="absolute inset-0 opacity-30">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEBaMUpFSfwMjakWg58U0mIxI15iudHFA58iYNPe-hRh1wU-Xytvhp6I_BVysBFwaW1ypiWj_H_SqzYRPhNWwzzU6zcwHzkVoUAg8Tkdcr5b1e5osA1Z4yPgfR-no0S6QigAhiindjyVhT-oNh0M-G7ohZYPNgSyfUSzN7I_3MB9IbnJ2i6EgKgwAbCHRXiVhPTK4jGmvnh3SiBLldSuTUlucZ7w09Vr-8K_gz5ft46SX_1K-RXFkE3s5sQopxkTx-MTJGisttjAx" alt="Waste project background" />
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-3xl font-black mb-4 uppercase">Vasundhara</h1>
+        <p class="text-[10px] opacity-80 uppercase tracking-widest font-bold mb-6">Cleaning Konaseema's Soil</p>
+        <p class="text-lg italic font-medium max-w-xs mx-auto text-primary">"Honouring the Wealth of Our Earth"</p>
+      </div>
+    </section>
+
+    <section class="px-6 py-12 space-y-6">
+       <h3 class="text-2xl font-bold">The Science of Segregation</h3>
+       <p class="text-slate-600 leading-relaxed text-sm">Mixing is the enemy. By separating wet and dry at source, we turn waste into wisdom.</p>
+       <div class="grid grid-cols-2 gap-4 mt-8">
+          <div class="p-4 bg-white rounded-xl border border-slate-100 text-center">
+             <p class="text-xl font-black text-primary">300</p>
+             <p class="text-[10px] uppercase font-bold text-slate-500">Homes</p>
+          </div>
+          <div class="p-4 bg-white rounded-xl border border-slate-100 text-center">
+             <p class="text-xl font-black text-primary">600</p>
+             <p class="text-[10px] uppercase font-bold text-slate-500">Bins</p>
+          </div>
+       </div>
+    </section>
+
+    <section class="px-6 py-12 bg-white space-y-8">
+       <h3 class="text-2xl font-bold text-center">Blueprint</h3>
+       <div class="space-y-4">
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-primary font-bold">1</div>
+             <p class="text-sm"><strong>Twin-Bin System</strong>: Households separate Wet/Dry waste.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-primary font-bold">2</div>
+             <p class="text-sm"><strong>Vasundhara Rakshaks</strong>: Awareness and Protection leaders.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-background-light border border-slate-100 flex gap-4">
+             <div class="text-primary font-bold">3</div>
+             <p class="text-sm"><strong>Loop Closed</strong>: Regular, segregated collection by Panchayat.</p>
+          </div>
+       </div>
+    </section>
+
+    <section class="px-6 py-16 bg-forest text-white text-center">
+       <h3 class="text-2xl font-bold mb-6">Invest in Purity</h3>
+       <p class="text-slate-400 text-sm mb-10 leading-relaxed">Join us in transforming our village into a waste-free haven.</p>
+       <a class="block w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all" href="/m/contact">Join Project Vasundhara</a>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 p-8 text-center border-t border-white/5 pb-24">
+    <div class="flex items-center justify-center gap-2 text-white mb-6">
+       <span class="material-symbols-outlined text-sm">eco</span>
+       <span class="font-bold text-sm">Krutha Foundation</span>
+    </div>
+    <div class="flex justify-center gap-6 text-[10px] text-slate-500 font-bold">
+       <a href="/m/about">About</a>
+       <a href="/m/our-work">Work</a>
+       <a href="/m/contact">Contact</a>
+    </div>
+  </footer>
+  
+  <footer class="fixed bottom-0 z-50 flex border-t border-primary/10 bg-background-light px-4 pb-4 pt-2 shadow-2xl w-full">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work">
+      <span class="material-symbols-outlined text-[24px]">folder_shared</span>
+      <p class="text-[10px] font-bold uppercase tracking-widest">Work</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined text-[24px]">volunteer_activism</span>
+      <p class="text-[10px] font-medium uppercase tracking-widest">Donate</p>
+    </a>
+  </footer>
+</div>
+`;
+function ProjectVasundharaMobilePage() {
+  return /* @__PURE__ */ jsx_dev_runtime26.jsxDEV(StaticMarkupPage, {
+    html: html24
+  }, undefined, false, undefined, this);
+}
+
+// src/pages/mobile/impact-report-mobile-page.tsx
+var jsx_dev_runtime27 = __toESM(require_jsx_dev_runtime(), 1);
+var ImpactReportMobilePage = () => {
+  const content = `
+    <div class="bg-white min-h-screen pb-12">
+      <!-- Hero Section -->
+      <section class="bg-primary pt-16 pb-20 text-white px-6">
+        <span class="mb-3 inline-block rounded-full bg-white/20 px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Institutional Stewardship</span>
+        <h1 class="text-3xl font-bold leading-tight uppercase tracking-tight">3-Year Impact Report</h1>
+        <div class="mt-4 h-1 w-12 bg-white/30 rounded-full"></div>
+        <p class="mt-6 text-white/90 text-sm font-medium italic border-l-2 border-white/40 pl-4 leading-relaxed">
+          "Transforming Communities, Manifesting the Krutha Yuga Ideals"
+        </p>
+      </section>
+
+      <!-- Financial Metrics -->
+      <section class="-mt-10 px-6">
+        <div class="rounded-2xl bg-white p-6 shadow-xl border border-slate-100">
+          <div class="mb-2 text-xs font-bold text-primary/60 uppercase tracking-widest text-center">Total Funds Raised</div>
+          <div class="text-4xl font-extrabold text-primary text-center">₹21,26,753</div>
+          <div class="mt-4 pt-4 border-t border-slate-50 text-sm text-slate-600 leading-relaxed text-center">
+            Mobilized from global donors across <span class="font-bold">18 cities</span> to fuel rural transformation.
+          </div>
+        </div>
+      </section>
+
+      <!-- Partnerships -->
+      <section class="mt-12 px-6">
+        <h2 class="text-xl font-bold text-primary mb-4">Strategic Collaborations</h2>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary">handshake</span>
+            <div class="text-sm">
+              <span class="font-bold">₹10,06,000</span> contributed by <span class="font-bold">PCT Kakinada</span> and <span class="font-bold">APTA USA</span> towards higher education scholarships.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact Pillars -->
+      <section class="mt-12 px-6">
+        <h2 class="text-xl font-bold text-primary mb-6">Impact Pillars</h2>
+        
+        <div class="space-y-6">
+          <!-- LEADS -->
+          <div class="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-primary">school</span>
+              <h3 class="font-bold text-lg text-primary">L.E.A.D.S Program</h3>
+            </div>
+            <div class="text-xs font-bold text-primary/60 mb-3 uppercase tracking-wider">Invested: ₹16,37,000</div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>498 students trained in life skills</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>12 higher education scholarships</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Jala Rakshana -->
+          <div class="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-primary">water_drop</span>
+              <h3 class="font-bold text-lg text-primary">Jala Rakshana</h3>
+            </div>
+            <div class="text-xs font-bold text-primary/60 mb-3 uppercase tracking-wider">Invested: ₹2,85,000</div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>4 Rainwater Harvesting Pits built</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>2,000KG+ plastic removed from canals</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Nirmala Gramam -->
+          <div class="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined text-primary">recycling</span>
+              <h3 class="font-bold text-lg text-primary">Nirmala Gramam</h3>
+            </div>
+            <div class="text-xs font-bold text-primary/60 mb-3 uppercase tracking-wider">Invested: ₹78,000</div>
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>300 household waste segregation pilot</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check</span>
+                <span>2,000 reusable cloth bags distributed</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Snapshot Stats -->
+      <section class="mt-12 px-6">
+        <div class="bg-forest rounded-2xl p-6 text-white">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-white/60 mb-6 text-center">At a Glance</h2>
+          <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+            <div class="text-center">
+              <div class="text-3xl font-bold">05</div>
+              <div class="text-[10px] text-white/50 uppercase tracking-wider">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">18</div>
+              <div class="text-[10px] text-white/50 uppercase tracking-wider">Cities</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">02</div>
+              <div class="text-[10px] text-white/50 uppercase tracking-wider">Partners</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">500+</div>
+              <div class="text-[10px] text-white/50 uppercase tracking-wider">Student Reach</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Goals -->
+      <section class="mt-12 px-6">
+        <h4 class="text-xl font-bold text-primary mb-6">Future Roadmap</h4>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary">agriculture</span>
+            <span class="text-sm font-medium">Krutha Raithu Nestham</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary">diversity_3</span>
+            <span class="text-sm font-medium">Shakti Sangamam</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+            <span class="text-sm font-medium">Aasara</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary">storefront</span>
+            <span class="text-sm font-medium">Dharma Vyapaar</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  `;
+  return /* @__PURE__ */ jsx_dev_runtime27.jsxDEV(StaticMarkupPage, {
+    html: content
+  }, undefined, false, undefined, this);
+};
+
 // src/app/router.tsx
-var jsx_dev_runtime18 = __toESM(require_jsx_dev_runtime(), 1);
+var jsx_dev_runtime28 = __toESM(require_jsx_dev_runtime(), 1);
 var desktopPageMap = {
   home: HomeDesktopPage,
   about: AboutDesktopPage,
@@ -20420,7 +22702,12 @@ var desktopPageMap = {
   blog: BlogDesktopPage,
   contact: ContactDesktopPage,
   press: PressDesktopPage,
-  "donation-confirmation": DonationConfirmationDesktopPage
+  "donation-confirmation": DonationConfirmationDesktopPage,
+  "programs-leads": LeadsProgramDesktopPage,
+  "programs-bhagiratha": ProjectBhagirathaDesktopPage,
+  "programs-vasundhara": ProjectVasundharaDesktopPage,
+  "programs-samyamam": ProjectSamyamamDesktopPage,
+  "impact-report": ImpactReportDesktopPage
 };
 var mobilePageMap = {
   home: HomeMobilePage,
@@ -20430,28 +22717,33 @@ var mobilePageMap = {
   blog: BlogMobilePage,
   contact: ContactMobilePage,
   press: PressMobilePage,
-  "donation-confirmation": DonationConfirmationMobilePage
+  "donation-confirmation": DonationConfirmationMobilePage,
+  "programs-leads": LeadsProgramMobilePage,
+  "programs-bhagiratha": ProjectBhagirathaMobilePage,
+  "programs-vasundhara": ProjectVasundharaMobilePage,
+  "programs-samyamam": ProjectSamyamamMobilePage,
+  "impact-report": ImpactReportMobilePage
 };
 function RouterProviderContent() {
-  return /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Routes, {
+  return /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Routes, {
     children: [
       desktopRoutes.map((route) => {
         const Component4 = desktopPageMap[route.key];
-        return /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Route, {
+        return /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Route, {
           path: route.path,
-          element: /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Component4, {}, undefined, false, undefined, this)
+          element: /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Component4, {}, undefined, false, undefined, this)
         }, route.path, false, undefined, this);
       }),
       mobileRoutes.map((route) => {
         const Component4 = mobilePageMap[route.key];
-        return /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Route, {
+        return /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Route, {
           path: route.path,
-          element: /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Component4, {}, undefined, false, undefined, this)
+          element: /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Component4, {}, undefined, false, undefined, this)
         }, route.path, false, undefined, this);
       }),
-      /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Route, {
+      /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Route, {
         path: "*",
-        element: /* @__PURE__ */ jsx_dev_runtime18.jsxDEV(Navigate, {
+        element: /* @__PURE__ */ jsx_dev_runtime28.jsxDEV(Navigate, {
           to: "/",
           replace: true
         }, undefined, false, undefined, this)
@@ -20461,19 +22753,19 @@ function RouterProviderContent() {
 }
 
 // src/app/app.tsx
-var jsx_dev_runtime19 = __toESM(require_jsx_dev_runtime(), 1);
+var jsx_dev_runtime29 = __toESM(require_jsx_dev_runtime(), 1);
 function App() {
-  return /* @__PURE__ */ jsx_dev_runtime19.jsxDEV(RouterProviderContent, {}, undefined, false, undefined, this);
+  return /* @__PURE__ */ jsx_dev_runtime29.jsxDEV(RouterProviderContent, {}, undefined, false, undefined, this);
 }
 
 // src/main.tsx
-var jsx_dev_runtime20 = __toESM(require_jsx_dev_runtime(), 1);
+var jsx_dev_runtime30 = __toESM(require_jsx_dev_runtime(), 1);
 var rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Root element not found");
 }
-import_client.createRoot(rootElement).render(/* @__PURE__ */ jsx_dev_runtime20.jsxDEV(import_react2.StrictMode, {
-  children: /* @__PURE__ */ jsx_dev_runtime20.jsxDEV(BrowserRouter, {
-    children: /* @__PURE__ */ jsx_dev_runtime20.jsxDEV(App, {}, undefined, false, undefined, this)
+import_client.createRoot(rootElement).render(/* @__PURE__ */ jsx_dev_runtime30.jsxDEV(import_react2.StrictMode, {
+  children: /* @__PURE__ */ jsx_dev_runtime30.jsxDEV(BrowserRouter, {
+    children: /* @__PURE__ */ jsx_dev_runtime30.jsxDEV(App, {}, undefined, false, undefined, this)
   }, undefined, false, undefined, this)
 }, undefined, false, undefined, this));

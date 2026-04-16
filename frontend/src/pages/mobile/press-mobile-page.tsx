@@ -1,13 +1,166 @@
-/**
- * @file press-mobile-page.tsx
- * @description Mobile press page rendered from the provided reference layout.
- * @module frontend/src/pages/mobile
- */
-
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import meetingCollector from "../../assets/press/MeetingDisctricCollectorToTakePlasticReductionInitiatives.webp";
+import newspaper2021 from "../../assets/press/Newspaper2021.webp";
+import article from "../../assets/press/article.webp";
+import cameraLogo from "../../assets/press/camera.webp";
+import news2023 from "../../assets/press/news2023.webp";
+import sportsUniforms from "../../assets/press/sportsUniforms.webp";
 
 const html = String.raw`
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900"><header class="sticky top-0 z-50 flex items-center bg-background-light/95 backdrop-blur-sm p-4 border-b border-primary/10 justify-between"><a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m"><span class="material-symbols-outlined text-slate-900">arrow_back</span></a><h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Press Room</h2><div class="flex w-10 items-center justify-end"><button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors"><span class="material-symbols-outlined text-slate-900">share</span></button></div></header><main class="flex-1 pb-24"><section class="p-4"><h2 class="text-xl font-bold leading-tight tracking-tight mb-4">Featured Announcement</h2><div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white overflow-hidden border border-primary/5"><div class="w-full bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSpn-UCbZU878iVH1DzGgmuJUD7wWUN1Q7jqmsA4OlU84LSWXJHm-jjQjXEu6ePoN-045J9l6Eqedcf-d69Wgv38jSb3n3D_Wwaows-aXTqV6CGw8qztsGcaY7oAWH2cREij0Dyh-3sy84SNMOJN6Ei_Io-97LPEdlZ9GUTkB7isDnSP-vrIWacJpMDVJMvBgmOVqEU3NEIqnG5hFHbOtMp4ZHzINEZiiWVJVE1ZnXOJuQGCc0gPupEFzHM8ISxcEr-9Av7qNB_fU4")'></div><div class="flex w-full flex-col gap-2 p-5"><div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Featured</span><p class="text-slate-500 text-xs font-medium">2025</p></div><h3 class="text-lg font-bold leading-tight text-slate-900">Krutha Foundation Releases 3-Year Impact Report (2022-2025)</h3><p class="text-slate-600 text-sm leading-relaxed mb-3">Rs.21,26,753 mobilized globally with measurable impact in education, water conservation, sanitation, and scholarship support.</p><a class="flex w-full items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-semibold transition-transform active:scale-95" href="/m/press">Read Full Release</a></div></div></section><section class="px-4 py-6"><div class="flex items-center justify-between mb-4"><h2 class="text-xl font-bold leading-tight tracking-tight">Recent Releases</h2><button class="text-primary text-sm font-semibold">View All</button></div><div class="space-y-4"><div class="flex gap-4 p-3 bg-white rounded-xl border border-primary/5"><div class="size-20 rounded-lg bg-cover bg-center shrink-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt9J32ZnR7ZnTynETf0KaiyPJBf_WucRAnMWstaaayjWWOLB1tHKpE_LOW7w69-1vt7bIHJKFoa2ta9KCoTRZwUL6mo5pt7Sojtae6L6aYXpx3p2H7sJR2eVBM2aA1r38OcqF9pTJAdRdSWwSFhdNEJjmfS_eW5CWR7w9Xx65tesYcVKrEEMDxH4eOskZhtHJOSlk5MUYvOGoPZCL8WQFAVhUjBN04qNovXvKqBF_uhVUqVFuHYMi5oxBSM1HMYFJDexk7hfFm1Mss')"></div><div class="flex flex-col justify-between py-0.5"><div><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">AY 2025-26</p><h4 class="text-sm font-bold text-slate-900 line-clamp-2">L.E.A.D.S Scholarships Reach Rs.4,72,000 Annual Disbursement</h4></div><a class="flex items-center gap-1 text-primary text-xs font-bold" href="/m/press"><span class="material-symbols-outlined text-sm">download</span>Download PDF</a></div></div><div class="flex gap-4 p-3 bg-white rounded-xl border border-primary/5"><div class="size-20 rounded-lg bg-cover bg-center shrink-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhVPKh_JIkjQzyOhhhEm45ga9i3FiiH4kGjbrKZT6EF0yl39drlcAAte3ykiNjGNvKb0db8xhuyCu3nNvNdybT_VdG1QFQgm-2fEOZ-tOJ5DjJlmoDz2uZhHu0bQHnNv9hsclmsCDLVESKTHeZ8Yb2vIP1eBCaADfthETC4LmnLrlOqZksb4PNoGWqT97mASzzI94WnytADeIPHr7-0jK4L11LEMsTuiKd7ZDvYONzDD4TBQknKz3e9SBCJQ34XOoYTfLeLotTV54w')"></div><div class="flex flex-col justify-between py-0.5"><div><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">2024</p><h4 class="text-sm font-bold text-slate-900 line-clamp-2">Project Bhagiratha and Vasundhara Expand Water and Waste Impact</h4></div><a class="flex items-center gap-1 text-primary text-xs font-bold" href="/m/press"><span class="material-symbols-outlined text-sm">download</span>Download PDF</a></div></div></div></section><section class="px-4 py-6 bg-primary/5"><h2 class="text-xl font-bold leading-tight tracking-tight mb-4">In The News</h2><div class="flex overflow-x-auto gap-4 pb-4 snap-x no-scrollbar"><div class="min-w-[260px] snap-center p-4 bg-white rounded-xl shadow-sm border border-primary/5"><p class="text-primary text-xs font-bold italic mb-2">Regional Media</p><p class="text-sm text-slate-800 font-medium mb-3">&quot;Krutha's L.E.A.D.S intervention is helping redirect teenage years toward education and careers...&quot;</p><div class="flex items-center justify-between text-[11px] text-slate-500"><span>Read Article</span><span class="material-symbols-outlined text-xs">open_in_new</span></div></div><div class="min-w-[260px] snap-center p-4 bg-white rounded-xl shadow-sm border border-primary/5"><p class="text-primary text-xs font-bold italic mb-2">Community Coverage</p><p class="text-sm text-slate-800 font-medium mb-3">&quot;From rainwater harvesting to zero plastic, Vadapalem's eco-movement gains momentum...&quot;</p><div class="flex items-center justify-between text-[11px] text-slate-500"><span>Read Article</span><span class="material-symbols-outlined text-xs">open_in_new</span></div></div></div></section><section class="p-4 pt-8"><div class="bg-primary rounded-2xl p-6 text-white overflow-hidden relative"><div class="absolute -right-8 -bottom-8 size-32 bg-white/10 rounded-full blur-2xl"></div><h2 class="text-xl font-bold mb-2">Media Assets</h2><p class="text-white/80 text-sm mb-6">Press resources and image sets. In-press photos from WhatsApp can be added once uploaded into project assets.</p><div class="grid grid-cols-1 gap-3"><button class="flex items-center justify-between w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined">folder_zip</span><span class="text-sm font-medium">Brand Guidelines &amp; Logos</span></div><span class="material-symbols-outlined">download</span></button><button class="flex items-center justify-between w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined">image</span><span class="text-sm font-medium">Press Photo Gallery</span></div><span class="material-symbols-outlined">download</span></button></div></div></section><section class="p-4 pt-4 pb-12"><div class="text-center p-8 border-2 border-dashed border-primary/20 rounded-2xl"><span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span><h3 class="font-bold text-slate-900">Press Inquiries</h3><p class="text-slate-500 text-sm mb-4">Are you a journalist? We'd love to help you with your story.</p><a class="text-primary font-bold hover:underline" href="mailto:press@kruthafoundation.org">press@kruthafoundation.org</a></div></section></main><nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/10 bg-background-light/95 backdrop-blur-md px-4 pb-6 pt-2"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined">home</span><p class="text-[10px] font-medium leading-normal">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/events"><span class="material-symbols-outlined text-[24px]">public</span><p class="text-[10px] font-medium leading-normal">Impact</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/press"><span class="material-symbols-outlined">newspaper</span><p class="text-[10px] font-bold leading-normal">Press</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined">mail</span><p class="text-[10px] font-medium leading-normal">Contact</p></a></nav></div>`;
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#fcfdfa] font-display text-slate-900">
+  <header class="sticky top-0 z-50 flex items-center bg-white/95 backdrop-blur-sm p-4 border-b border-primary/10 justify-between">
+    <a class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors" href="/m">
+      <span class="material-symbols-outlined text-slate-900">arrow_back</span>
+    </a>
+    <h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center font-display uppercase tracking-widest text-primary">Press Room</h2>
+    <div class="flex w-10 items-center justify-end">
+      <button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+        <span class="material-symbols-outlined text-slate-900">share</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 pb-24">
+    <!-- Hero Section -->
+    <section class="p-6 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
+        <span class="material-symbols-outlined text-xs">public</span> Media Center
+      </div>
+      <h1 class="text-4xl font-bold text-primary mb-4 leading-tight">In The Press</h1>
+      <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
+        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike.
+      </p>
+    </section>
+
+    <!-- News Highlights Carousel -->
+    <section class="px-4 py-4">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-primary">News Coverage</h3>
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Swipe to Explore</span>
+      </div>
+      
+      <div class="flex overflow-x-auto gap-4 pb-6 snap-x no-scrollbar">
+        <!-- Item 1 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${meetingCollector}" alt="Collector Meeting" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Governance • 2024</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">District Collector Meeting for Plastic Reduction</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${news2023}" alt="2023 News" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Mainstream • 2023</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Regional Media Highlights Village Evolution</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${article}" alt="Article" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Feature • 2023</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Special Feature: Bridging Diaspora & Roots</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="min-w-[280px] snap-center bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm shadow-primary/5">
+          <div class="aspect-square bg-slate-100 relative">
+            <img src="${sportsUniforms}" alt="Sports" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+              <span class="text-white text-[10px] font-bold uppercase tracking-widest">Impact • 2024</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-slate-900 leading-tight mb-2">Empowering Youth through Modern Sports</h4>
+            <a href="/m/contact" class="text-primary text-xs font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">open_in_new</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative Quote -->
+    <section class="px-4 py-8">
+      <div class="bg-primary p-8 rounded-[2rem] text-center text-white shadow-xl shadow-primary/10 relative overflow-hidden">
+        <div class="absolute -right-4 -bottom-4 size-24 bg-white/10 rounded-full blur-2xl"></div>
+        <p class="text-[15px] font-medium leading-relaxed italic relative z-10">
+          "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
+        </p>
+      </div>
+    </section>
+
+    <!-- Media Assets Mobile -->
+    <section class="px-4 py-8">
+      <h3 class="text-lg font-bold text-primary mb-4">Digital Media Kit</h3>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">description</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Fact Sheet</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">image</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Photos</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">play_circle</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">B-Roll</span>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm text-center flex flex-col items-center gap-2 transition-active:scale-95">
+          <span class="material-symbols-outlined text-2xl text-primary">logo_dev</span>
+          <span class="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Logos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="px-4 py-8 pb-12">
+      <div class="p-8 border-2 border-dashed border-primary/20 rounded-[2rem] text-center bg-primary/5">
+        <span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span>
+        <h4 class="font-bold text-slate-900 mb-1">Media Inquiries</h4>
+        <p class="text-slate-500 text-[13px] mb-4">Official assets and interviews</p>
+        <a class="text-primary font-bold text-lg" href="mailto:press@krutha.org">press@krutha.org</a>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/10 bg-white/95 backdrop-blur-md px-4 pb-6 pt-2">
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m">
+      <span class="material-symbols-outlined">home</span>
+      <p class="text-[10px] font-medium leading-normal">Home</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/impact-report">
+      <span class="material-symbols-outlined text-[24px]">analytics</span>
+      <p class="text-[10px] font-medium leading-normal">Impact</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/press">
+      <span class="material-symbols-outlined">newspaper</span>
+      <p class="text-[10px] font-bold leading-normal">Press</p>
+    </a>
+    <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact">
+      <span class="material-symbols-outlined">mail</span>
+      <p class="text-[10px] font-medium leading-normal">Contact</p>
+    </a>
+  </nav>
+</div>`;
 
 export function PressMobilePage() {
   return <StaticMarkupPage html={html} />;

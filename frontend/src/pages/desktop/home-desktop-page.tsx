@@ -56,7 +56,7 @@ const html = String.raw`
           <h2 class="font-editorial text-3xl lg:text-4xl mb-4">3-Year Impact Metrics</h2>
           <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-primary/5 text-center group hover:border-primary transition-colors">
             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary"><span class="material-symbols-outlined">payments</span></div>
             <h3 class="text-3xl font-bold text-slate-900 mb-2">Rs. 21,26,753</h3>
@@ -77,6 +77,11 @@ const html = String.raw`
             <h3 class="text-3xl font-bold text-slate-900 mb-2">300+</h3>
             <p class="text-slate-500 font-medium">Households Reached</p>
           </div>
+        </div>
+        <div class="text-center">
+          <a class="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-xl font-extrabold hover:bg-primary hover:text-white transition-all shadow-lg shadow-primary/5" href="/impact-report">
+            View Detailed 3-Year Impact Report <span class="material-symbols-outlined">summarize</span>
+          </a>
         </div>
       </div>
     </section>
@@ -104,6 +109,7 @@ const html = String.raw`
               <li class="flex items-center gap-3 text-slate-600"><span class="material-symbols-outlined text-primary text-sm">check_circle</span>500+ students supported with life skills and direction</li>
               <li class="flex items-center gap-3 text-slate-600"><span class="material-symbols-outlined text-primary text-sm">check_circle</span>Rs. 10,06,000 scholarships mobilized through partner alliances</li>
             </ul>
+            <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all mt-4" href="/programs/leads">View Program Details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
           </div>
         </div>
         <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center pt-24">
@@ -115,6 +121,7 @@ const html = String.raw`
               <div class="bg-primary/5 p-4 rounded-xl flex-1"><p class="text-primary font-bold">4 Pits</p><p class="text-xs text-slate-500">Harvesting Structures</p></div>
               <div class="bg-primary/5 p-4 rounded-xl flex-1"><p class="text-primary font-bold">10-Year Goal</p><p class="text-xs text-slate-500">+10 ft Water Table Rise</p></div>
             </div>
+            <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all mt-4" href="/programs/bhagiratha">View Program Details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
           </div>
           <div class="order-1 lg:order-2 min-w-0">
             <div class="aspect-video rounded-3xl overflow-hidden shadow-xl"><img alt="Water conservation project" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBb-tKaKm525G-NCxAzRuZsXvkjDAqeWZwa6AQgyeZqVT1WCLxWfXS1SHA7TnEv9xJPnlHZPXWmBdWia97g2lckH4MlkWRmUw3mwkPCES7AeSajfGu7w02Ma3CH31SD4wJlu5vdMV_IuND3iCg-G0r9wblYYBGtbyskrs86FMpIyI5RD0yWaO1VRCl8f6Z2eQ2ES44nc866LMxip79B4GbJpBD9pB4zIDkUwYimSA0s8dLnXEx3KsSQ7jVfogAKU5KhxXeOHhJoie6" /></div>
@@ -129,6 +136,10 @@ const html = String.raw`
             <div class="flex items-center gap-4 p-4 bg-primary text-white rounded-2xl max-w-sm">
               <span class="material-symbols-outlined text-4xl">shopping_bag</span>
               <div><p class="text-xl font-bold">2,000+</p><p class="text-xs opacity-80 uppercase font-medium">Reusable Cotton Bags Distributed</p></div>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-4">
+              <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-all" href="/programs/vasundhara">Project Vasundhara <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <a class="inline-flex items-center gap-2 border border-primary text-primary px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-primary/5 transition-all" href="/programs/samyamam">Project Samyamam <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
             </div>
           </div>
         </div>

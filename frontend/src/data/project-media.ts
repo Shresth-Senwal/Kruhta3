@@ -8,6 +8,7 @@ export type ProjectItem = {
   title: string;
   description: string;
   images: string[];
+  programPath?: string;
 };
 
 export type ProjectMediaCategory = {
@@ -19,6 +20,28 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
   {
     title: "Education",
     projects: [
+      {
+        title: "L.E.A.D.S Program",
+        programPath: "/programs/leads",
+        description:
+          "Guiding the critical years from Class 8 to 10 by providing life skills, adolescent education, career guidance, and scholarships to ensure a career, not a crisis.",
+        images: [
+          "https://drive.google.com/file/d/1G1TzaK5ZdiCYhEkCnLqF3vK0lu9j6LiZ/preview",
+          "https://drive.google.com/file/d/1W8OrwmUPdnbjKuIXTu7ISUb8JKBVmia_/preview",
+          "https://drive.google.com/file/d/1038f2DxIaViVPdiKdD_4swaZfPSn0Um-/preview",
+          "https://drive.google.com/file/d/1_Thi2exl9-ZFizkbp1E7f3C6nDwbV_kf/preview",
+          "https://drive.google.com/file/d/1959TTT07y5Ybf5YbEe2rsvNUusGO-QUb/preview",
+          "https://drive.google.com/file/d/1H6nDoLTsfn4tkxI9MjUBkI5Hvn8UWw-Q/preview",
+          "https://drive.google.com/file/d/1BTy4EkOSVJY1lQ0aKu9SRdYW5xAV7i1W/preview",
+          "https://drive.google.com/file/d/1u3xfMVSXZ48DgJ6iq1PGXBzT3QW5xHhN/preview",
+          "https://drive.google.com/file/d/1RibUvXtqwT-dA0IssiRXoUOXqVAAJ45B/preview",
+          "https://drive.google.com/file/d/1rFuQG5GB9hsPs__AO8bSh5sX8b_-MkGB/preview",
+          "https://drive.google.com/file/d/10_8G0n-Egw_gOgl1VY6KW0iWczvvFtIp/preview",
+          "https://drive.google.com/file/d/1G6mf9LszCOBLeWhGRLcwKZUG6djIjWFN/preview",
+          "https://drive.google.com/file/d/1BGxpPfzBwX1MiIOdovGUh4r7FCeyR_gg/preview",
+          "https://drive.google.com/file/d/1PHJEjmHcp7od7WPqSRRfqZUCjud5TCuY/preview",
+        ],
+      },
       {
         title: "School Adoption",
         description:
@@ -43,36 +66,16 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
           "https://drive.google.com/file/d/1wt-qMtWVCjItwm3oe4-Py19g23GnMLcb/preview",
         ],
       },
-      {
-        title: "School Of Excellence",
-        description:
-          "Long-term education quality improvements through campus upgrades, engagement, and student support programs.",
-        images: [
-          "https://drive.google.com/file/d/1G1TzaK5ZdiCYhEkCnLqF3vK0lu9j6LiZ/preview",
-          "https://drive.google.com/file/d/1W8OrwmUPdnbjKuIXTu7ISUb8JKBVmia_/preview",
-          "https://drive.google.com/file/d/1038f2DxIaViVPdiKdD_4swaZfPSn0Um-/preview",
-          "https://drive.google.com/file/d/1_Thi2exl9-ZFizkbp1E7f3C6nDwbV_kf/preview",
-          "https://drive.google.com/file/d/1959TTT07y5Ybf5YbEe2rsvNUusGO-QUb/preview",
-          "https://drive.google.com/file/d/1H6nDoLTsfn4tkxI9MjUBkI5Hvn8UWw-Q/preview",
-          "https://drive.google.com/file/d/1BTy4EkOSVJY1lQ0aKu9SRdYW5xAV7i1W/preview",
-          "https://drive.google.com/file/d/1u3xfMVSXZ48DgJ6iq1PGXBzT3QW5xHhN/preview",
-          "https://drive.google.com/file/d/1RibUvXtqwT-dA0IssiRXoUOXqVAAJ45B/preview",
-          "https://drive.google.com/file/d/1rFuQG5GB9hsPs__AO8bSh5sX8b_-MkGB/preview",
-          "https://drive.google.com/file/d/10_8G0n-Egw_gOgl1VY6KW0iWczvvFtIp/preview",
-          "https://drive.google.com/file/d/1G6mf9LszCOBLeWhGRLcwKZUG6djIjWFN/preview",
-          "https://drive.google.com/file/d/1BGxpPfzBwX1MiIOdovGUh4r7FCeyR_gg/preview",
-          "https://drive.google.com/file/d/1PHJEjmHcp7od7WPqSRRfqZUCjud5TCuY/preview",
-        ],
-      },
     ],
   },
   {
-    title: "Plastic Reduction",
+    title: "Environment",
     projects: [
       {
-        title: "Plastic Reduction",
+        title: "Project SAMYAMAM",
+        programPath: "/programs/samyamam",
         description:
-          "Reducing single-use plastics through awareness drives and practical alternatives in local communities.",
+          "Zero plastic initiative through enforcement, cotton bag revolution, and the 'Borrow & Return' model to restore balance and dignity to our village.",
         images: [
           "https://drive.google.com/file/d/1AGWA-myggdhqmAOOuRxHHegSHnUOlAyP/preview",
           "https://drive.google.com/file/d/1Ox1FeJl4BSm9khgM2pW7BL1tUAGOPW-O/preview",
@@ -82,15 +85,11 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
           "https://drive.google.com/file/d/1_IekHLMNVy0Mx-omnEGPrbdnuhEYc5AW/preview",
         ],
       },
-    ],
-  },
-  {
-    title: "Waste Management",
-    projects: [
       {
-        title: "Waste Management",
+        title: "Project Vasundhara",
+        programPath: "/programs/vasundhara",
         description:
-          "Promoting source segregation, cleaner public spaces, and community-led waste handling systems.",
+          "Honouring the wealth of our earth through a twin-bin system for 300 households and community-led waste management to create a waste-free Konaseema.",
         images: [
           "https://drive.google.com/file/d/1ckeDE2Bq343LASY3A186Aq-W83iUvAUd/preview",
           "https://drive.google.com/file/d/19BCWZtvjXQeAkmfsEcpmoux1VE3NMnUT/preview",
@@ -105,10 +104,21 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
           "https://drive.google.com/file/d/1W5Aqu67wJHL1LKm1en2OWr51OGka9VDj/preview",
         ],
       },
+      {
+        title: "Project Bhagiratha",
+        programPath: "/programs/bhagiratha",
+        description:
+          "Bringing the heavens to the earth by constructing rainwater harvesting pits to recharge groundwater and secure a water-resilient future for generations.",
+        images: [
+          "https://drive.google.com/file/d/1jC8KIxJ9Cpg82y0r-3uvZdAckqdKjiby/preview",
+          "https://drive.google.com/file/d/1mljsl_A6-gyINV_OCiTFgj8ts66tjJuC/preview",
+          "https://drive.google.com/file/d/122haIZ1vsQ7JjDH53aZSU-YNup8Jr9FC/preview",
+        ],
+      },
     ],
   },
   {
-    title: "Water Resources Management",
+    title: "Water & Sanitation",
     projects: [
       {
         title: "Canal Cleaning",
@@ -120,32 +130,18 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
         ],
       },
       {
-        title: "RHP Units - Market",
+        title: "RHP Units - Public Areas",
         description:
-          "Deploying RHP units in market zones to improve cleanliness and responsible waste-water handling.",
+          "Deploying RHP units in markets, schools and temples to improve cleanliness and responsible water handling.",
         images: [
           "https://drive.google.com/file/d/122haIZ1vsQ7JjDH53aZSU-YNup8Jr9FC/preview",
           "https://drive.google.com/file/d/1MIfRVfIMklHxJGY2fe9P7qwH-HKHoQ42/preview",
           "https://drive.google.com/file/d/1vb7f1q7JtuFzwtFHBr3BtftbjPvWfyZz/preview",
           "https://drive.google.com/file/d/194-XxIJJS6HrjolcmJwabnzbbP8pyO9B/preview",
           "https://drive.google.com/file/d/1cfflc-zAC4zACi5DV8hBO-AbdmKvdiTi/preview",
-        ],
-      },
-      {
-        title: "RHP Units - School",
-        description:
-          "Installing RHP units in schools to support safer sanitation and sustainable hygiene practices.",
-        images: [
           "https://drive.google.com/file/d/1yHbfwWafpTiZG3hiiYgCATZZg5hq3SD9/preview",
           "https://drive.google.com/file/d/1ZB6bAkgH-CigVrrYcmqIMbuLJ1qvMLJM/preview",
           "https://drive.google.com/file/d/15D9kR8CboWOXzLnG89uT8dB9oz9c_Rqh/preview",
-        ],
-      },
-      {
-        title: "RHP Units - Temple",
-        description:
-          "Extending RHP unit support to temple premises for cleaner, high-footfall public environments.",
-        images: [
           "https://drive.google.com/file/d/1eY4ImZcAXWKTbYEg2nH6ZqJhwFjKOJoe/preview",
           "https://drive.google.com/file/d/1PqgK0hIhHD8Vyq5qGxaWleaCvBeNh5Rc/preview",
           "https://drive.google.com/file/d/1lvkvSWe6c0rGKguZ8HRi-jh1Y-Hgya5v/preview",

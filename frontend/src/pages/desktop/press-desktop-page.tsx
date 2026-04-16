@@ -5,12 +5,259 @@
  */
 
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import meetingCollector from "../../assets/press/MeetingDisctricCollectorToTakePlasticReductionInitiatives.webp";
+import newspaper2021 from "../../assets/press/Newspaper2021.webp";
+import article from "../../assets/press/article.webp";
+import cameraLogo from "../../assets/press/camera.webp";
+import news2023 from "../../assets/press/news2023.webp";
+import sportsUniforms from "../../assets/press/sportsUniforms.webp";
 
 const html = String.raw`
-<div class="bg-[#f4f5f0] text-slate-900">
-  <header class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10"><div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"><div class="flex items-center gap-12"><div class="flex items-center gap-3"><div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white"><span class="material-symbols-outlined text-xl">architecture</span></div><h2 class="text-primary text-xl font-bold tracking-tight">Krutha Foundation</h2></div><nav class="hidden md:flex items-center gap-8"><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/our-work">Impact</a><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/our-work">Projects</a><a class="text-primary/70 hover:text-primary font-medium transition-colors" href="/about">About</a><a class="text-primary font-bold" href="/press">Press</a></nav></div><div class="flex items-center gap-6"><button class="hidden lg:flex items-center gap-2 text-primary/70 hover:text-primary"><span class="material-symbols-outlined">search</span></button><a class="bg-primary text-white px-8 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" href="/contact">Donate</a></div></div></header>
-  <main><section class="relative px-6 pt-16 pb-24 max-w-7xl mx-auto text-center"><div class="inline-flex items-center gap-2 bg-[#6b8e7b]/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6"><span class="material-symbols-outlined text-lg">news</span> Media Center</div><h1 class="font-serif text-5xl md:text-7xl text-primary mb-8 max-w-4xl mx-auto leading-tight">Media &amp; Press Room</h1><p class="text-lg md:text-xl text-primary/60 max-w-2xl mx-auto leading-relaxed">Official updates documenting Krutha Foundation's work in education, ecology, and village transformation.</p></section><section class="px-6 pb-24 max-w-7xl mx-auto"><div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-primary/5 flex flex-col lg:flex-row"><div class="lg:w-1/2 aspect-video lg:aspect-auto relative min-h-[400px]"><img alt="Krutha Foundation impact report" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeuITO6tVWAH7mUnEwE5EFMoQIE0eZU_AsLVywK6FQHXVB1qIxs3Nd6tpHlFeWOYZ23CZEoraQnvVspFNKfnyncTaslj7VtKSzAoH9hNkKakEVEBZk2Qr8NkTL-GDmMqW8bciBkbCh4j2emoLky85Ngw1FwjQon8hHsxmcqmyXLoqhR6oTcGbpW5VowU3wOVxqxrrfZDX5g7dZmezMdSK6BipNqJ9zI8_fHWm4fhb556HEvwBn-s2glYjV3K-JMcMMDr8yM4DD7wJv" /></div><div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center"><div class="flex items-center gap-3 text-[#6b8e7b] font-semibold text-sm mb-4 uppercase tracking-widest"><span>Latest Announcement</span><span class="w-8 h-px bg-[#6b8e7b]/30"></span><span>2025</span></div><h2 class="font-serif text-3xl md:text-4xl text-primary mb-6 leading-tight">Krutha Foundation 3-Year Impact Report (2022-2025)</h2><p class="text-primary/70 text-lg mb-8 leading-relaxed">Rs.21,26,753 raised globally, 498 students trained, 4 rainwater harvesting pits established, and scalable sanitation and zero-plastic initiatives launched in Vadapalem.</p><div class="flex flex-wrap gap-4"><a class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all flex items-center gap-2" href="/blog">Read Full Release <span class="material-symbols-outlined text-lg">arrow_forward</span></a><a class="border border-primary/20 text-primary px-8 py-3 rounded-xl font-bold hover:bg-primary/5 transition-all" href="/contact">Media Assets</a></div></div></div></section><section class="px-6 py-24 bg-primary/5"><div class="max-w-7xl mx-auto"><div class="flex justify-between items-end mb-12"><div><h2 class="font-serif text-3xl text-primary mb-4">Official Press Releases</h2><p class="text-primary/60">Chronological archive of our journey and impact</p></div><button class="hidden md:flex items-center gap-2 text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">View Archive <span class="material-symbols-outlined">chevron_right</span></button></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Scholarships</span><span>AY 2025-26</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">L.E.A.D.S Scholarships Reach Rs.4,72,000 Annual Disbursement</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/contact">Download PDF <span class="material-symbols-outlined text-lg">download</span></a></div><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Water</span><span>2024</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">Project Bhagiratha: 4 Rainwater Harvesting Pits Completed</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/blog">Read More <span class="material-symbols-outlined text-lg">open_in_new</span></a></div><div class="bg-white rounded-2xl p-8 border border-primary/10 hover:shadow-xl transition-shadow flex flex-col"><div class="flex justify-between text-xs font-bold text-[#6b8e7b] mb-6 tracking-widest uppercase"><span>Sanitation</span><span>2024</span></div><h3 class="font-serif text-2xl text-primary mb-6 grow leading-snug">Project Vasundhara Pilot: 600 Segregation Bins Distributed</h3><a class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all" href="/contact">Download PDF <span class="material-symbols-outlined text-lg">download</span></a></div></div></div></section><section class="px-6 py-24 max-w-7xl mx-auto"><h2 class="font-serif text-3xl text-center text-primary mb-16">Krutha in the News</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center opacity-60 grayscale hover:grayscale-0 transition-all"><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLAF2E3gfqmnsquVGGvPUcHTOCMM8kL32Gm11DP9JfFY-wkJ3E8lm5QmNyI2S2Pm0aNKGQwx3xhMaTBbK9IxpG31wCRPp4c7TprTxcO1Za4FCwkLWCvzgbemz8M1louFXwgnW1RU-wBfGUqjjzDqo419rmgeJwdeAKfPdJvIXRVRPl0ntDG-3ZIKn7OFFElgu8gvpU4cB2HKU1F_0lCadHRnX-BmOzwMzZ8PhXGC1g3ir74jycKZBwBySRe1X_0fIUlAzo013W120e" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArc_WtYWgVtNOzEwEbjDNjr-xvOFus5pOCgA_vVuDdYkWvU5HTr6v4dTvgZMwuuxP2gGQXI7Uh_P2E6SYJCSYZaLnSl18cJTNkEBveIRe6DPGeu6SNM1HJduryu59FvTWvRohcvqSkm5RjluG_fnlOfCcJVdI9XfdeHBOyLKApxQd1atS43Awfh6tBBNCrov-Xp7RsgfiHqHPxJiB9Xk4dBbcngkrLAdblbWSQsm4-_eE-2sN4zO8d6ynhSv72UKMWJSvivwZHtT0z" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB55wIyZ9SDUtb5QRQGlxpwQ0I4umwa_nlOeUplJlnYPRi1NLm14yc4BSMTvnQv7RcbUlao_bajIzlEsFpenUHCJmqqoZ3XPVneIWy0ytYk9aZPBWmAWWSkXBH23pCmfeq3NFJf9IaeRBDGpMN9e8U6w-QVxOj3zqZKAk9Oi2AXwxY7p1jYAyhdZajRzbb29u4-tuu87I3ZPTbSbwu7NY3z54ClLxD4UYcBJgQHG7MvOXbzffPQRnhTrOhLN5eOxsVD8h01N0w9-IIK" /></div><div class="flex justify-center"><img alt="Media outlet logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs3DbUmcywl_CDGs4rjp9LGcj2J0t_yJCCmt3FN43CpIFY-Igvf9YHQugB28MHaA1Sy28HSKk9tfJf31PJlhfxPnNXnbafTD3nFwNEto1FLlTOj55SAmppnqbcvOTKOVSRNT6iokCXiArSqC2s08Rnist5xgwodt4CTdz49u9ulC48FtHNZ09A4Fkz44zJMuxgZ1FydUizxQS4qC7YwFNy4Q8ZWVH2HxyuEpCRmHahs3J6sjCm_HriEnXJ5tYB3eHcZYCtbYA2ndjh" /></div></div></section><section class="px-6 py-24 max-w-7xl mx-auto"><div class="bg-[#6b8e7b]/10 rounded-3xl p-10 md:p-16 relative overflow-hidden"><div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-[#6b8e7b]/10 rounded-full blur-3xl"></div><div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12"><div class="max-w-md"><h2 class="font-serif text-4xl text-primary mb-6">Digital Media Kit</h2><p class="text-primary/70 mb-8">Press resources, logos, fact sheet, and project visuals for media usage.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto"><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">imagesmode</span><div class="text-left"><p class="font-bold text-primary">Brand Assets</p><p class="text-xs text-primary/50">Logo Suite (PNG, SVG)</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">description</span><div class="text-left"><p class="font-bold text-primary">Fact Sheet</p><p class="text-xs text-primary/50">Foundation PDF</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">photo_library</span><div class="text-left"><p class="font-bold text-primary">Project Gallery</p><p class="text-xs text-primary/50">High-Res Imagery (Zip)</p></div></button><button class="bg-white p-6 rounded-2xl flex items-center gap-4 hover:shadow-lg transition-all border border-primary/5"><span class="material-symbols-outlined text-3xl text-[#6b8e7b]">video_library</span><div class="text-left"><p class="font-bold text-primary">B-Roll Footage</p><p class="text-xs text-primary/50">Video Clips</p></div></button></div></div></div></section><section class="px-6 py-24 text-center border-t border-primary/10"><h2 class="font-serif text-3xl text-primary mb-4">For Media Inquiries</h2><p class="text-primary/60 mb-8 max-w-xl mx-auto">Need specific assets, interviews, or additional information for your story? Our press office is here to help.</p><a class="text-2xl md:text-3xl font-serif text-primary hover:underline underline-offset-8" href="mailto:press@kruthafoundation.org">press@kruthafoundation.org</a><div class="mt-12 flex justify-center gap-6"><a class="size-12 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="/contact"><span class="material-symbols-outlined">alternate_email</span></a><a class="size-12 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="/press"><span class="material-symbols-outlined">share</span></a></div></section></main>
-  <footer class="bg-white border-t border-primary/10 py-16 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"><div class="flex items-center gap-3"><div class="size-6 bg-primary/20 rounded-md flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">architecture</span></div><h2 class="text-primary text-lg font-bold">Krutha Foundation</h2></div><p class="text-primary/50 text-sm">(c) 2024 Krutha Foundation. All rights reserved. Registered Nonprofit.</p><div class="flex gap-8 text-sm font-semibold text-primary/70"><a class="hover:text-primary" href="/contact">Privacy Policy</a><a class="hover:text-primary" href="/contact">Terms of Service</a></div></div></footer>
+<div class="bg-[#fcfdfa] text-slate-900 font-display">
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-12">
+        <div class="flex items-center gap-3">
+          <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+            <span class="material-symbols-outlined text-xl">newspaper</span>
+          </div>
+          <h2 class="text-primary text-xl font-bold tracking-tight">Krutha Foundation</h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/">Home</a>
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/about">About</a>
+          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/our-work">Projects</a>
+          <a class="text-primary font-bold" href="/press">Press Room</a>
+        </nav>
+      </div>
+      <a class="bg-primary text-white px-8 py-2.5 rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" href="/contact">Donate</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-24 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8">
+        <span class="material-symbols-outlined text-lg">public</span> Global Media & Press Center
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold text-primary mb-8 max-w-4xl mx-auto leading-[1.1]">
+        In The Press
+      </h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike. This collection of news coverage chronicles our journey since 2022—highlighting our impact in education, our innovative ecological initiatives, and our efforts to build a modern Krutha Yuga.
+      </p>
+    </section>
+
+    <!-- News Highlights Gallery -->
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- News Item 1 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${meetingCollector}" alt="District Collector Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Governance</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2024</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Meeting District Collector for Plastic Reduction Initiatives</h3>
+          </div>
+        </div>
+
+        <!-- News Item 2 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${news2023}" alt="2023 News Coverage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Regional News</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>Oct 2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Mainstream Media Coverage of Village Transformation</h3>
+          </div>
+        </div>
+
+        <!-- News Item 3 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${article}" alt="Main Article" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Deep Dive</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Special Feature: Bridging the Diaspora and Native Roots</h3>
+          </div>
+        </div>
+
+        <!-- News Item 4 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${sportsUniforms}" alt="Sports Uniforms" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Community</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2024</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Empowering Youth through Sports & Infrastructure</h3>
+          </div>
+        </div>
+
+        <!-- News Item 5 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${newspaper2021}" alt="2021 Newspaper" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Archive</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2021-22</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Foundation Pillars: Early Media Records</h3>
+          </div>
+        </div>
+
+        <!-- News Item 6 -->
+        <div class="group cursor-pointer">
+          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+            <img src="${cameraLogo}" alt="Camera Impact" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
+              <span>Multimedia</span>
+              <span class="size-1 bg-primary/30 rounded-full"></span>
+              <span>2023</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Visual Storytelling: Capturing the Krutha Movement</h3>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Transparency Message -->
+    <section class="max-w-7xl mx-auto px-6 mb-24">
+      <div class="bg-primary p-12 rounded-[2rem] text-center text-white relative overflow-hidden shadow-2xl shadow-primary/20">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent)]"></div>
+        <p class="text-xl md:text-2xl font-medium max-w-4xl mx-auto leading-relaxed relative z-10">
+          "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
+        </p>
+      </div>
+    </section>
+
+    <!-- Media Kit Section -->
+    <section class="bg-slate-50 border-y border-slate-100 py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+          <div class="max-w-xl">
+            <h2 class="text-4xl font-bold text-primary mb-6">Digital Media Kit</h2>
+            <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+              We provide comprehensive resources for journalists and researchers, including brand assets, verified fact sheets, and high-resolution project visuals.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="mailto:press@krutha.org" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:shadow-xl hover:-translate-y-1 transition-all">
+                Request Interview <span class="material-symbols-outlined">mail</span>
+              </a>
+              <a href="/contact" class="bg-white border border-primary/10 text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
+                Download Full Kit
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-6 w-full lg:w-auto">
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">description</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Fact Sheet</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">image</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Impact Photos</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">play_circle</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">B-Roll</span>
+            </div>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-4xl text-primary">logo_dev</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Logos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press Releases Archive -->
+    <section class="max-w-7xl mx-auto px-6 py-24">
+      <div class="flex items-end justify-between mb-12">
+        <h2 class="text-3xl font-bold text-primary">Official Archive</h2>
+        <a href="/contact" class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">View All Releases</a>
+      </div>
+      <div class="space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+          <div class="flex gap-8 items-center">
+            <span class="text-slate-400 font-mono text-sm">2025.04</span>
+            <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">3-Year Impact Report (2022-2025) Release</h4>
+          </div>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+          <div class="flex gap-8 items-center">
+            <span class="text-slate-400 font-mono text-sm">2024.11</span>
+            <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">Project Bhagiratha Groundwater Recharge Completion</h4>
+          </div>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white/80 py-20 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+      <div class="flex items-center gap-4 text-white">
+        <div class="size-10 bg-white rounded-xl flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined">newspaper</span>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold font-display tracking-tight text-white">Krutha Foundation</h2>
+          <p class="text-xs text-white/50 tracking-widest uppercase">Press Room Archive</p>
+        </div>
+      </div>
+      <p class="text-sm">(c) 2022-2025 Krutha Foundation. Empowering Vadapalem.</p>
+      <div class="flex gap-8 text-sm">
+        <a class="hover:text-white transition-colors" href="/contact">Media Compliance</a>
+        <a class="hover:text-white transition-colors" href="/contact">Privacy</a>
+      </div>
+    </div>
+  </footer>
 </div>`;
 
 export function PressDesktopPage() {

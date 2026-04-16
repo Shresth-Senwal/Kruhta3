@@ -3,11 +3,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2b5445;
-  --color-background-light: #f6f7f7;
-  --color-background-dark: #161c1a;
-  --color-sage: #648277;
-  --color-forest: #1a332a;
+  --color-primary: #57c1bb;
+  --color-background-light: #f1fafa;
+  --color-background-dark: #112220;
+  --color-sage: #8acac5;
+  --color-forest: #2d5e5b;
   --radius-default: 0.5rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
@@ -43,7 +43,7 @@
 
 @layer utilities {
   .border-primary-soft {
-    border-color: rgb(43 84 69 / 0.1);
+    border-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
   }
 
   .no-scrollbar::-webkit-scrollbar {

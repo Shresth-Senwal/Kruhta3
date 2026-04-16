@@ -10,7 +10,7 @@
 
 - Runtime and package manager: Bun.
 - Frontend: React 19 with TypeScript.
-- Styling: Tailwind CSS v4 with PostCSS (Teal-based palette: Primary `#57c1bb`, Sage `#8acac5`, Forest `#2d5e5b`).
+- Styling: Tailwind CSS v4 with PostCSS.
 - Routing: React Router.
 - Testing: Bun native test runner with server-side route smoke tests.
 - Database: None.
@@ -54,16 +54,6 @@
 - [x] About page Leadership Team (desktop + mobile) now shows only members with approved real photos (Surya Bandaru, K G Rao, Srinivasu B) served from local static assets via `frontend/public/team/*` for reliable rendering.
 - [x] Dev and production pipelines now serve/copy `frontend/public/*` assets so leadership photos and other static files resolve at runtime.
 - [x] About leadership portraits are now imported from `frontend/src/assets` using kebab-case filenames so Bun emits hashed image assets in output bundles.
-- [x] Add TypeScript declaration file for image assets (`.png`, `.jpg`, etc.) to resolve module resolution errors.
-- [x] Integrate "Our Program Philosophy" content into About pages (desktop + mobile) with SDG alignment.
-- [x] Implement comprehensive L.E.A.D.S Program profile pages (desktop + mobile) with impact metrics, financial trajectory, and program pillars.
-- [x] Fix SPA routing break on refresh by converting asset paths to absolute paths in `index.html`.
-- [x] Fix broken logos on nested routes by ensuring absolute paths for brand assets in `site-brand.ts`.
-- [x] Implement global theme update (Accent: Teal #57c1bb).
-- [x] Cleanup hardcoded green hexes/RGBs in static markup across all pages (About, Press, Home Mobile).
-- [x] Implement dedicated program detail pages for Project Bhagiratha, Project Vasundhara, and Project Samyamam (Desktop + Mobile).
-- [x] Link program detail pages from "Our Work" galleries and home page pillars.
-- [x] Optimize brand assets: migrated from PNG to WebP and updated toolbar to display side-by-side emblem and wordmark logos.
 
 ## Data Models
 
