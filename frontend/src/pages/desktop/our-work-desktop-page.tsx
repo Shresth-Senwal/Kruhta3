@@ -5,6 +5,7 @@
  */
 
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import { buildDesktopHeaderMarkup } from "../../components/layout/site-navigation";
 import { projectMediaCategories } from "../../data/project-media";
 import { buildDesktopBrandLinkMarkup } from "../../components/layout/site-brand";
 
@@ -86,45 +87,38 @@ function renderProjectCard(categoryTitle: string, project: (typeof projectMediaC
   const projectId = `project-${slugify(categoryTitle)}-${slugify(project.title)}`;
   const [thumbnail, ...galleryImages] = project.images;
 
-  return `<details id="${projectId}" class="rounded-3xl border border-primary/10 bg-white shadow-sm open:shadow-md scroll-mt-28">
+  return `<details id="${projectId}" class="group rounded-3xl border border-primary/10 bg-white shadow-sm open:shadow-md scroll-mt-28">
     <summary class="list-none cursor-pointer">
       <div class="grid grid-cols-1 md:grid-cols-[340px_minmax(0,1fr)] gap-6 p-5 lg:p-6">
         ${renderImageTag(thumbnail, `${project.title} thumbnail`, false)}
         <div class="flex flex-col justify-between gap-4">
           <div class="space-y-2">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">${categoryTitle}</p>
-            <h3 class="text-2xl font-black tracking-tight text-slate-900">${project.title}</h3>
-            <p class="text-slate-600">Click to view project details.</p>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent font-display">${categoryTitle}</p>
+            <h3 class="font-editorial text-3xl font-bold tracking-tight text-slate-900">${project.title}</h3>
+            <p class="text-slate-600 leading-relaxed">${project.description}</p>
           </div>
-          <span class="inline-flex w-fit items-center rounded-full bg-primary px-4 py-2 text-sm font-bold text-white">Open Project</span>
+          <div class="flex flex-wrap items-center gap-6">
+            <span class="inline-flex w-fit items-center rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-md shadow-primary/20 hover:scale-[1.02] transition-transform group-open:hidden">Show Gallery</span>
+            <span class="hidden items-center rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-md shadow-primary/20 hover:scale-[1.02] transition-transform group-open:inline-flex">Hide Gallery</span>
+            ${project.programPath ? `
+              <a href="${project.programPath}" class="inline-flex items-center gap-2 text-primary font-bold hover:text-accent transition-all text-sm">
+                View Impact <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            ` : ""}
+          </div>
         </div>
       </div>
     </summary>
     <div class="space-y-5 border-t border-primary/10 px-5 py-6 lg:px-6">
-      <p class="text-base leading-relaxed text-slate-700">${project.description}</p>
-      <details class="rounded-2xl border border-primary/10 bg-background-light">
-        <summary class="list-none cursor-pointer px-4 py-3">
-          <span class="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-bold text-white">Show Gallery</span>
-        </summary>
-        <div class="px-4 pb-4">
-          ${renderGalleryImages(galleryImages, project.title)}
-        </div>
-      </details>
-      ${project.programPath ? `
-        <div class="pt-4 border-t border-primary/5 flex justify-end">
-          <a href="${project.programPath}" class="inline-flex items-center gap-2 text-primary font-bold hover:underline transition-all">
-            View Full Program Details & Impact Metrics <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
-        </div>
-      ` : ""}
+      ${renderGalleryImages(galleryImages, project.title)}
     </div>
   </details>`;
 }
 
 const categoryToolbarHtml = [
-  `<button type="button" data-category-filter="all" class="rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-colors">All</button>`,
+  `<button type="button" data-category-filter="all" class="cursor-pointer rounded-full bg-primary px-5 py-2 text-[11px] font-black uppercase tracking-wider text-white shadow-lg shadow-primary/25 transition-all hover:scale-105 active:scale-95">All</button>`,
   ...projectMediaCategories.map(
-    (category) => `<button type="button" data-category-filter="${category.title.toLowerCase()}" class="rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-colors">${category.title}</button>`,
+    (category) => `<button type="button" data-category-filter="${category.title.toLowerCase()}" class="cursor-pointer rounded-full px-5 py-2 text-[11px] font-black uppercase tracking-wider text-slate-500 transition-all hover:bg-primary/10 hover:text-primary active:scale-95">${category.title}</button>`,
   ),
 ].join("");
 
@@ -141,7 +135,7 @@ function renderCategorySection(category: (typeof projectMediaCategories)[number]
 
   return `<section id="${categoryId}" data-category-section="${category.title.toLowerCase()}" class="space-y-6 rounded-3xl border border-primary/10 bg-white/70 p-6 lg:p-8 scroll-mt-28">
     <div class="space-y-4">
-      <h2 class="text-3xl font-black tracking-tight text-slate-900">${category.title}</h2>
+      <h2 class="font-editorial text-4xl font-bold tracking-tight text-slate-900">${category.title}</h2>
       <div class="flex flex-wrap gap-2">${projectToolbar}</div>
     </div>
     <div class="space-y-5">
@@ -153,13 +147,56 @@ function renderCategorySection(category: (typeof projectMediaCategories)[number]
 const projectsGalleryHtml = projectMediaCategories.map((category) => renderCategorySection(category)).join("");
 
 const html = String.raw`
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light text-slate-900">
-  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 py-4 lg:px-20 bg-background-light">
-    ${buildDesktopBrandLinkMarkup("/")}
-    <div class="flex flex-1 justify-end gap-8"><nav class="hidden md:flex items-center gap-9"><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/">Home</a><a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="/our-work">Our Work</a><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</a><a class="text-slate-700 text-sm font-medium hover:text-primary transition-colors" href="/contact">Donate</a></nav><div class="flex items-center gap-4"><a class="flex min-w-[100px] items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-opacity-90 transition-all" href="/contact">Contact Us</a></div></div>
-  </header>
-  <main class="flex flex-1 flex-col py-10 px-6 lg:px-20"><div class="max-w-[1200px] mx-auto w-full"><div class="flex flex-col gap-4 mb-8"><h1 class="text-slate-900 text-5xl font-black leading-tight tracking-tight">Our Work</h1><p class="text-slate-600 text-lg font-normal max-w-3xl">Select a category from the toolbar, then choose a project. Open the project card for details and use Show Gallery to view all project images.</p></div><div class="sticky top-3 z-20 mb-10 rounded-2xl border border-primary/10 bg-white/90 px-4 py-4 shadow-sm backdrop-blur"><div class="flex flex-wrap gap-2">${categoryToolbarHtml}</div></div><div class="space-y-14">${projectsGalleryHtml}</div><div class="mt-20"><div class="flex flex-col items-center justify-center gap-8 px-6 py-16 rounded-3xl bg-primary text-white text-center"><div class="flex flex-col gap-4 max-w-2xl"><h2 class="text-3xl md:text-4xl font-black leading-tight">Support Our Mission</h2><p class="bg-white/10 p-1 rounded-lg inline-block self-center px-4 mb-2 text-white font-medium">Join 500+ Active Volunteers</p><p class="text-white/80 text-lg">Your support helps us scale these initiatives. Join us in making a tangible difference in the lives of thousands.</p></div><div class="flex flex-wrap justify-center gap-4"><a class="flex min-w-[160px] items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-transform hover:scale-105" href="/contact">Volunteer</a><a class="flex min-w-[160px] items-center justify-center rounded-xl h-14 px-8 bg-transparent border-2 border-white text-white text-base font-bold transition-all hover:bg-white/10" href="/contact">Donate Now</a></div></div></div></div></main>
-  <footer class="bg-slate-900 text-slate-300 py-12 px-6 lg:px-20 mt-10"><div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10"><div class="flex flex-col gap-4 col-span-1 md:col-span-1"><div class="flex items-center gap-3 text-white"><div class="size-6 bg-primary rounded flex items-center justify-center"><span class="material-symbols-outlined text-xs">diversity_3</span></div><span class="font-bold text-lg">Krutha Foundation</span></div><p class="text-sm leading-relaxed text-slate-400">Driving social change through structured community engagement and sustainable development.</p></div><div><h4 class="text-white font-bold mb-4">Focus Areas</h4><ul class="flex flex-col gap-2 text-sm"><li><a class="hover:text-primary transition-colors" href="/our-work">Education &amp; Literacy</a></li><li><a class="hover:text-primary transition-colors" href="/our-work">Environmental Safety</a></li><li><a class="hover:text-primary transition-colors" href="/our-work">Rural Healthcare</a></li><li><a class="hover:text-primary transition-colors" href="/our-work">Clean Water Access</a></li></ul></div><div><h4 class="text-white font-bold mb-4">Quick Links</h4><ul class="flex flex-col gap-2 text-sm"><li><a class="hover:text-primary transition-colors" href="/about">Our Team</a></li><li><a class="hover:text-primary transition-colors" href="/press">Annual Reports</a></li><li><a class="hover:text-primary transition-colors" href="/contact">Careers</a></li><li><a class="hover:text-primary transition-colors" href="/contact">Privacy Policy</a></li></ul></div><div><h4 class="text-white font-bold mb-4">Follow Us</h4><div class="flex gap-4"><a class="size-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all" href="/press"><span class="material-symbols-outlined text-sm">public</span></a><a class="size-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all" href="/press"><span class="material-symbols-outlined text-sm">share</span></a><a class="size-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-all" href="/blog"><span class="material-symbols-outlined text-sm">thumb_up</span></a></div><p class="mt-6 text-xs text-slate-500">(c) 2024 Krutha Foundation. All rights reserved.</p></div></div></footer>
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900">
+  ${buildDesktopHeaderMarkup("/our-work")}
+  <main class="flex flex-1 flex-col py-10 px-6 lg:px-20">
+    <div class="max-w-[1200px] mx-auto w-full">
+      <div class="flex flex-col gap-4 mb-12 text-center items-center">
+        <h1 class="font-editorial text-slate-900 text-5xl md:text-7xl leading-tight">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent italic pr-2">Work</span></h1>
+        <p class="text-slate-600 text-lg font-normal max-w-2xl">Select a category below to filter projects, then explore details and galleries for our initiatives.</p>
+      </div>
+      
+      <div class="sticky top-6 z-20 mb-16 flex justify-center">
+        <div class="inline-flex items-center gap-1 rounded-full border border-primary/5 bg-white/80 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl">
+          ${categoryToolbarHtml}
+        </div>
+      </div>
+
+      <div class="space-y-14">
+        ${projectsGalleryHtml}
+      </div>
+
+      <div class="mt-20">
+        <div class="relative overflow-hidden rounded-[2.5rem] bg-slate-900 px-8 py-16 text-center text-white shadow-2xl">
+          <div class="absolute -right-16 -top-16 size-64 rounded-full bg-primary/20 blur-3xl"></div>
+          <div class="absolute -left-16 -bottom-16 size-64 rounded-full bg-accent/20 blur-3xl"></div>
+          <div class="relative z-10 flex flex-col items-center gap-6 max-w-2xl mx-auto">
+            <span class="inline-flex items-center rounded-full bg-accent/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent">Join 500+ Active Volunteers</span>
+            <h2 class="font-editorial text-4xl md:text-5xl leading-tight text-white animate-fade-in">Support Our Mission</h2>
+            <p class="text-slate-300 text-lg leading-relaxed">Your support helps us scale these initiatives. Join us in making a tangible difference in the lives of thousands.</p>
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+              <a class="bg-primary text-white px-8 py-4 rounded-xl font-bold hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20" href="/contact">Volunteer</a>
+              <a class="border border-white/20 text-white hover:bg-white/5 px-8 py-4 rounded-xl font-bold transition-colors" href="/contact">Donate Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-slate-900 text-slate-400 py-20 border-t border-white/5 font-display">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="space-y-6">
+          <div class="flex items-center gap-3 text-white"><div class="w-8 h-8 bg-primary rounded flex items-center justify-center"><span class="material-symbols-outlined text-sm">eco</span></div><span class="font-bold text-lg">Krutha Foundation</span></div>
+          <p class="text-sm leading-relaxed">Dedicated to creating self-sustaining rural ecosystems that thrive on the principles of equity, sustainability, and traditional wisdom.</p>
+        </div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Quick Links</h4><ul class="space-y-4 text-sm"><li><a class="hover:text-primary transition-colors" href="/about">Our History</a></li><li><a class="hover:text-primary transition-colors" href="/our-work">Project Portfolio</a></li><li><a class="hover:text-primary transition-colors" href="/press">Annual Reports</a></li><li><a class="hover:text-primary transition-colors" href="/contact">Volunteer With Us</a></li></ul></div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Contact Us</h4><div class="space-y-4 text-sm"><p class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">location_on</span>Vadapalem, East Godavari District, Andhra Pradesh, India</p><p class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">mail</span>info@kruthafoundation.org</p></div></div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Our Partners</h4><div class="flex flex-wrap gap-4"><div class="h-10 px-4 bg-white/5 rounded flex items-center justify-center border border-white/10"><span class="font-bold text-white text-xs">PCT</span></div><div class="h-10 px-4 bg-white/5 rounded flex items-center justify-center border border-white/10"><span class="font-bold text-white text-xs">APTA</span></div></div></div>
+      </div>
+      <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs"><p>(c) 2024 Krutha Foundation. All rights reserved.</p><div class="flex gap-6"><a class="hover:text-white" href="/contact">Privacy Policy</a><a class="hover:text-white" href="/contact">Terms of Service</a></div></div>
+    </div>
+  </footer>
 </div>`;
 
 export function OurWorkDesktopPage() {

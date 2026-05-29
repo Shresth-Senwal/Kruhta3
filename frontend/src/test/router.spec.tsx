@@ -4,7 +4,7 @@
  * @module frontend/src/test
  */
 
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { RouterProviderContent } from "../app/router";
@@ -17,16 +17,26 @@ const routeExpectations: Record<string, string> = {
   "/events": "Impact in Action",
   "/blog": "Our Stories",
   "/contact": "Contact Details",
-  "/press": "Media &amp; Press Room",
+  "/press": "Official Archive",
   "/donation-confirmation": "Share Our Mission",
+  "/programs/leads": "L.E.A.D.S Program",
+  "/programs/bhagiratha": "Project Bhagiratha",
+  "/programs/vasundhara": "Project Vasundhara",
+  "/programs/samyamam": "Project Samyamam",
+  "/impact-report": "Impact Report",
   "/m": "Roadmap 2026+",
-  "/m/about": "Empowering Communities",
+  "/m/about": "Our Story",
   "/m/our-work": "Our Work",
   "/m/events": "Featured Event",
   "/m/blog": "Latest Stories",
   "/m/contact": "Contact Details",
-  "/m/press": "Featured Announcement",
-  "/m/donation-confirmation": "Donation Summary"
+  "/m/press": "Digital Media Kit",
+  "/m/donation-confirmation": "Donation Summary",
+  "/m/programs/leads": "L.E.A.D.S",
+  "/m/programs/bhagiratha": "Project Bhagiratha",
+  "/m/programs/vasundhara": "Project Vasundhara",
+  "/m/programs/samyamam": "SAMYAMAM",
+  "/m/impact-report": "Impact Report"
 };
 
 function renderAt(path: string) {

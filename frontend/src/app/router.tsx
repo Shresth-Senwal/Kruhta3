@@ -6,6 +6,7 @@
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { desktopRoutes, mobileRoutes } from "../data/routes";
+import { ResponsiveRedirect } from "../components/ui/responsive-redirect";
 import { AboutDesktopPage } from "../pages/desktop/about-desktop-page";
 import { BlogDesktopPage } from "../pages/desktop/blog-desktop-page";
 import { ContactDesktopPage } from "../pages/desktop/contact-desktop-page";
@@ -67,8 +68,10 @@ const mobilePageMap = {
 
 export function RouterProviderContent() {
   return (
-    <Routes>
-      {desktopRoutes.map((route) => {
+    <>
+      <ResponsiveRedirect />
+      <Routes>
+        {desktopRoutes.map((route) => {
         const Component = desktopPageMap[route.key];
         return <Route key={route.path} path={route.path} element={<Component />} />;
       })}
@@ -77,6 +80,7 @@ export function RouterProviderContent() {
         return <Route key={route.path} path={route.path} element={<Component />} />;
       })}
       <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }

@@ -64,27 +64,31 @@
 - [x] Implement dedicated program detail pages for Project Bhagiratha, Project Vasundhara, and Project Samyamam (Desktop + Mobile).
 - [x] Link program detail pages from "Our Work" galleries and home page pillars.
 - [x] Optimize brand assets: migrated from PNG to WebP and updated toolbar to display side-by-side emblem and wordmark logos.
+- [x] Integrated orange accent (#FF8C42) beautifully with the teal palette on desktop and mobile homepages, adding text gradients, glow blurs, and updated component accents.
+- [x] Consolidated "Library" project media into the "L.E.A.D.S Program" gallery in `project-media.ts` and removed the standalone library project.
+- [x] Fixed router smoke tests (`router.spec.tsx`) by updating route expectations to match the actual, correct text rendered on the refactored about and press pages, achieving a completely passing test suite (28/28 passing).
+- [x] Refactored Our Work pages (`our-work-desktop-page.tsx` and `our-work-mobile-page.tsx`) to match the updated visual identity and typography of the homepage, featuring font-editorial headings, orange accents, glowing blur support banners, and an aligned footer layout.
+- [x] Align Press page color scheme and visual identity (desktop + mobile) to match the homepage (editorial headings, orange accents, glow blurs, warm background, and consistent header/footer navigation).
+- [x] Align Impact Report page color scheme and visual identity (desktop + mobile) to match the homepage (editorial headings, orange accents, glow blurs, warm background, and consistent header/footer navigation).
+- [x] Align program pages (L.E.A.D.S Program, Project Bhagiratha, Project Vasundhara, Project Samyamam) on both desktop and mobile to the warm paper-light background scheme with editorial Playfair Display headings, glowing blurs, and premium cards.
+- [x] Align Contact Us page (desktop + mobile) to the warm paper-light scheme, integrating dynamic side-by-side emblem & wordmark headers and a premium, lighter warm cream footer for high visual excellence.
+- [x] Consolidate Contact Us desktop and mobile footers onto shared dark site footer builders for visual consistency with the rest of the site.
+- [x] Soften all static footer dark palettes and tune shared top logo sizing to match the provided emblem-plus-wordmark reference.
+- [x] Switch softened footer palette from green-teal to blue-slate and reverse shared top logo order to wordmark-first/emblem-second.
+- [x] Apply the site orange accent (#FF8C42) to softened footers and refine shared top logo proportions to match the latest wordmark-left/emblem-right reference.
+- [x] Correct footer orange to use the actual theme accent token (`bg-accent`, `#f7b35c`) instead of the prior hardcoded orange.
+- [x] Reduce footer accent intensity to a light theme-matched wash (`bg-accent/10`) with dark readable text and softer accent borders.
+- [x] Replace "Know More" button with CSS-driven parent-state "Show Gallery" and "Hide Gallery" buttons in Our Work sections (desktop + mobile) and rename program links to "View Impact".
+- [x] Integrated `Bhagiratha.webp` for Project Bhagiratha across all desktop and mobile pages (home page, program profiles, galleries) and set homepage-aligned high-quality WebP images as thumbnails in "Our Work".
+- [x] Merged School Adoption photos/gallery into L.E.A.D.S Program and removed the redundant School Adoption project record from the catalog.
+- [x] Implemented a premium hover-expandable "Our Work" dropdown menu in the desktop header and an animated drawer accordion in the mobile menu overlay containing project categories (Education, Environment, Water & Sanitation).
+- [x] Filtered Global Impact Alignment SDG list on About pages (desktop + mobile) to only display goals 3, 4, 5, 6, 8, 11, 12, 13, and 15.
+- [x] Fixed SVG donut chart segment overlapping and mathematically aligned stroke proportions for PCT (39.5%) and APTA (7.8%) segments with zero overlap.
+- [x] Changed SVG donut chart base ring color from `text-slate-100` to `text-slate-200` to make the Global Donors segment solid grey and beautifully matching the legend.
+- [x] Improved financial transparency donut chart central layout (Rs.21,26,753 text made text-3xl font-extrabold for better breathing room and subtitle made 10px uppercase tracking-widest text-slate-400 mt-1.5) and removed amount from the Global Donors legend item to match the reference mockup perfectly.
+- [x] Corrected leadership team spelling: updated Pedapudi Bapi Raju to Bapi Raju Pedapudi, and Srirama Chandra Murthy to Srirama Chandra Murthy P on both desktop and mobile about pages.
 
 ## Data Models
-
-- No backend data model.
-- Frontend content model will include:
-  - route metadata
-  - navigation items
-  - page section content
-  - card and list item collections
-
-## API Contracts
-
-- No external or internal API contracts in the current scope.
-- Forms are visual-only unless explicitly expanded later.
-
-## Technical Debt
-
-- Exact HTML-to-JSX parity across 16 routes is large in scope and may require selective duplication to preserve fidelity.
-- Remote image URLs from the source designs may remain in place initially for visual parity.
-- Fonts and icon delivery may initially use provider-hosted assets before any later self-hosting pass.
-- Development/build pipeline uses Bun build plus Tailwind CLI instead of Vite or other prohibited bundlers.
 - Custom Bun dev/build scripts require explicit static asset handling; `public/*` is now wired into both dev serving and dist output copying.
 - Route smoke tests verify static rendering of all 16 routes; they do not currently exercise client-side redirects or interactive form behavior.
 - Mobile menu open/close behavior is wired through DOM event delegation in the shared static markup renderer and is not yet covered by client-side interaction tests.

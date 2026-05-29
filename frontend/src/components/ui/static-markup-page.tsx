@@ -7,7 +7,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { enhanceStaticBranding } from "../layout/site-brand";
-import { buildDesktopHeaderMarkup, buildMobileHeaderMarkup } from "../layout/site-navigation";
+import { buildDesktopHeaderMarkup, buildMobileHeaderMarkup, buildMobileToolbarMarkup } from "../layout/site-navigation";
 
 interface StaticMarkupPageProps {
   html: string;
@@ -26,16 +26,21 @@ function getSharedHeaderMarkup(pathname: string) {
 
 function decorateStaticMarkup(html: string, pathname: string) {
   const sharedHeaderMarkup = getSharedHeaderMarkup(pathname);
+  let decorated = html;
 
   if (headerPattern.test(html)) {
-    return html.replace(headerPattern, sharedHeaderMarkup);
+    decorated = html.replace(headerPattern, sharedHeaderMarkup);
+  } else if (mainPattern.test(html)) {
+    decorated = html.replace(mainPattern, `${sharedHeaderMarkup}<main`);
+  } else {
+    decorated = `${sharedHeaderMarkup}${html}`;
   }
 
-  if (mainPattern.test(html)) {
-    return html.replace(mainPattern, `${sharedHeaderMarkup}<main`);
+  if (pathname.startsWith("/m")) {
+    decorated += buildMobileToolbarMarkup(pathname);
   }
 
-  return `${sharedHeaderMarkup}${html}`;
+  return decorated;
 }
 
 export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
@@ -47,8 +52,18 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
     "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='480'><rect width='100%25' height='100%25' fill='%23e2e8f0'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23475569' font-size='24' font-family='Arial'>Image Unavailable</text></svg>";
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [location.pathname]);
+    if (location.hash) {
+      requestAnimationFrame(() => {
+        const id = location.hash.slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -117,6 +132,22 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
 
     document.addEventListener("keydown", handleEscape);
 
+    const scrollToHash = (hash: string) => {
+      if (!hash) {
+        return;
+      }
+
+      const id = hash.slice(1);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      });
+    };
+
     const handleClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) {
@@ -154,12 +185,34 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
           closeButton?.addEventListener("click", () => overlay?.classList.add("hidden"));
         }
 
-        const enlarged = overlay.querySelector<HTMLImageElement>("#project-image-lightbox-img");
+        // At this point overlay is guaranteed to exist (created above if null)
+        const lightbox = overlay!;
+        const enlarged = lightbox.querySelector<HTMLImageElement>("#project-image-lightbox-img");
         if (enlarged) {
           enlarged.src = src;
         }
 
-        overlay.classList.remove("hidden");
+        lightbox.classList.remove("hidden");
+        return;
+      }
+
+      const submenuToggle = target.closest<HTMLElement>("[data-submenu-toggle]");
+      if (submenuToggle) {
+        event.preventDefault();
+        const key = submenuToggle.dataset.submenuToggle;
+        const menu = root.querySelector<HTMLElement>(`[data-submenu="${key}"]`);
+        const arrow = submenuToggle.querySelector<HTMLElement>("[data-submenu-arrow]");
+        
+        if (menu && arrow) {
+          const isHidden = menu.classList.contains("hidden");
+          if (isHidden) {
+            menu.classList.remove("hidden");
+            arrow.classList.add("rotate-180");
+          } else {
+            menu.classList.add("hidden");
+            arrow.classList.remove("rotate-180");
+          }
+        }
         return;
       }
 
@@ -169,6 +222,22 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
 
         const filter = categoryButton.dataset.categoryFilter?.trim().toLowerCase() ?? "all";
         const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-category-section]"));
+        const allFilters = Array.from(root.querySelectorAll<HTMLElement>("[data-category-filter]"));
+
+        // Update Button Styles
+        const activeClasses = ["bg-primary", "text-white", "shadow-lg", "shadow-primary/25", "shadow-primary/20"];
+        const inactiveClasses = ["text-slate-500", "hover:bg-primary/10", "hover:text-primary"];
+
+        for (const btn of allFilters) {
+          const isActive = btn === categoryButton;
+          if (isActive) {
+            btn.classList.add(...activeClasses.filter(c => !btn.classList.contains(c)));
+            btn.classList.remove(...inactiveClasses);
+          } else {
+            btn.classList.remove(...activeClasses);
+            btn.classList.add(...inactiveClasses.filter(c => !btn.classList.contains(c)));
+          }
+        }
 
         if (filter === "all") {
           for (const sec of sections) {
@@ -199,7 +268,16 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
 
       event.preventDefault();
       closeMenu();
-      navigate(href);
+
+      const hashIndex = href.indexOf("#");
+      if (hashIndex !== -1) {
+        const pathname = href.slice(0, hashIndex);
+        const hash = href.slice(hashIndex);
+        navigate(pathname + hash);
+        scrollToHash(hash);
+      } else {
+        navigate(href);
+      }
     };
 
     root.addEventListener("click", handleClick);
@@ -278,5 +356,21 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
     };
   }, [navigate, pageMarkup]);
 
-  return <div ref={rootRef} dangerouslySetInnerHTML={{ __html: pageMarkup }} />;
+  const primaryMobilePaths = ["/", "/m", "/m/", "/m/about", "/m/our-work", "/m/contact", "/m/impact-report", "/m/events"];
+  const isPrimary = primaryMobilePaths.includes(location.pathname);
+
+  return (
+    <div ref={rootRef} className="relative min-h-screen">
+      <div dangerouslySetInnerHTML={{ __html: pageMarkup }} />
+      {!isPrimary && (
+        <button
+          onClick={() => navigate(-1)}
+          className="fixed left-5 top-22 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-white/70 text-primary shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-white active:scale-95 group lg:left-8 lg:top-24"
+          aria-label="Go back"
+        >
+          <span className="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1">arrow_back</span>
+        </button>
+      )}
+    </div>
+  );
 }

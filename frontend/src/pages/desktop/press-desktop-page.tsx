@@ -5,6 +5,7 @@
  */
 
 import { StaticMarkupPage } from "../../components/ui/static-markup-page";
+import { buildDesktopHeaderMarkup } from "../../components/layout/site-navigation";
 import meetingCollector from "../../assets/press/MeetingDisctricCollectorToTakePlasticReductionInitiatives.webp";
 import newspaper2021 from "../../assets/press/Newspaper2021.webp";
 import article from "../../assets/press/article.webp";
@@ -13,150 +14,148 @@ import news2023 from "../../assets/press/news2023.webp";
 import sportsUniforms from "../../assets/press/sportsUniforms.webp";
 
 const html = String.raw`
-<div class="bg-[#fcfdfa] text-slate-900 font-display">
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-primary/10">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-12">
-        <div class="flex items-center gap-3">
-          <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
-            <span class="material-symbols-outlined text-xl">newspaper</span>
-          </div>
-          <h2 class="text-primary text-xl font-bold tracking-tight">Krutha Foundation</h2>
-        </div>
-        <nav class="hidden md:flex items-center gap-8">
-          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/">Home</a>
-          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/about">About</a>
-          <a class="text-slate-600 hover:text-primary font-medium transition-colors" href="/our-work">Projects</a>
-          <a class="text-primary font-bold" href="/press">Press Room</a>
-        </nav>
-      </div>
-      <a class="bg-primary text-white px-8 py-2.5 rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" href="/contact">Donate</a>
-    </div>
-  </header>
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light font-display text-slate-900">
+  ${buildDesktopHeaderMarkup("/press")}
 
-  <main>
+  <main class="flex-1">
     <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-6 py-24 text-center">
-      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-8">
+    <section class="max-w-7xl mx-auto px-6 py-20 text-center relative">
+      <!-- Glow Blurs -->
+      <div class="absolute -top-12 -left-12 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-12 -right-12 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
         <span class="material-symbols-outlined text-lg">public</span> Global Media & Press Center
       </div>
-      <h1 class="text-5xl md:text-7xl font-bold text-primary mb-8 max-w-4xl mx-auto leading-[1.1]">
-        In The Press
+      <h1 class="font-editorial text-slate-900 text-5xl md:text-7xl leading-tight mb-8">
+        In The <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-accent italic pr-2">Press</span>
       </h1>
       <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike. This collection of news coverage chronicles our journey since 2022—highlighting our impact in education, our innovative ecological initiatives, and our efforts to build a modern Krutha Yuga.
+        Our commitment to rural transformation has captured the attention of mainstream media and community leaders alike. This collection of news coverage chronicles our journey since 2022—highlighting our impact in education, our innovative ecological initiatives, and our efforts to build a modern <span class="text-primary font-bold">Krutha Yuga</span>.
       </p>
     </section>
 
     <!-- News Highlights Gallery -->
-    <section class="max-w-7xl mx-auto px-6 pb-24">
+    <section class="max-w-7xl mx-auto px-6 pb-24 relative">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <!-- News Item 1 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${meetingCollector}" alt="District Collector Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${meetingCollector}" alt="District Collector Meeting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Governance</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>2024</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Governance</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">2024</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Meeting District Collector for Plastic Reduction Initiatives</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Meeting District Collector for Plastic Reduction Initiatives</h3>
           </div>
         </div>
 
         <!-- News Item 2 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${news2023}" alt="2023 News Coverage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${news2023}" alt="2023 News Coverage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Regional News</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>Oct 2023</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Regional News</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">Oct 2023</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Mainstream Media Coverage of Village Transformation</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Mainstream Media Coverage of Village Transformation</h3>
           </div>
         </div>
 
         <!-- News Item 3 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${article}" alt="Main Article" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${article}" alt="Main Article" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Deep Dive</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>2023</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Deep Dive</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">2023</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Special Feature: Bridging the Diaspora and Native Roots</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Special Feature: Bridging the Diaspora and Native Roots</h3>
           </div>
         </div>
 
         <!-- News Item 4 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${sportsUniforms}" alt="Sports Uniforms" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${sportsUniforms}" alt="Sports Uniforms" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Community</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>2024</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Community</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">2024</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Empowering Youth through Sports & Infrastructure</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Empowering Youth through Sports & Infrastructure</h3>
           </div>
         </div>
 
         <!-- News Item 5 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${newspaper2021}" alt="2021 Newspaper" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${newspaper2021}" alt="2021 Newspaper" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Archive</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>2021-22</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Archive</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">2021-22</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Foundation Pillars: Early Media Records</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Foundation Pillars: Early Media Records</h3>
           </div>
         </div>
 
         <!-- News Item 6 -->
-        <div class="group cursor-pointer">
-          <div class="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 mb-6 shadow-sm border border-slate-100 transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-            <img src="${cameraLogo}" alt="Camera Impact" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-linear-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined">open_in_new</span></span>
+        <div class="group cursor-pointer bg-white p-5 rounded-[2rem] border border-primary/10 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 mb-6 border border-primary/5 shadow-inner">
+              <img src="${cameraLogo}" alt="Camera Impact" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <span class="text-white font-bold flex items-center gap-2">View Full Story <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+              </div>
             </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest">
-              <span>Multimedia</span>
-              <span class="size-1 bg-primary/30 rounded-full"></span>
-              <span>2023</span>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-accent text-xs font-black uppercase tracking-wider font-display">
+                <span>Multimedia</span>
+                <span class="size-1.5 bg-accent/40 rounded-full"></span>
+                <span class="text-primary">2023</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug">Visual Storytelling: Capturing the Krutha Movement</h3>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Visual Storytelling: Capturing the Krutha Movement</h3>
           </div>
         </div>
 
@@ -164,49 +163,58 @@ const html = String.raw`
     </section>
 
     <!-- Transparency Message -->
-    <section class="max-w-7xl mx-auto px-6 mb-24">
-      <div class="bg-primary p-12 rounded-[2rem] text-center text-white relative overflow-hidden shadow-2xl shadow-primary/20">
-        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent)]"></div>
-        <p class="text-xl md:text-2xl font-medium max-w-4xl mx-auto leading-relaxed relative z-10">
-          "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
-        </p>
+    <section class="max-w-7xl mx-auto px-6 mb-24 relative">
+      <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="bg-slate-900 p-12 lg:p-16 rounded-[2.5rem] text-center text-white relative overflow-hidden shadow-2xl border border-primary/10">
+        <div class="absolute -right-20 -top-20 size-80 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -left-20 -bottom-20 size-80 rounded-full bg-accent/15 blur-3xl"></div>
+        <div class="relative z-10 flex flex-col items-center gap-4 max-w-3xl mx-auto">
+          <span class="material-symbols-outlined text-4xl text-accent animate-pulse">verified</span>
+          <p class="font-serif text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed italic">
+            "These reports serve as a testament to the transparency of our work and the growing momentum of the Krutha movement."
+          </p>
+          <div class="w-12 h-1 bg-accent rounded-full mt-2"></div>
+        </div>
       </div>
     </section>
 
     <!-- Media Kit Section -->
-    <section class="bg-slate-50 border-y border-slate-100 py-24 px-6">
+    <section class="border-y border-primary/10 bg-white/40 py-24 px-6 relative">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
-          <div class="max-w-xl">
-            <h2 class="text-4xl font-bold text-primary mb-6">Digital Media Kit</h2>
-            <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+          <div class="max-w-xl space-y-6">
+            <span class="text-accent font-bold tracking-widest text-sm uppercase font-display">Resources</span>
+            <h2 class="font-editorial text-4xl lg:text-5xl text-slate-900 leading-tight">Digital Media Kit</h2>
+            <p class="text-slate-600 text-lg leading-relaxed font-normal">
               We provide comprehensive resources for journalists and researchers, including brand assets, verified fact sheets, and high-resolution project visuals.
             </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="mailto:press@krutha.org" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:shadow-xl hover:-translate-y-1 transition-all">
-                Request Interview <span class="material-symbols-outlined">mail</span>
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a href="mailto:press@krutha.org" class="bg-primary text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                Request Interview <span class="material-symbols-outlined text-base">mail</span>
               </a>
-              <a href="/contact" class="bg-white border border-primary/10 text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all">
+              <a href="/contact" class="bg-white border border-primary/20 text-primary px-8 py-4 rounded-xl font-bold hover:bg-primary/5 transition-all">
                 Download Full Kit
               </a>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-6 w-full lg:w-auto">
-            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-4xl text-primary">description</span>
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Fact Sheet</span>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/15 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg hover:border-primary hover:scale-105 transition-all cursor-pointer group">
+              <span class="material-symbols-outlined text-4xl text-primary group-hover:text-accent transition-colors">description</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-display">Fact Sheet</span>
             </div>
-            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-4xl text-primary">image</span>
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Impact Photos</span>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/15 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg hover:border-primary hover:scale-105 transition-all cursor-pointer group">
+              <span class="material-symbols-outlined text-4xl text-primary group-hover:text-accent transition-colors">image</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-display">Impact Photos</span>
             </div>
-            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-4xl text-primary">play_circle</span>
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">B-Roll</span>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/15 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg hover:border-primary hover:scale-105 transition-all cursor-pointer group">
+              <span class="material-symbols-outlined text-4xl text-primary group-hover:text-accent transition-colors">play_circle</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-display">B-Roll</span>
             </div>
-            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/5 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg transition-all cursor-pointer">
-              <span class="material-symbols-outlined text-4xl text-primary">logo_dev</span>
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Logos</span>
+            <div class="aspect-square size-40 bg-white rounded-3xl border border-primary/15 shadow-sm p-6 flex flex-col items-center justify-center text-center gap-3 hover:shadow-lg hover:border-primary hover:scale-105 transition-all cursor-pointer group">
+              <span class="material-symbols-outlined text-4xl text-primary group-hover:text-accent transition-colors">logo_dev</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-display">Logos</span>
             </div>
           </div>
         </div>
@@ -216,23 +224,23 @@ const html = String.raw`
     <!-- Press Releases Archive -->
     <section class="max-w-7xl mx-auto px-6 py-24">
       <div class="flex items-end justify-between mb-12">
-        <h2 class="text-3xl font-bold text-primary">Official Archive</h2>
-        <a href="/contact" class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">View All Releases</a>
+        <h2 class="font-editorial text-3xl lg:text-4xl text-slate-900 leading-tight">Official Archive</h2>
+        <a href="/contact" class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:text-accent hover:border-accent transition-all text-sm">View All Releases</a>
       </div>
-      <div class="space-y-4">
-        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+      <div class="space-y-4 max-w-4xl">
+        <div class="p-6 rounded-2xl bg-white border border-primary/10 flex items-center justify-between group hover:border-primary hover:shadow-md transition-all cursor-pointer">
           <div class="flex gap-8 items-center">
-            <span class="text-slate-400 font-mono text-sm">2025.04</span>
+            <span class="text-accent font-bold font-mono text-sm">2025.04</span>
             <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">3-Year Impact Report (2022-2025) Release</h4>
           </div>
-          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">download</span>
         </div>
-        <div class="p-6 rounded-2xl bg-white border border-slate-100 flex items-center justify-between group hover:border-primary/20 hover:shadow-lg transition-all">
+        <div class="p-6 rounded-2xl bg-white border border-primary/10 flex items-center justify-between group hover:border-primary hover:shadow-md transition-all cursor-pointer">
           <div class="flex gap-8 items-center">
-            <span class="text-slate-400 font-mono text-sm">2024.11</span>
+            <span class="text-accent font-bold font-mono text-sm">2024.11</span>
             <h4 class="text-lg font-bold text-slate-800 group-hover:text-primary transition-colors">Project Bhagiratha Groundwater Recharge Completion</h4>
           </div>
-          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+          <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">download</span>
         </div>
       </div>
     </section>
@@ -240,22 +248,18 @@ const html = String.raw`
   </main>
 
   <!-- Footer -->
-  <footer class="bg-primary text-white/80 py-20 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-      <div class="flex items-center gap-4 text-white">
-        <div class="size-10 bg-white rounded-xl flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined">newspaper</span>
+  <footer class="bg-slate-900 text-slate-400 py-20 border-t border-white/5 font-display">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="space-y-6">
+          <div class="flex items-center gap-3 text-white"><div class="w-8 h-8 bg-primary rounded flex items-center justify-center"><span class="material-symbols-outlined text-sm">eco</span></div><span class="font-bold text-lg">Krutha Foundation</span></div>
+          <p class="text-sm leading-relaxed">Dedicated to creating self-sustaining rural ecosystems that thrive on the principles of equity, sustainability, and traditional wisdom.</p>
         </div>
-        <div>
-          <h2 class="text-xl font-bold font-display tracking-tight text-white">Krutha Foundation</h2>
-          <p class="text-xs text-white/50 tracking-widest uppercase">Press Room Archive</p>
-        </div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Quick Links</h4><ul class="space-y-4 text-sm"><li><a class="hover:text-primary transition-colors" href="/about">Our History</a></li><li><a class="hover:text-primary transition-colors" href="/our-work">Project Portfolio</a></li><li><a class="hover:text-primary transition-colors" href="/press">Annual Reports</a></li><li><a class="hover:text-primary transition-colors" href="/contact">Volunteer With Us</a></li></ul></div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Contact Us</h4><div class="space-y-4 text-sm"><p class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">location_on</span>Vadapalem, East Godavari District, Andhra Pradesh, India</p><p class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">mail</span>info@kruthafoundation.org</p></div></div>
+        <div class="space-y-6"><h4 class="text-white font-bold uppercase tracking-widest text-xs">Our Partners</h4><div class="flex flex-wrap gap-4"><div class="h-10 px-4 bg-white/5 rounded flex items-center justify-center border border-white/10"><span class="font-bold text-white text-xs">PCT</span></div><div class="h-10 px-4 bg-white/5 rounded flex items-center justify-center border border-white/10"><span class="font-bold text-white text-xs">APTA</span></div></div></div>
       </div>
-      <p class="text-sm">(c) 2022-2025 Krutha Foundation. Empowering Vadapalem.</p>
-      <div class="flex gap-8 text-sm">
-        <a class="hover:text-white transition-colors" href="/contact">Media Compliance</a>
-        <a class="hover:text-white transition-colors" href="/contact">Privacy</a>
-      </div>
+      <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs"><p>(c) 2024 Krutha Foundation. All rights reserved.</p><div class="flex gap-6"><a class="hover:text-white" href="/contact">Privacy Policy</a><a class="hover:text-white" href="/contact">Terms of Service</a></div></div>
     </div>
   </footer>
 </div>`;

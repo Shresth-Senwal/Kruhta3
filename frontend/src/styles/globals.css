@@ -4,7 +4,8 @@
 
 @theme {
   --color-primary: #57c1bb;
-  --color-background-light: #f1fafa;
+  --color-accent: #f7b35c;
+  --color-background-light: #fffaf5;
   --color-background-dark: #112220;
   --color-sage: #8acac5;
   --color-forest: #2d5e5b;

@@ -26,6 +26,7 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
         description:
           "Guiding the critical years from Class 8 to 10 by providing life skills, adolescent education, career guidance, and scholarships to ensure a career, not a crisis.",
         images: [
+          "/projects/leads.webp",
           "https://drive.google.com/file/d/1G1TzaK5ZdiCYhEkCnLqF3vK0lu9j6LiZ/preview",
           "https://drive.google.com/file/d/1W8OrwmUPdnbjKuIXTu7ISUb8JKBVmia_/preview",
           "https://drive.google.com/file/d/1038f2DxIaViVPdiKdD_4swaZfPSn0Um-/preview",
@@ -40,30 +41,16 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
           "https://drive.google.com/file/d/1G6mf9LszCOBLeWhGRLcwKZUG6djIjWFN/preview",
           "https://drive.google.com/file/d/1BGxpPfzBwX1MiIOdovGUh4r7FCeyR_gg/preview",
           "https://drive.google.com/file/d/1PHJEjmHcp7od7WPqSRRfqZUCjud5TCuY/preview",
-        ],
-      },
-      {
-        title: "School Adoption",
-        description:
-          "Upgrading rural school infrastructure and learning spaces to improve access to quality education.",
-        images: [
+          "https://drive.google.com/file/d/1rgbj4qzbRJaEVlZ6FXhCYvJ-s0dY0iWL/preview",
+          "https://drive.google.com/file/d/1HWqCi_D3H6gtTkXHLNlAH8JYFMP5r0zR/preview",
+          "https://drive.google.com/file/d/191lSTP6yTvplHXjH3DalinjIas1gm4VE/preview",
+          "https://drive.google.com/file/d/1wt-qMtWVCjItwm3oe4-Py19g23GnMLcb/preview",
           "https://drive.google.com/file/d/1-r7_yKfA1VyE-UFXcAlFgVSCuOC5j4DK/preview",
           "https://drive.google.com/file/d/1qpW0yQc9FMwCK9g6NsyLpVMoOjrNwap_/preview",
           "https://drive.google.com/file/d/1fBODAvhjGXXSmiMJd85GwztVZ-oWMmFv/preview",
           "https://drive.google.com/file/d/1sfsVV8ogZ-ZNkfzIDTsvja14ZDeinqbB/preview",
           "https://drive.google.com/file/d/17RA8RZtiSkAb02dmtP_vp2uMiNVV2uds/preview",
           "https://drive.google.com/file/d/1_IPvuuHKt6jFVllrQWdS0HyMbDCEkWtg/preview",
-        ],
-      },
-      {
-        title: "Library",
-        description:
-          "Building and strengthening community and school libraries to promote reading habits and self-learning.",
-        images: [
-          "https://drive.google.com/file/d/1rgbj4qzbRJaEVlZ6FXhCYvJ-s0dY0iWL/preview",
-          "https://drive.google.com/file/d/1HWqCi_D3H6gtTkXHLNlAH8JYFMP5r0zR/preview",
-          "https://drive.google.com/file/d/191lSTP6yTvplHXjH3DalinjIas1gm4VE/preview",
-          "https://drive.google.com/file/d/1wt-qMtWVCjItwm3oe4-Py19g23GnMLcb/preview",
         ],
       },
     ],
@@ -77,6 +64,7 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
         description:
           "Zero plastic initiative through enforcement, cotton bag revolution, and the 'Borrow & Return' model to restore balance and dignity to our village.",
         images: [
+          "/projects/Samyamam.webp",
           "https://drive.google.com/file/d/1AGWA-myggdhqmAOOuRxHHegSHnUOlAyP/preview",
           "https://drive.google.com/file/d/1Ox1FeJl4BSm9khgM2pW7BL1tUAGOPW-O/preview",
           "https://drive.google.com/file/d/1r0UnDjphj1SWpECmwP3hvmdOpNUzyJ3I/preview",
@@ -91,6 +79,7 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
         description:
           "Honouring the wealth of our earth through a twin-bin system for 300 households and community-led waste management to create a waste-free Konaseema.",
         images: [
+          "/projects/Vasundhara.webp",
           "https://drive.google.com/file/d/1ckeDE2Bq343LASY3A186Aq-W83iUvAUd/preview",
           "https://drive.google.com/file/d/19BCWZtvjXQeAkmfsEcpmoux1VE3NMnUT/preview",
           "https://drive.google.com/file/d/1WuioqZ-34u0EeqIvDSLBau1Mt9jF477p/preview",
@@ -110,6 +99,7 @@ export const projectMediaCategories: ProjectMediaCategory[] = [
         description:
           "Bringing the heavens to the earth by constructing rainwater harvesting pits to recharge groundwater and secure a water-resilient future for generations.",
         images: [
+          "/projects/Bhagiratha.webp",
           "https://drive.google.com/file/d/1jC8KIxJ9Cpg82y0r-3uvZdAckqdKjiby/preview",
           "https://drive.google.com/file/d/1mljsl_A6-gyINV_OCiTFgj8ts66tjJuC/preview",
           "https://drive.google.com/file/d/122haIZ1vsQ7JjDH53aZSU-YNup8Jr9FC/preview",

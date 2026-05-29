@@ -85,42 +85,36 @@ function renderProjectCard(categoryTitle: string, project: (typeof projectMediaC
   const projectId = `m-project-${slugify(categoryTitle)}-${slugify(project.title)}`;
   const [thumbnail, ...galleryImages] = project.images;
 
-  return `<details id="${projectId}" class="rounded-2xl border border-primary/10 bg-white shadow-sm scroll-mt-28">
+  return `<details id="${projectId}" class="group rounded-2xl border border-primary/10 bg-white shadow-sm scroll-mt-28">
     <summary class="list-none cursor-pointer p-3">
       <div class="space-y-3">
         ${renderImageTag(thumbnail, `${project.title} thumbnail`, false)}
-        <div class="space-y-1.5">
-          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">${categoryTitle}</p>
-          <h3 class="text-lg font-black leading-tight text-slate-900">${project.title}</h3>
-          <p class="text-xs text-slate-600">Tap to view project details.</p>
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-accent font-display">${categoryTitle}</p>
+          <h3 class="font-editorial text-xl font-bold leading-tight text-slate-900">${project.title}</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">${project.description}</p>
+          <div class="flex flex-col gap-3 pt-2">
+            <span class="inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 group-open:hidden">Show Gallery</span>
+            <span class="hidden items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white shadow-lg shadow-primary/20 group-open:inline-flex">Hide Gallery</span>
+            ${project.programPath ? `
+              <a href="${project.programPath.startsWith("/m") ? project.programPath : "/m" + project.programPath}" class="inline-flex items-center justify-center gap-1.5 text-primary text-xs font-bold transition-all border border-primary/20 rounded-xl py-2 hover:text-accent">
+                View Impact <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </a>
+            ` : ""}
+          </div>
         </div>
       </div>
     </summary>
     <div class="space-y-4 border-t border-primary/10 p-3">
-      <p class="text-sm leading-relaxed text-slate-700">${project.description}</p>
-      <details class="rounded-xl border border-primary/10 bg-background-light">
-        <summary class="list-none cursor-pointer px-3 py-2.5">
-          <span class="inline-flex items-center rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-white">Show Gallery</span>
-        </summary>
-        <div class="px-3 pb-3">
-          ${renderGalleryImages(galleryImages, project.title)}
-        </div>
-      </details>
-      ${project.programPath ? `
-        <div class="pt-3 border-t border-primary/5 flex justify-end">
-          <a href="${project.programPath.startsWith("/m") ? project.programPath : "/m" + project.programPath}" class="inline-flex items-center gap-1.5 text-primary text-xs font-bold transition-all">
-            Full Program Details <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-          </a>
-        </div>
-      ` : ""}
+      ${renderGalleryImages(galleryImages, project.title)}
     </div>
   </details>`;
 }
 
 const categoryToolbarHtml = [
-  `<button type="button" data-category-filter="all" class="rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-bold text-primary">All</button>`,
+  `<button type="button" data-category-filter="all" class="shrink-0 rounded-full bg-primary px-4 py-2 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-primary/20 transition-all active:scale-95">All</button>`,
   ...projectMediaCategories.map(
-    (category) => `<button type="button" data-category-filter="${category.title.toLowerCase()}" class="rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-bold text-primary">${category.title}</button>`,
+    (category) => `<button type="button" data-category-filter="${category.title.toLowerCase()}" class="shrink-0 rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-wider text-slate-500 transition-all hover:bg-primary/10 active:scale-95">${category.title}</button>`,
   ),
 ].join("");
 
@@ -137,7 +131,7 @@ function renderCategorySection(category: (typeof projectMediaCategories)[number]
 
   return `<section id="${categoryId}" data-category-section="${category.title.toLowerCase()}" class="space-y-4 rounded-2xl border border-primary/10 bg-white p-4 scroll-mt-28">
     <div class="space-y-3">
-      <h2 class="text-xl font-black tracking-tight text-slate-900">${category.title}</h2>
+      <h2 class="font-editorial text-2xl font-bold tracking-tight text-slate-900">${category.title}</h2>
       <div class="flex flex-wrap gap-1.5">${projectToolbar}</div>
     </div>
     <div class="space-y-3">
@@ -150,9 +144,23 @@ const projectsGalleryHtml = projectMediaCategories.map((category) => renderCateg
 
 const html = String.raw`
 <div class="relative flex min-h-screen flex-col overflow-x-hidden bg-background-light font-display text-slate-900">
-  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md p-4 justify-between border-b border-primary/10"><a class="text-primary flex size-10 shrink-0 items-center justify-center" href="/m"><span class="material-symbols-outlined">arrow_back</span></a><h1 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Our Work</h1><div class="flex w-10 items-center justify-end"><button class="flex items-center justify-center text-primary"><span class="material-symbols-outlined">search</span></button></div></header>
-  <main class="flex-1 px-4 py-4 pb-28"><div class="flex items-center justify-between mb-4"><h2 class="text-slate-900 text-xl font-bold tracking-tight">Projects Gallery</h2><span class="text-xs font-medium text-slate-500">Select Category</span></div><div class="sticky top-18 z-30 mb-5 rounded-xl border border-primary/10 bg-white/95 p-3 backdrop-blur"><div class="flex flex-wrap gap-1.5">${categoryToolbarHtml}</div></div><div class="space-y-6">${projectsGalleryHtml}</div></main>
-  <footer class="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/10 bg-background-light px-4 pb-6 pt-2"><div class="flex items-center justify-between gap-2 max-w-md mx-auto"><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m"><span class="material-symbols-outlined text-[24px]">home</span><p class="text-[10px] font-medium leading-none">Home</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="/m/our-work"><span class="material-symbols-outlined text-[24px] font-fill">work</span><p class="text-[10px] font-bold leading-none">Our Work</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/events"><span class="material-symbols-outlined text-[24px]">show_chart</span><p class="text-[10px] font-medium leading-none">Impact</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/contact"><span class="material-symbols-outlined text-[24px]">favorite</span><p class="text-[10px] font-medium leading-none">Donate</p></a><a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="/m/about"><span class="material-symbols-outlined text-[24px]">person</span><p class="text-[10px] font-medium leading-none">Profile</p></a></div></footer>
+  <header class="sticky top-0 z-50 flex items-center bg-background-light/80 backdrop-blur-md p-4 justify-between border-b border-primary/10"><a class="text-primary flex size-9 shrink-0 items-center justify-center" href="/m"><span class="material-symbols-outlined text-[20px]">arrow_back</span></a><h1 class="text-slate-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center font-editorial">Our Work</h1><div class="flex w-9 items-center justify-end"><button class="flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[18px]">search</span></button></div></header>
+  <main class="flex-1 px-4 py-4 pb-28">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-editorial text-3xl font-bold tracking-tight text-slate-900">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent italic">Work</span></h2>
+      <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Filter</span>
+    </div>
+    
+    <div class="sticky top-16 z-30 mb-8 -mx-4 px-4 overflow-x-auto no-scrollbar scroll-smooth">
+      <div class="flex items-center gap-2 pb-2">
+        ${categoryToolbarHtml}
+      </div>
+    </div>
+
+    <div class="space-y-8">
+      ${projectsGalleryHtml}
+    </div>
+  </main>
 </div>`;
 
 export function OurWorkMobilePage() {
