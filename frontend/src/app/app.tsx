@@ -4,8 +4,14 @@
  * @module frontend/src/app
  */
 
+import { ScrollToAnchor } from "../components/ui/scroll-to-anchor";
 import { RouterProviderContent } from "./router";
 
 export function App() {
-  return <RouterProviderContent />;
+  return (
+    <>
+      <ScrollToAnchor />
+      <RouterProviderContent />
+    </>
+  );
 }

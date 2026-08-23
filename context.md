@@ -87,9 +87,13 @@
 - [x] Changed SVG donut chart base ring color from `text-slate-100` to `text-slate-200` to make the Global Donors segment solid grey and beautifully matching the legend.
 - [x] Improved financial transparency donut chart central layout (Rs.21,26,753 text made text-3xl font-extrabold for better breathing room and subtitle made 10px uppercase tracking-widest text-slate-400 mt-1.5) and removed amount from the Global Donors legend item to match the reference mockup perfectly.
 - [x] Corrected leadership team spelling: updated Pedapudi Bapi Raju to Bapi Raju Pedapudi, and Srirama Chandra Murthy to Srirama Chandra Murthy P on both desktop and mobile about pages.
+- [x] Resolved SPA direct link 404 and page refresh errors by implementing universal static route pre-generation in `build.ts` (emitting directory `index.html` mirrors across all 26 desktop and mobile routes + `404.html` fallback).
+- [x] Configured static host rewrite fallback files (`frontend/public/_redirects` for Netlify/Cloudflare, `vercel.json` for Vercel, and `.htaccess` for Apache).
+- [x] Implemented client-side `ScrollToAnchor` component to ensure smooth scrolling to hash anchors (e.g., `#partners`) on initial page load and route transitions.
 
 ## Data Models
 - Custom Bun dev/build scripts require explicit static asset handling; `public/*` is now wired into both dev serving and dist output copying.
+- Static build emits pre-generated `index.html` directory mirrors for all 26 routes (desktop + mobile) plus universal `404.html`, `_redirects`, `vercel.json`, and `.htaccess` to guarantee working direct linking and refresh on any static host.
 - Route smoke tests verify static rendering of all 16 routes; they do not currently exercise client-side redirects or interactive form behavior.
 - Mobile menu open/close behavior is wired through DOM event delegation in the shared static markup renderer and is not yet covered by client-side interaction tests.
 - Home page contrast no longer depends on `dark:` utility variants; the remaining static pages should still be reviewed for any low-contrast text embedded directly in imported markup.
@@ -99,3 +103,4 @@
 - Leadership section currently uses approved real photos for available members only; additional members remain hidden until verified image assets are provided and added to `frontend/public/team/`.
 - Leadership section currently uses approved real photos for available members only; additional members remain hidden until verified image assets are provided and imported in `frontend/src/assets`.
 - Press page references WhatsApp-shared media coverage images, but those assets are not yet present in the repository for direct embedding.
+

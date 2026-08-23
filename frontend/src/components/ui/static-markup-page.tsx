@@ -175,14 +175,15 @@ export function StaticMarkupPage({ html }: StaticMarkupPageProps) {
           `;
           document.body.appendChild(overlay);
 
-          overlay.addEventListener("click", (outerEvent) => {
-            if (outerEvent.target === overlay) {
-              overlay.classList.add("hidden");
+          const activeOverlay = overlay;
+          activeOverlay.addEventListener("click", (outerEvent) => {
+            if (outerEvent.target === activeOverlay) {
+              activeOverlay.classList.add("hidden");
             }
           });
 
-          const closeButton = overlay.querySelector<HTMLElement>('#project-image-lightbox-close');
-          closeButton?.addEventListener("click", () => overlay?.classList.add("hidden"));
+          const closeButton = activeOverlay.querySelector<HTMLElement>("#project-image-lightbox-close");
+          closeButton?.addEventListener("click", () => activeOverlay.classList.add("hidden"));
         }
 
         // At this point overlay is guaranteed to exist (created above if null)
